@@ -1,0 +1,96 @@
+
+Você vai desenvolver o novo site institucional + CMS do projeto **Alunos Digitais**.
+
+Leia primeiro e siga rigidamente estes arquivos:
+1. `CLAUDE.md`
+2. `docs/architecture.md` ou o documento equivalente baseado em `alunosdigitais_claude_master_spec.md`
+3. `supabase/migrations/*`
+
+## Objetivo
+Criar um site institucional moderno, responsivo, SEO-first e com CMS interno robusto, usando:
+- Next.js App Router
+- TypeScript
+- Supabase Postgres/Auth/Storage
+- SQL-first migrations
+- Vercel
+- GitHub
+
+## Decisões obrigatórias
+- O foco deste ciclo é **site institucional + CMS**, não reconstrução do LMS
+- Admin deve ficar fora da indexação
+- O conteúdo deve ser modelado com `content_items` + `content_revisions`
+- O editor rico deve ser baseado em **Tiptap**
+- O banco precisa refletir o programa por **ano, fase, tema e público**
+- Toda regra sensível deve respeitar RLS
+- Não usar `service_role` fora do servidor
+- Criar estrutura de formulários, leads, redirects, mídia, SEO e consentimento
+
+## Entrega por fases
+### Fase 1
+Bootstrap do projeto:
+- inicialize o projeto
+- configure lint, format, testes e build
+- configure Supabase client server/client
+- escreva `.env.example`
+- crie a base do layout público e admin
+
+### Fase 2
+Banco e auth:
+- implemente migrations iniciais
+- perfis, roles e policies
+- buckets de storage
+- seeds mínimas de taxonomias, anos, fases e temas
+
+### Fase 3
+CMS:
+- login protegido
+- dashboard
+- CRUD de conteúdo
+- editor Tiptap com autosave, upload, drag/reorder e resize de imagem
+- revisão e publicação
+
+### Fase 4
+Site público:
+- homepage
+- páginas institucionais principais
+- páginas de tema
+- blog/biblioteca
+- busca/listagens
+- SEO por página
+- sitemap e robots
+
+### Fase 5
+Captação:
+- formulários configuráveis
+- submissões
+- leads
+- consentimento
+- CTAs principais
+- eventos analíticos preparados
+
+### Fase 6
+Hardening:
+- testes E2E
+- redirects
+- revisão de performance
+- revisão de acessibilidade
+- documentação final
+
+## Regras de execução
+- Trabalhe em pequenas etapas
+- Ao começar cada fase, descreva o plano
+- Ao final de cada fase, rode as validações aplicáveis
+- Não invente requisitos além do documento
+- Quando houver dúvida entre flexibilidade e simplicidade, escolha simplicidade sustentável
+- Sempre prefira código claro, modular e testável
+
+## Entregáveis técnicos esperados
+- código funcional
+- migrations SQL
+- policies RLS
+- componentes reutilizáveis
+- docs mínimas
+- setup de CI
+- estrutura pronta para deploy na Vercel
+
+Comece pela **Fase 1**, proponha a estrutura inicial do repositório e só então parta para a implementação.
