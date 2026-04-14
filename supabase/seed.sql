@@ -1,0 +1,7 @@
+-- Seeds are currently embedded in the initial migration
+-- (taxonomies, audience_segments, program_tracks, grade_levels,
+-- program_phases, program_themes).
+--
+-- Add extra environment-specific seeds here as the project grows — for
+-- example, content_items placeholders for the institutional pages or
+-- demo leads for dev/staging.
