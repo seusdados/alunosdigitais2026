@@ -1,5 +1,7 @@
 # Guia do CMS
 
+> Testado em Vercel Preview + Supabase Auth na Fase 3.1.
+
 ## Acesso ao painel
 
 O painel fica em `/admin`. É protegido por autenticação (Supabase Auth) e por
