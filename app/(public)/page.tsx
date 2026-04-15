@@ -11,9 +11,8 @@ export default function HomePage() {
           Cidadania digital para escolas, educadores e famílias.
         </h1>
         <p className="mt-6 text-pretty text-lg text-muted-foreground">
-          Este é o esqueleto do novo site e CMS do Alunos Digitais. O conteúdo real,
-          as páginas institucionais e o editor administrativo serão entregues
-          nas próximas fases do projeto.
+          Este é o esqueleto do novo site e CMS do Alunos Digitais. O conteúdo real, as páginas
+          institucionais e o editor administrativo serão entregues nas próximas fases do projeto.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link

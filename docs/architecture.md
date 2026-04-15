@@ -17,16 +17,16 @@ documento é o mapa rápido para quem está começando.
 
 ## Stack
 
-| Camada          | Ferramenta                                          |
-| --------------- | --------------------------------------------------- |
-| Framework       | Next.js 15 (App Router) + React 19                  |
-| Linguagem       | TypeScript (strict)                                 |
-| UI              | Tailwind CSS 3.4 + shadcn/ui + lucide-react         |
-| Forms           | React Hook Form + Zod                               |
-| Editor (Fase 3) | Tiptap                                              |
-| Dados           | Supabase (Postgres + Auth + Storage) — SQL-first    |
-| Deploy          | Vercel + GitHub Actions                             |
-| Testes          | Playwright (E2E) + typecheck + lint no CI           |
+| Camada          | Ferramenta                                       |
+| --------------- | ------------------------------------------------ |
+| Framework       | Next.js 15 (App Router) + React 19               |
+| Linguagem       | TypeScript (strict)                              |
+| UI              | Tailwind CSS 3.4 + shadcn/ui + lucide-react      |
+| Forms           | React Hook Form + Zod                            |
+| Editor (Fase 3) | Tiptap                                           |
+| Dados           | Supabase (Postgres + Auth + Storage) — SQL-first |
+| Deploy          | Vercel + GitHub Actions                          |
+| Testes          | Playwright (E2E) + typecheck + lint no CI        |
 
 ## Modelo de pastas
 

@@ -49,15 +49,15 @@ pnpm dev
 
 ## Comandos úteis
 
-| Comando           | O que faz                                          |
-| ----------------- | -------------------------------------------------- |
-| `pnpm dev`        | Sobe o Next.js em dev mode                         |
-| `pnpm build`      | Compila o bundle de produção                       |
-| `pnpm start`      | Roda o bundle de produção localmente               |
-| `pnpm lint`       | ESLint (next/core-web-vitals + next/typescript)    |
-| `pnpm typecheck`  | `tsc --noEmit` (TypeScript strict)                 |
-| `pnpm format`     | Prettier em todo o repositório                     |
-| `pnpm format:check` | Prettier em modo check, sem escrever arquivos    |
+| Comando             | O que faz                                       |
+| ------------------- | ----------------------------------------------- |
+| `pnpm dev`          | Sobe o Next.js em dev mode                      |
+| `pnpm build`        | Compila o bundle de produção                    |
+| `pnpm start`        | Roda o bundle de produção localmente            |
+| `pnpm lint`         | ESLint (next/core-web-vitals + next/typescript) |
+| `pnpm typecheck`    | `tsc --noEmit` (TypeScript strict)              |
+| `pnpm format`       | Prettier em todo o repositório                  |
+| `pnpm format:check` | Prettier em modo check, sem escrever arquivos   |
 
 ## Banco de dados (Supabase)
 
