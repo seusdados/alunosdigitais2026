@@ -1,11 +1,15 @@
-export default function AdminDashboardPage() {
+import { requireAdmin } from "@/lib/auth/session";
+
+export default async function AdminDashboardPage() {
+  const ctx = await requireAdmin();
+
   return (
     <div className="space-y-6">
       <header>
         <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
         <p className="text-sm text-muted-foreground">
-          Placeholder do painel administrativo. O CMS funcional é entregue na
-          Fase 3.
+          Bem-vindo, {ctx.user.email}. As métricas reais chegam na Fase 3.2; por ora, esta página
+          confirma que o fluxo de autenticação está operando.
         </p>
       </header>
 

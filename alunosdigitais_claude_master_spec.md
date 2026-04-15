@@ -1,4 +1,3 @@
-
 # Alunos Digitais — Especificação de Arquitetura para Claude Code
 
 ## 1) Objetivo do projeto
@@ -19,17 +18,20 @@ Este documento foi estruturado para **Claude Code** executar o desenvolvimento p
 ## 2) Premissas e classificações
 
 ### VERIFICADO
+
 - O programa público de Alunos Digitais trabalha cidadania digital, segurança online, proteção de dados, engajamento familiar e temas como privacidade, direitos do cidadão, navegação segura, cyberbullying e fake news.
 - O material público descreve o programa como aplicável a escolas públicas e privadas.
 - O programa é descrito publicamente como estruturado em fases e com apoio de gamificação.
 - A superfície pública atual expõe páginas do app/LMS e até páginas administrativas na busca, o que reforça a necessidade de separar indexação pública de ambiente interno.
 
 ### INFERIDO
+
 - O modelo comercial principal é **geração de leads consultiva/institucional** para adesão ao programa por escolas, redes, gestores e mantenedores.
 - A região prioritária inicial é **Brasil**.
 - O stack atual do app parece ter traços de LMS legado, possivelmente algo próximo de Moodle, mas isso não é base obrigatória para a nova implementação.
 
 ### RECOMENDADO
+
 - Não reconstruir o LMS no mesmo ciclo do novo site.
 - Criar um **novo site institucional + CMS** em código moderno, mantendo eventual LMS como sistema separado ou integrado depois.
 - Usar **Next.js + TypeScript + Supabase + Vercel**.
@@ -41,6 +43,7 @@ Este documento foi estruturado para **Claude Code** executar o desenvolvimento p
 ## 3) Escopo do MVP recomendado
 
 ### Dentro do escopo
+
 1. Site institucional público
 2. CMS interno completo
 3. Modelagem de páginas, blog, biblioteca, materiais e programa
@@ -53,6 +56,7 @@ Este documento foi estruturado para **Claude Code** executar o desenvolvimento p
 10. Infra com GitHub, Vercel e Supabase
 
 ### Fora do escopo do primeiro ciclo
+
 1. Reescrever o LMS inteiro
 2. Reproduzir todas as funcionalidades pedagógicas do app legado
 3. Checkout complexo
@@ -65,6 +69,7 @@ Este documento foi estruturado para **Claude Code** executar o desenvolvimento p
 ## 4) Decisão arquitetural principal
 
 ### Decisão
+
 O projeto deve ser construído como **uma aplicação web única**, com:
 
 - **site público** em rotas abertas
@@ -75,10 +80,13 @@ O projeto deve ser construído como **uma aplicação web única**, com:
 - **Claude Code** como executor principal do desenvolvimento
 
 ### Motivo
+
 Essa abordagem reduz atrito operacional, facilita preview por PR, mantém o backend enxuto e concentra a governança de dados no Postgres com RLS.
 
 ### Interpretação da exigência “a linguagem deve ser postgres”
+
 Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho abaixo usa:
+
 - **SQL/PostgreSQL** como linguagem central de dados e regras
 - **TypeScript** como linguagem da aplicação web
 - **Next.js** como runtime web e de rotas
@@ -89,6 +97,7 @@ Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho 
 ## 5) Stack recomendada
 
 ## Aplicação
+
 - Next.js (App Router)
 - TypeScript
 - React
@@ -98,6 +107,7 @@ Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho 
 - React Hook Form para formulários
 
 ## Dados / backend
+
 - Supabase Postgres
 - Supabase Auth
 - Supabase Storage
@@ -106,6 +116,7 @@ Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho 
 - tipos gerados do banco para TypeScript
 
 ## CMS / edição
+
 - Tiptap
 - upload de arquivos/imagens para Supabase Storage
 - autosave
@@ -113,6 +124,7 @@ Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho 
 - componentes/blocos customizados
 
 ## Deploy / fluxo
+
 - GitHub
 - Vercel
 - GitHub Actions
@@ -120,6 +132,7 @@ Postgres não é linguagem de aplicação. Para honrar essa diretriz, o desenho 
 - branches do Supabase para homologação quando fizer sentido
 
 ## Qualidade
+
 - ESLint
 - Prettier
 - Playwright
@@ -178,6 +191,7 @@ flowchart LR
 ```
 
 ### Estratégia recomendada de rotas
+
 - `www.alunosdigitais.com/*` → site público
 - `www.alunosdigitais.com/admin/*` → CMS interno protegido
 - `app.alunosdigitais.com/*` → manter como ambiente pedagógico/LMS separado, sem indexação pública
@@ -236,6 +250,7 @@ flowchart LR
 ## 9) Módulos do sistema
 
 ## 9.1 Site público
+
 - homepage
 - páginas institucionais
 - páginas por público
@@ -248,6 +263,7 @@ flowchart LR
 - páginas legais
 
 ## 9.2 CMS interno
+
 - dashboard
 - conteúdos
 - mídia
@@ -262,6 +278,7 @@ flowchart LR
 - revisões e publicação
 
 ## 9.3 Camada de dados
+
 - conteúdo
 - taxonomias
 - mídia
@@ -276,6 +293,7 @@ flowchart LR
 ## 10) Mapa de páginas públicas
 
 ## 10.1 Essenciais
+
 - `/`
 - `/programa`
 - `/como-funciona`
@@ -297,6 +315,7 @@ flowchart LR
 - `/acessibilidade`
 
 ## 10.2 Páginas temáticas recomendadas
+
 - `/temas/privacidade-de-dados`
 - `/temas/direitos-do-cidadao-digital`
 - `/temas/navegacao-segura`
@@ -309,12 +328,14 @@ flowchart LR
 - `/temas/eca-digital`
 
 ## 10.3 Biblioteca / blog
+
 - `/biblioteca/[slug]`
 - `/blog/[slug]`
 - `/materiais/[slug]`
 - `/cases/[slug]`
 
 ## 10.4 Páginas por persona
+
 - `/para-escolas-privadas`
 - `/para-redes-publicas`
 - `/para-gestores`
@@ -326,6 +347,7 @@ flowchart LR
 ## 11) Estrutura do CMS interno
 
 ## 11.1 Dashboard
+
 - cards de conteúdos publicados
 - rascunhos pendentes
 - leads recentes
@@ -334,6 +356,7 @@ flowchart LR
 - mídia recente
 
 ## 11.2 Conteúdos
+
 - lista filtrável por tipo, status, autor, data, termo, persona
 - criação de:
   - página
@@ -345,7 +368,9 @@ flowchart LR
   - unidade curricular
 
 ## 11.3 Editor
+
 ### Requisitos obrigatórios
+
 - drag and drop
 - reordenação de blocos
 - redimensionamento de imagem
@@ -358,6 +383,7 @@ flowchart LR
 - blocos customizados
 
 ### Blocos iniciais
+
 - hero
 - rich text
 - cards
@@ -380,6 +406,7 @@ flowchart LR
 - sessão de temas
 
 ## 11.4 Mídia
+
 - biblioteca por pasta lógica
 - upload múltiplo
 - alt text obrigatório em imagens públicas
@@ -388,6 +415,7 @@ flowchart LR
 - seleção de imagem OG
 
 ## 11.5 SEO
+
 - title
 - meta description
 - canonical
@@ -399,6 +427,7 @@ flowchart LR
 - preview do snippet
 
 ## 11.6 Formulários / leads
+
 - cadastro de formulários
 - campos configuráveis
 - notificações
@@ -406,6 +435,7 @@ flowchart LR
 - pipeline simples de lead
 
 ## 11.7 Segurança / governança
+
 - perfis:
   - super_admin
   - admin
@@ -420,7 +450,9 @@ flowchart LR
 ## 12) Modelo de conteúdo recomendado
 
 ## 12.1 Estratégia
+
 Usar um **modelo híbrido**:
+
 - tabela principal de conteúdo
 - tabela de revisões
 - taxonomias relacionais
@@ -428,12 +460,14 @@ Usar um **modelo híbrido**:
 - HTML renderizado e texto extraído para publicação e busca
 
 ### Por que esse modelo?
+
 - evita EAV excessivo
 - mantém flexibilidade
 - facilita preview, publish e busca
 - suporta editor avançado sem congelar a evolução do schema
 
 ## 12.2 Tipos principais de conteúdo
+
 - page
 - landing_page
 - article
@@ -444,6 +478,7 @@ Usar um **modelo híbrido**:
 - curriculum_unit
 
 ## 12.3 Taxonomias
+
 - tema
 - persona
 - formato
@@ -457,6 +492,7 @@ Usar um **modelo híbrido**:
 ## 13) Modelo de dados lógico
 
 ## 13.1 Entidades centrais
+
 1. `profiles`
 2. `role_assignments`
 3. `media_assets`
@@ -485,6 +521,7 @@ Usar um **modelo híbrido**:
 26. `audit_logs`
 
 ## 13.2 Relações principais
+
 - `auth.users 1:1 profiles`
 - `profiles N:N roles`
 - `content_items 1:N content_revisions`
@@ -507,6 +544,7 @@ Usar um **modelo híbrido**:
 O site não deve ser só institucional. Ele precisa conseguir **explicar o programa em profundidade**, inclusive em estrutura curricular.
 
 ## 14.1 Eixos do programa a refletir no banco
+
 - público-alvo
 - ano escolar
 - fase
@@ -517,22 +555,29 @@ O site não deve ser só institucional. Ele precisa conseguir **explicar o progr
 - relação com biblioteca/blog
 
 ## 14.2 Estrutura recomendada
+
 ### `program_tracks`
+
 Exemplos:
+
 - fundamental_1
 - fundamental_2
 - familias
 - educadores
 
 ### `grade_levels`
+
 Exemplos:
+
 - ano_1
 - ano_2
 - ...
 - ano_9
 
 ### `program_phases`
+
 Exemplos:
+
 - fase_1
 - fase_2
 - fase_3
@@ -541,7 +586,9 @@ Exemplos:
 - fase_6
 
 ### `program_themes`
+
 Exemplos:
+
 - privacidade_de_dados
 - direitos_do_cidadao
 - navegacao_segura
@@ -554,7 +601,9 @@ Exemplos:
 - eca_digital
 
 ### `curriculum_units`
+
 Cada unidade pode conter:
+
 - track
 - ano
 - fase
@@ -593,6 +642,7 @@ Cada unidade pode conter:
    - anexos não públicos
 
 ### Regras
+
 - tudo público deve ter metadado mínimo
 - assets sensíveis não podem estar em bucket público
 - usar URL assinada quando necessário
@@ -603,26 +653,32 @@ Cada unidade pode conter:
 ## 16) Autenticação e autorização
 
 ## 16.1 Auth
+
 Usar Supabase Auth com:
+
 - email + magic link
 - email + senha para administradores
 - recuperação de senha
 - possibilidade de MFA futura
 
 ## 16.2 RLS
+
 ### Público
+
 - leitura apenas de conteúdos publicados
 - envio de formulários
 - registro de consentimento
 - abertura de solicitação de privacidade
 
 ### Editor/Admin
+
 - acesso por role
 - leitura e escrita conforme papel
 - publicação apenas para reviewer/admin/super_admin
 - assets privados protegidos
 
 ### Service role
+
 - somente em server-side
 - jamais exposto no cliente
 
@@ -645,6 +701,7 @@ Usar Supabase Auth com:
    - sitemap
 
 ### Campos editoriais importantes
+
 - título
 - subtítulo
 - resumo
@@ -684,6 +741,7 @@ Usar Supabase Auth com:
 ## 19) Requisitos de analytics e captação
 
 ## Eventos essenciais
+
 - `page_view`
 - `view_program_page`
 - `view_curriculum_unit`
@@ -695,12 +753,14 @@ Usar Supabase Auth com:
 - `search_internal`
 
 ## Conversões principais
+
 - agendar conversa
 - enviar formulário de interesse
 - solicitar apresentação
 - baixar material rico qualificado
 
 ## Observação
+
 Não salvar analytics bruto em banco no primeiro ciclo. Use GA4/GTM para comportamento e banco para dados operacionais do CMS/leads.
 
 ---
@@ -724,6 +784,7 @@ Não salvar analytics bruto em banco no primeiro ciclo. Use GA4/GTM para comport
 ## 21) Regras de conteúdo e migração
 
 ## 21.1 Conteúdo a migrar/aproveitar
+
 - essência do programa
 - temas pedagógicos
 - estrutura por ano/fase quando útil
@@ -734,6 +795,7 @@ Não salvar analytics bruto em banco no primeiro ciclo. Use GA4/GTM para comport
 - conteúdos correlatos do ecossistema ECA Digital quando houver alinhamento
 
 ## 21.2 Migração recomendada
+
 - transformar PDFs estratégicos em páginas HTML indexáveis
 - manter o PDF como download complementar
 - mapear 301 redirects do legado
@@ -745,12 +807,14 @@ Não salvar analytics bruto em banco no primeiro ciclo. Use GA4/GTM para comport
 ## 22) GitHub + Vercel + Supabase + Claude Code
 
 ## 22.1 Fluxo de branch
+
 - `main` = produção
 - `develop` = integração opcional
 - `feat/*` = features
 - `fix/*` = correções
 
 ## 22.2 PR flow
+
 1. branch abre PR
 2. CI roda lint, typecheck, testes, build
 3. Vercel gera preview
@@ -760,7 +824,9 @@ Não salvar analytics bruto em banco no primeiro ciclo. Use GA4/GTM para comport
 7. produção
 
 ## 22.3 Claude Code
+
 O repositório deve ter:
+
 - `CLAUDE.md` na raiz
 - docs de arquitetura
 - comandos de setup
@@ -772,6 +838,7 @@ O repositório deve ter:
 ## 23) Roadmap técnico em fases
 
 ## Fase 1 — Bootstrap
+
 - criar repo
 - iniciar Next.js
 - configurar Supabase
@@ -781,6 +848,7 @@ O repositório deve ter:
 - escrever `CLAUDE.md`
 
 ## Fase 2 — Dados e auth
+
 - criar migrations
 - perfis e roles
 - RLS base
@@ -788,6 +856,7 @@ O repositório deve ter:
 - utilitários server/client do Supabase
 
 ## Fase 3 — CMS core
+
 - login admin
 - dashboard
 - CRUD de conteúdo
@@ -798,6 +867,7 @@ O repositório deve ter:
 - publish workflow
 
 ## Fase 4 — Site público
+
 - homepage
 - páginas institucionais
 - tema/programa/personas
@@ -806,6 +876,7 @@ O repositório deve ter:
 - SEO base
 
 ## Fase 5 — Formulários e leads
+
 - forms
 - submissões
 - leads
@@ -814,6 +885,7 @@ O repositório deve ter:
 - eventos analíticos
 
 ## Fase 6 — Migração e hardening
+
 - importar conteúdo prioritário
 - redirects
 - testes e2e
@@ -892,4 +964,3 @@ Cole o prompt do arquivo `prompt_claude_code_alunosdigitais.txt`.
 - [ ] colar `CLAUDE.md`
 - [ ] entregar prompt ao Claude Code
 - [ ] executar por fases
-
