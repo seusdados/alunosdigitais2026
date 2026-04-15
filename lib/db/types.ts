@@ -16,15 +16,12 @@ export type ContentStatus = "draft" | "in_review" | "scheduled" | "published" | 
 export type ContentType =
   | "page"
   | "landing_page"
-  | "blog_post"
-  | "theme"
-  | "curriculum_unit"
-  | "library_item"
-  | "testimonial"
+  | "article"
+  | "resource"
+  | "case_study"
   | "faq"
-  | "team_member"
-  | "partner"
-  | "event";
+  | "legal_page"
+  | "curriculum_unit";
 
 export type LeadStatus = "new" | "qualified" | "contacted" | "won" | "lost" | "spam";
 
