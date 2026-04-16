@@ -1,7 +1,9 @@
 # Especificação de componentes — Blocos do site
 
 ## Princípio de design: Ilustrações "estouradas"
+
 Todas as ilustrações no site usam tratamento de sangria (bleed):
+
 - Imagens excedem o container (width: 125-135%)
 - CSS `mask-image` com `linear-gradient` dissolve as bordas
 - Margem negativa faz a imagem sangrar além do padding do site
@@ -10,6 +12,7 @@ Todas as ilustrações no site usam tratamento de sangria (bleed):
 ---
 
 ## 1. NavBar
+
 ```
 Componente: NavBar
 Background: navy-800
@@ -25,6 +28,7 @@ Elementos:
 ```
 
 ## 2. HeroBlock
+
 ```
 Componente: HeroBlock
 Background: navy-800
@@ -52,6 +56,7 @@ Ilustração (position absolute, z-index 1):
 ```
 
 ## 3. RegulatoryBar
+
 ```
 Componente: RegulatoryBar
 Background: navy-900
@@ -65,6 +70,7 @@ Elementos:
 ```
 
 ## 4. SplitBleedBlock
+
 ```
 Componente: SplitBleedBlock
 Props: { eyebrow, title, paragraphs[], imageUrl, imageAlt, direction: 'left'|'right', bgColor: 'white'|'sand' }
@@ -87,6 +93,7 @@ Layout: grid 2 colunas, gap 0
 ```
 
 ## 5. CardsGridBlock
+
 ```
 Componente: CardsGridBlock
 Props: { eyebrow, title, subtitle, cards[] }
@@ -103,6 +110,7 @@ Card:
 ```
 
 ## 6. PillarBannerBlock
+
 ```
 Componente: PillarBannerBlock
 Props: { imageUrl, imageAlt }
@@ -114,6 +122,7 @@ mask-image: fade vertical (transparent 0% → black 8% → black 88% → transpa
 ```
 
 ## 7. CurriculumSectionBlock
+
 ```
 Componente: CurriculumSectionBlock
 Layout: grid [auto 1fr], gap 0
@@ -142,6 +151,7 @@ YearCard.f2:
 ```
 
 ## 8. FlowStepsBlock
+
 ```
 Componente: FlowStepsBlock
 Props: { eyebrow, title, subtitle, steps[] }
@@ -156,6 +166,7 @@ Step:
 ```
 
 ## 9. CTABarBlock
+
 ```
 Componente: CTABarBlock
 Props: { title, subtitle, primaryLabel, secondaryLabel }
@@ -170,6 +181,7 @@ Botão secundário: DM Sans 400 14px white/70%, border 1px white/20%
 ```
 
 ## 10. ContactFormBlock
+
 ```
 Componente: ContactFormBlock
 Props: { eyebrow, title, subtitle }
@@ -186,6 +198,7 @@ Botão submit: btn-p alinhado à direita
 ```
 
 ## 11. FooterBlock
+
 ```
 Componente: FooterBlock
 Background: navy-800
@@ -204,15 +217,15 @@ Footer bottom:
 
 ## Mapa de ilustrações por componente
 
-| Componente | Ilustração | Arquivo | Tratamento |
-|---|---|---|---|
-| HeroBlock | ILLO-01 | `illo1vf.jpg` | Absolute, fade horizontal+vertical, opacity 92% |
-| SplitBleed "O desafio" | ILLO-02 | `illo2vf.jpg` | Bleed right, fade-left |
-| PillarBanner | ILLO-03 | `illo3-vf.jpg` | Full-bleed, fade top+bottom |
-| SplitBleed "Formação" | ILLO-04 | `illo4vf.jpg` | Bleed left, fade-right |
-| SplitBleed "Família" | ILLO-05 | `illo5vf.jpg` | Bleed right, fade-left |
-| CurriculumSection | ILLO-06 | `illo6vf.jpg` | Bleed left vertical, fade-right |
-| SplitBleed "Escolas" | ILLO-07 | `illo_07.jpg` | Bleed right, fade-left |
-| SplitBleed "Materiais" | ILLO-08 | `illo_08.jpg` | Bleed left, fade-right |
-| SplitBleed "Conformidade" | ILLO-09 | `illo_09.jpg` | Bleed right, fade-left |
-| SplitBleed "Sobre" | ILLO-10 | `illo_10.jpg` | Bleed left, fade-right |
+| Componente                | Ilustração | Arquivo        | Tratamento                                      |
+| ------------------------- | ---------- | -------------- | ----------------------------------------------- |
+| HeroBlock                 | ILLO-01    | `illo1vf.jpg`  | Absolute, fade horizontal+vertical, opacity 92% |
+| SplitBleed "O desafio"    | ILLO-02    | `illo2vf.jpg`  | Bleed right, fade-left                          |
+| PillarBanner              | ILLO-03    | `illo3-vf.jpg` | Full-bleed, fade top+bottom                     |
+| SplitBleed "Formação"     | ILLO-04    | `illo4vf.jpg`  | Bleed left, fade-right                          |
+| SplitBleed "Família"      | ILLO-05    | `illo5vf.jpg`  | Bleed right, fade-left                          |
+| CurriculumSection         | ILLO-06    | `illo6vf.jpg`  | Bleed left vertical, fade-right                 |
+| SplitBleed "Escolas"      | ILLO-07    | `illo_07.jpg`  | Bleed right, fade-left                          |
+| SplitBleed "Materiais"    | ILLO-08    | `illo_08.jpg`  | Bleed left, fade-right                          |
+| SplitBleed "Conformidade" | ILLO-09    | `illo_09.jpg`  | Bleed right, fade-left                          |
+| SplitBleed "Sobre"        | ILLO-10    | `illo_10.jpg`  | Bleed left, fade-right                          |

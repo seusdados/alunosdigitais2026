@@ -7,25 +7,31 @@ Este diretório contém toda a documentação necessária para implementar o sit
 ## Ordem de leitura recomendada
 
 ### 1. Comece aqui
+
 - `implementation/PROMPT-CLAUDE-CODE.md` — **Prompt principal de execução.** Leia primeiro. Contém as 6 fases de implementação em ordem.
 
 ### 2. Referência visual
+
 - `implementation/mockup-referencia.html` — **Abra no browser.** Este é o mockup aprovado com todas as ilustrações integradas e tratamento de sangria. É a referência visual definitiva.
 
 ### 3. Design system
+
 - `brand/paleta.md` — Cores com hex codes e regras de uso
 - `brand/tipografia.md` — Fontes, escala tipográfica, pesos
 - `implementation/design-system-tailwind.md` — Tokens prontos para `tailwind.config.ts`
 - `implementation/componentes.md` — Specs detalhadas de cada componente/bloco
 
 ### 4. Conteúdo
+
 - `brief/roteiro-completo.md` — **Roteiro mestre.** Contém o texto de todas as 26 páginas do site, incluindo H1, copy, CTAs, FAQs e SEO metadata.
 
 ### 5. Arquitetura do CMS (futuro)
+
 - `implementation/cms-map.md` — Mapa de coleções, campos, blocos e requisitos do CMS
 - `implementation/instrucao-norteadora.md` — Instrução mestra para o agente (visão unificada site + LMS)
 
 ### 6. Assets visuais
+
 - `brand/ilustracoes/` — 10 ilustrações aprovadas em JPG (alta resolução)
   - `illo-01-hero.jpg` — Hero principal (escola + estudantes)
   - `illo-02-problema.jpg` — Encruzilhada riscos × oportunidades

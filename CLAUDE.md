@@ -1,5 +1,35 @@
 # CLAUDE.md — Regras do repositório Alunos Digitais
 
+## Ecossistema e convergência
+
+Este projeto **não é isolado**. Faz parte de um ecossistema composto por três
+camadas que devem convergir para uma única plataforma:
+
+1. **Site público institucional, comercial e editorial** — este repositório
+2. **CMS** interno de gestão e publicação — entra em fase posterior
+3. **LMS** operacional/pedagógico/autenticado — parcialmente desenvolvido em
+   `seusdados/alunos-digitais-2026-new`
+
+Nenhuma decisão de arquitetura, modelagem, auth, papéis, fluxos, tabelas,
+storage, integrações, navegação, nomenclatura, taxonomia ou analytics pode
+ser tomada como se o LMS não existisse. Não duplicar entidades, não criar
+arquitetura concorrente. Desenvolver com visão de produto único.
+
+Antes de consolidar camadas profundas (modelagem de dados, auth expandido,
+CMS dinâmico, storage, edge functions, tracking compartilhado), é
+**obrigatório** produzir um relatório técnico de compatibilização com o LMS
+legado — vide `docs/analise-convergencia-lms.md`.
+
+## Fase atual
+
+Site público institucional (trilha de 6 PRs: A → F). Durante esta fase:
+
+- `/data/` é camada transitória, **nunca fonte de verdade definitiva**
+- o shape de `/data/` nasce compatível com futura modelagem Supabase
+- componentes nascem preparados para alimentação dinâmica (CMS) futura
+- auth + schema Supabase já existentes são **preservados** intactos
+- `/admin/*` continua operante, com noindex
+
 ## Missão
 
 Construir e evoluir o novo site institucional + CMS do Alunos Digitais com foco em:
@@ -72,18 +102,45 @@ Construir e evoluir o novo site institucional + CMS do Alunos Digitais com foco 
 
 ## Rotas públicas prioritárias
 
-- /
-- /programa
-- /como-funciona
-- /metodologia
-- /para-escolas
-- /para-educadores
-- /para-familias
-- /temas/[slug]
-- /biblioteca
-- /blog
-- /contato
-- /agende-uma-conversa
+Revisadas conforme `docs/implementation/PROMPT-CLAUDE-CODE.md` e
+`docs/brief/roteiro-completo.md`:
+
+- `/` (home)
+- `/o-programa`
+- `/como-funciona`
+- `/curriculo` (hub) + `/curriculo/[ano]` (dinâmico 1º ao 9º ano)
+- `/formacao-docente`
+- `/familia-e-engajamento`
+- `/plataforma-e-materiais`
+- `/conformidade-e-curriculo`
+- `/para-escolas`
+- `/para-redes-e-secretarias`
+- `/faq`
+- `/fale-com-um-especialista`
+- `/sobre`
+- `/conteudos` (hub editorial futuro)
+
+As rotas antigas listadas em versões anteriores deste arquivo
+(`/programa`, `/metodologia`, `/blog`, `/contato`, etc.) foram substituídas
+pelos nomes acima, mais aderentes ao roteiro. Como nenhuma das rotas antigas
+foi publicada ainda, não há necessidade de redirects.
+
+## Design system
+
+Tokens centralizados em `tailwind.config.ts` e utilitários de máscara em
+`app/globals.css`. Referência: `docs/brand/` e
+`docs/implementation/design-system-tailwind.md`.
+
+- Paleta: `navy` (institucional), `teal` (ação), `amber` (atenção),
+  `sand` (fundo alternado), `site.*` (texto)
+- Tipografia: `font-display` (Fraunces), `font-sans` / `font-body` (DM Sans)
+- Radii: `rounded-card` (16px), `rounded-btn` (9px), `rounded-pill` (100px)
+- Máscaras: `.mask-fade-left/right/edges/vertical`, `.mask-hero`,
+  `.mask-curriculum`
+
+Nunca usar Inter, system fonts ou cores fora do sistema. Ilustrações sempre
+com tratamento de sangria (mask-image + width >100% + margem negativa) —
+nenhuma imagem enquadrada em retângulo rígido.
 
 ## Admin prioritário
 

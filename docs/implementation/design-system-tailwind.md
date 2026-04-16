@@ -1,6 +1,7 @@
 # Design System — Referência para Tailwind Config
 
 ## Tailwind extend colors
+
 ```js
 colors: {
   navy: {
@@ -37,6 +38,7 @@ colors: {
 ```
 
 ## Tailwind extend fontFamily
+
 ```js
 fontFamily: {
   display: ['"Fraunces"', 'serif'],
@@ -45,6 +47,7 @@ fontFamily: {
 ```
 
 ## Tailwind extend borderRadius
+
 ```js
 borderRadius: {
   card: '16px',
@@ -56,6 +59,7 @@ borderRadius: {
 ## Componentes utilitários CSS customizados
 
 ### Máscaras de bleeding (adicionar como utilities plugin)
+
 ```css
 .mask-fade-left {
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 100%);
@@ -66,29 +70,41 @@ borderRadius: {
   mask-image: linear-gradient(to left, transparent 0%, black 20%, black 100%);
 }
 .mask-fade-edges {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
   mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 .mask-fade-vertical {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 8%,
+    black 88%,
+    transparent 100%
+  );
   mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 88%, transparent 100%);
 }
 .mask-hero {
-  -webkit-mask-image: 
+  -webkit-mask-image:
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
     linear-gradient(to top, black 70%, transparent 100%);
   -webkit-mask-composite: source-in;
-  mask-image: 
+  mask-image:
     linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%),
     linear-gradient(to top, black 70%, transparent 100%);
   mask-composite: intersect;
 }
 .mask-curriculum {
-  -webkit-mask-image: 
+  -webkit-mask-image:
     linear-gradient(to right, black 60%, transparent 100%),
     linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
   -webkit-mask-composite: source-in;
-  mask-image: 
+  mask-image:
     linear-gradient(to right, black 60%, transparent 100%),
     linear-gradient(to bottom, transparent 0%, black 6%, black 92%, transparent 100%);
   mask-composite: intersect;
@@ -96,11 +112,13 @@ borderRadius: {
 ```
 
 ## Breakpoints recomendados
+
 - Mobile: < 768px (stack vertical, ilustrações acima do texto, sem bleed lateral)
 - Tablet: 768-1024px (grid 2col reduzido, bleed menor)
 - Desktop: > 1024px (layout completo conforme mockup, max-width 1200px)
 
 ## Espaçamento padrão do site
+
 - Padding lateral do site: 44px (desktop), 24px (mobile)
 - Padding vertical de seção: 64px (desktop), 40px (mobile)
 - Gap entre cards: 14px
