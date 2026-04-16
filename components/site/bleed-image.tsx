@@ -11,17 +11,18 @@ import type { BleedDirection } from "@/types/content";
  * dissolvidas por `mask-image` (gradiente transparente → preto → preto).
  *
  * Direções:
- *  - `left`  — imagem do lado esquerdo, sangra pela borda esquerda,
- *              dissolvendo a borda direita (mask-fade-right)
- *  - `right` — imagem do lado direito, sangra pela borda direita,
- *              dissolvendo a borda esquerda (mask-fade-left)
+ *  - `left`  — imagem do lado esquerdo, sangra pela borda esquerda da
+ *              viewport, dissolvendo a borda direita (mask-fade-right)
+ *  - `right` — imagem do lado direito, sangra pela borda direita da
+ *              viewport, dissolvendo a borda esquerda (mask-fade-left)
  *  - `full`  — faixa full-bleed, dissolvendo topo e base (mask-fade-vertical)
  *  - `hero`  — composição horizontal + vertical para o hero principal
  *  - `curriculum` — ilustração vertical à esquerda, dissolvendo na
  *              direita + fade topo/base (bloco curricular)
  *
- * No mobile, todas as direções viram sangria suave sem margens negativas
- * (controlado via responsividade do componente que chama).
+ * No mobile/tablet (< md), a ilustração aparece enquadrada em rounded-card
+ * leve (ainda respira sem virar retângulo duro), sem margem negativa nem
+ * mask direcional.
  */
 export function BleedImage({
   src,
@@ -29,47 +30,55 @@ export function BleedImage({
   direction,
   className,
   priority,
+  aspect = "4/3",
 }: {
   src: string;
   alt: string;
   direction: BleedDirection;
   className?: string;
   priority?: boolean;
+  /** CSS aspect-ratio do wrapper (default 4/3). */
+  aspect?: string;
 }) {
   const maskClass =
     direction === "left"
-      ? "mask-fade-right"
+      ? "md:mask-fade-right"
       : direction === "right"
-        ? "mask-fade-left"
+        ? "md:mask-fade-left"
         : direction === "full"
-          ? "mask-fade-vertical"
+          ? "md:mask-fade-vertical"
           : direction === "hero"
-            ? "mask-hero"
-            : "mask-curriculum";
+            ? "md:mask-hero"
+            : "md:mask-curriculum";
 
+  // Bleed maior (−64px = −mr-16) e width 140% para a ilustração realmente
+  // transbordar — "estourada", não enquadrada.
   const positionClass =
     direction === "left"
-      ? "md:-ml-11 md:w-[130%]"
+      ? "md:-ml-16 md:w-[140%]"
       : direction === "right"
-        ? "md:-mr-11 md:w-[130%]"
+        ? "md:-mr-16 md:w-[140%]"
         : direction === "full"
-          ? "md:-mx-11 md:w-[calc(100%+88px)]"
+          ? "md:-mx-16 md:w-[calc(100%+128px)]"
           : direction === "curriculum"
-            ? "md:-ml-11 md:w-[calc(100%+44px)]"
+            ? "md:-ml-16 md:w-[calc(100%+64px)]"
             : "md:w-[115%]";
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div
+      className={cn("relative overflow-hidden rounded-card md:rounded-none", className)}
+      style={{ aspectRatio: aspect }}
+    >
       <Image
         src={src}
         alt={alt}
-        width={1600}
-        height={1200}
+        width={1800}
+        height={1350}
         priority={priority}
-        sizes="(max-width: 768px) 100vw, 60vw"
+        sizes="(max-width: 768px) 100vw, 65vw"
         className={cn(
-          "h-auto w-full max-w-none object-cover",
-          // Desktop: sangra com mask
+          "h-full w-full max-w-none object-cover object-center",
+          // Desktop: mask direcional + bleed por margem negativa
           maskClass,
           positionClass,
         )}

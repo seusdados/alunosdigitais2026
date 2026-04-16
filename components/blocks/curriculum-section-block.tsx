@@ -36,12 +36,12 @@ export function CurriculumSectionBlock({
           <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-[320px_1fr] md:gap-6">
-          <div>
-            <BleedImage src={image.src} alt={image.alt} direction="curriculum" />
+        <div className="grid gap-10 md:grid-cols-[380px_1fr] md:gap-8">
+          <div className="self-stretch">
+            <BleedImage src={image.src} alt={image.alt} direction="curriculum" aspect="3/4" />
           </div>
 
-          <div className="space-y-10 md:pl-5">
+          <div className="space-y-10 md:pl-2">
             <div>
               <p className="font-display text-[13px] font-semibold uppercase tracking-[0.02em] text-site-text-mid">
                 Fundamental I · 1º ao 5º ano

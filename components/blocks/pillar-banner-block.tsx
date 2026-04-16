@@ -9,13 +9,13 @@ import type { PillarBannerData } from "@/types/content";
 export function PillarBannerBlock({ data }: { data: PillarBannerData }) {
   return (
     <section className="overflow-hidden bg-site-white">
-      <Container className="py-10 md:py-[56px]">
+      <Container className="py-10 md:py-[64px]">
         {data.caption ? (
-          <p className="mb-6 max-w-[640px] font-body text-[14px] font-light leading-[1.65] text-site-text-mid md:mb-8">
+          <p className="mb-8 max-w-[640px] font-body text-[14px] font-light leading-[1.65] text-site-text-mid md:mb-10">
             {data.caption}
           </p>
         ) : null}
-        <BleedImage src={data.image.src} alt={data.image.alt} direction="full" />
+        <BleedImage src={data.image.src} alt={data.image.alt} direction="full" aspect="21/9" />
       </Container>
     </section>
   );
