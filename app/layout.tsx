@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+// Fontes do brand (docs/brand/tipografia.md).
+// DM Sans é usado como `--font-sans` também para que os componentes shadcn
+// herdem a mesma fonte do corpo do site — evita divergência entre admin e
+// site público.
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  style: ["normal", "italic"],
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  style: ["normal", "italic"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -35,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={`${dmSans.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         {children}
       </body>

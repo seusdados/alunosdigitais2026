@@ -1,4 +1,5 @@
 # Prompt de Implementação — Site Público Alunos Digitais
+
 ## Para execução no Claude Code, fase a fase
 
 ---
@@ -9,6 +10,7 @@ Você vai implementar o **site público institucional** do programa Alunos Digit
 Toda a direção artística, design visual, conteúdo textual e especificações de componentes já estão aprovados e documentados neste repositório.
 
 ### Onde está cada coisa:
+
 - **Mockup HTML de referência:** `docs/implementation/mockup-referencia.html` — abra no browser para ver o resultado visual esperado com todas as ilustrações integradas
 - **Roteiro de conteúdo completo (26 páginas):** `docs/brief/roteiro-completo.md`
 - **Paleta de cores:** `docs/brand/paleta.md`
@@ -20,6 +22,7 @@ Toda a direção artística, design visual, conteúdo textual e especificações
 - **Ilustrações aprovadas (10 peças):** `docs/brand/ilustracoes/illo-01-hero.jpg` a `illo-10-sobre.jpg`
 
 ### O que NÃO fazer agora:
+
 - NÃO reescrever o LMS existente
 - NÃO criar o CMS completo nesta fase — apenas a estrutura preparatória
 - NÃO hardcodar conteúdo solto em JSX — usar dados estruturados
@@ -27,6 +30,7 @@ Toda a direção artística, design visual, conteúdo textual e especificações
 ---
 
 ## STACK CONFIRMADA
+
 - Next.js 14+ (App Router) + TypeScript
 - Tailwind CSS
 - Fraunces + DM Sans (Google Fonts)
@@ -38,26 +42,32 @@ Toda a direção artística, design visual, conteúdo textual e especificações
 ## FASE 1 — Fundação (execute primeiro)
 
 ### 1.1 Inicializar projeto
+
 ```bash
 npx create-next-app@latest alunos-digitais-site --typescript --tailwind --app --src-dir
 ```
 
 ### 1.2 Configurar Tailwind com design tokens
+
 Leia `docs/implementation/design-system-tailwind.md` e configure:
+
 - Cores customizadas (navy, teal, amber, sand, site)
 - Fontes (display: Fraunces, body: DM Sans)
 - BorderRadius customizados
 - Utilities de mask (mask-fade-left, mask-fade-right, mask-hero, etc.)
 
 ### 1.3 Configurar fontes
+
 No `app/layout.tsx`, importar Fraunces e DM Sans via `next/font/google`.
 
 ### 1.4 Globals.css
+
 - Reset mínimo
 - CSS custom properties como fallback
 - Utilities de mask-image como classes CSS (Tailwind não tem nativo)
 
 ### 1.5 Estrutura de pastas
+
 ```
 src/
 ├── app/
@@ -121,6 +131,7 @@ src/
 Leia `docs/implementation/componentes.md` para cada spec. Implemente nesta ordem:
 
 ### 2.1 Componentes base
+
 - `Button` (variantes: primary, secondary, white, outline-white)
 - `SectionEyebrow` (eyebrow text com estilo uppercase teal)
 - `SectionHeading` (H2 com subtitle opcional)
@@ -130,12 +141,13 @@ Leia `docs/implementation/componentes.md` para cada spec. Implemente nesta ordem
 interface BleedImageProps {
   src: string;
   alt: string;
-  direction: 'left' | 'right' | 'full' | 'hero' | 'curriculum';
+  direction: "left" | "right" | "full" | "hero" | "curriculum";
   className?: string;
 }
 ```
 
 Deve aplicar automaticamente:
+
 - `width: 125-135%` para exceder o container
 - Margem negativa correspondente à direção
 - CSS mask-image correto para a direção (fade-left, fade-right, etc.)
@@ -144,12 +156,15 @@ Deve aplicar automaticamente:
 - Para `full`: margin negativa bilateral com fade vertical
 
 ### 2.2 Layout
+
 - `NavBar` — sticky, conforme spec
 - `Footer` — 4 colunas + bottom bar
 - `RegulatoryBar` — badges dos marcos normativos
 
 ### 2.3 Blocos de conteúdo
+
 Cada bloco recebe props tipadas e renderiza conforme a spec:
+
 - `HeroBlock`
 - `SplitBleedBlock` — o bloco mais usado, aceita `direction` para alternar lado da ilustração
 - `CardsGridBlock`
@@ -167,7 +182,9 @@ Cada bloco recebe props tipadas e renderiza conforme a spec:
 ## FASE 3 — Dados e conteúdo (execute terceiro)
 
 ### 3.1 Tipos TypeScript
+
 Defina em `types/content.ts`:
+
 ```typescript
 export interface HeroData {
   pill: string;
@@ -185,14 +202,14 @@ export interface SplitBleedData {
   title: string;
   paragraphs: string[];
   image: { src: string; alt: string };
-  direction: 'left' | 'right';
-  bgColor: 'white' | 'sand';
+  direction: "left" | "right";
+  bgColor: "white" | "sand";
   cta?: { label: string; href: string };
 }
 
 export interface CurriculumYear {
   year: number;
-  stage: 'fundamental-1' | 'fundamental-2';
+  stage: "fundamental-1" | "fundamental-2";
   theme: string;
   topics: string[];
   phases: { number: number; title: string; description: string }[];
@@ -204,12 +221,15 @@ export interface CurriculumYear {
 ```
 
 ### 3.2 Dados da Home
+
 Extraia todo o conteúdo do `docs/brief/roteiro-completo.md` (Página 1 — Início) e estruture em `data/home.ts`.
 
 ### 3.3 Dados curriculares
+
 Monte `data/curriculo.ts` com os 9 anos, 6 fases cada, temas e descrições — tudo extraído do roteiro (Páginas 7 a 15).
 
 ### 3.4 FAQ
+
 Monte `data/faq.ts` com as perguntas da Página 25 do roteiro.
 
 ---
@@ -217,7 +237,9 @@ Monte `data/faq.ts` com as perguntas da Página 25 do roteiro.
 ## FASE 4 — Páginas (execute quarto)
 
 ### 4.1 Home (`app/page.tsx`)
+
 Monte a home compondo os blocos na ordem do mockup:
+
 1. HeroBlock (ILLO-01)
 2. RegulatoryBar
 3. SplitBleedBlock "O desafio" (ILLO-02, direction right)
@@ -234,7 +256,9 @@ Monte a home compondo os blocos na ordem do mockup:
 14. ContactFormBlock
 
 ### 4.2 Demais páginas
+
 Monte cada página usando os blocos reutilizáveis + conteúdo do roteiro:
+
 - `/o-programa` — Página 2 do roteiro
 - `/como-funciona` — Página 3
 - `/curriculo` — Página 4 (hub com links para anos)
@@ -254,18 +278,23 @@ Monte cada página usando os blocos reutilizáveis + conteúdo do roteiro:
 ## FASE 5 — SEO e metadata (execute quinto)
 
 ### 5.1 Metadata por página
+
 Use a Metadata API do Next.js. Cada página deve ter:
+
 - `title` — extrair do campo "SEO title" do roteiro
 - `description` — extrair do campo "Meta description" do roteiro
 - `openGraph` — title, description, image (usar ILLO-01 como default)
 
 ### 5.2 Sitemap
+
 Gerar `app/sitemap.ts` dinâmico.
 
 ### 5.3 Robots
+
 `app/robots.ts` — permitir tudo em produção, bloquear /admin.
 
 ### 5.4 Breadcrumbs
+
 Componente simples para páginas internas.
 
 ---
@@ -273,6 +302,7 @@ Componente simples para páginas internas.
 ## FASE 6 — Responsividade (execute sexto)
 
 ### Regras mobile:
+
 - Padding lateral: 24px (em vez de 44px)
 - Hero: stack vertical (conteúdo em cima, ilustração embaixo sem bleed)
 - SplitBleedBlock: stack vertical, imagem depois do texto, sem margem negativa, sem mask
@@ -299,6 +329,7 @@ Componente simples para páginas internas.
 ## ENTREGÁVEL ESPERADO
 
 Ao final das 6 fases:
+
 - Site Next.js funcional com todas as páginas do roteiro
 - Componentes reutilizáveis e tipados
 - Ilustrações integradas com tratamento de sangria

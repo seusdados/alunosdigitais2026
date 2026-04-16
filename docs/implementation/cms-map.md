@@ -78,9 +78,11 @@ O novo site não deve ser tratado como um folheto digital. Ele deve funcionar co
 ## 4.1 Coleções principais
 
 ### A. pages
+
 Páginas genéricas compostas por blocos.
 
 Campos mínimos:
+
 - id
 - title_internal
 - slug
@@ -105,9 +107,11 @@ Campos mínimos:
 - updated_at
 
 ### B. page_sections
+
 Blocos renderizados dentro de cada página.
 
 Campos mínimos:
+
 - id
 - page_id
 - section_type
@@ -118,9 +122,11 @@ Campos mínimos:
 - payload_json
 
 ### C. curriculum_years
+
 Estrutura curricular por ano.
 
 Campos mínimos:
+
 - id
 - school_stage (fundamental_1 / fundamental_2)
 - school_year_number (1 a 9)
@@ -135,9 +141,11 @@ Campos mínimos:
 - published_at
 
 ### D. curriculum_phases
+
 Fases de cada ano.
 
 Campos mínimos:
+
 - id
 - curriculum_year_id
 - phase_number
@@ -151,9 +159,11 @@ Campos mínimos:
 - sort_order
 
 ### E. regulatory_items
+
 Base regulatória e marcos.
 
 Campos mínimos:
+
 - id
 - title
 - short_name
@@ -168,9 +178,11 @@ Campos mínimos:
 - link_url
 
 ### F. faqs
+
 Perguntas e respostas reutilizáveis.
 
 Campos mínimos:
+
 - id
 - question
 - answer_richtext
@@ -181,9 +193,11 @@ Campos mínimos:
 - is_featured
 
 ### G. posts
+
 Conteúdo editorial / artigos.
 
 Campos mínimos:
+
 - id
 - title
 - slug
@@ -199,9 +213,11 @@ Campos mínimos:
 - updated_at
 
 ### H. categories
+
 Categorias editoriais.
 
 Sugestão inicial:
+
 - cidadania digital
 - currículo e escola
 - formação docente
@@ -212,9 +228,11 @@ Sugestão inicial:
 - inteligência artificial e escola
 
 ### I. media_assets
+
 Mídias e documentos.
 
 Campos mínimos:
+
 - id
 - file_path
 - file_type
@@ -228,9 +246,11 @@ Campos mínimos:
 - tags
 
 ### J. testimonials_or_proofs
+
 Provas sociais e institucionais.
 
 Campos mínimos:
+
 - id
 - proof_type
 - title
@@ -243,9 +263,11 @@ Campos mínimos:
 - display_order
 
 ### K. ctas
+
 Chamadas para ação reutilizáveis.
 
 Campos mínimos:
+
 - id
 - name
 - label
@@ -256,9 +278,11 @@ Campos mínimos:
 - tracking_payload_json
 
 ### L. forms
+
 Estrutura de formulários.
 
 Campos mínimos:
+
 - id
 - name
 - form_type
@@ -283,6 +307,7 @@ Campos mínimos:
 - visualizador
 
 Permissões mínimas:
+
 - publicar/despublicar
 - editar SEO
 - editar blocos
@@ -350,71 +375,82 @@ Cada bloco abaixo deve existir como componente independente no frontend e como `
    - instituição
 
 10. `comparison_table`
-   - antes/depois
-   - projeto pontual x programa contínuo
-   - conteúdo esparso x estrutura curricular
+
+- antes/depois
+- projeto pontual x programa contínuo
+- conteúdo esparso x estrutura curricular
 
 ## 5.2 Blocos curriculares
 
 11. `curriculum_overview`
-   - segmento
-   - anos cobertos
-   - quantidade de aulas
-   - quantidade de fases
-   - pilares
+
+- segmento
+- anos cobertos
+- quantidade de aulas
+- quantidade de fases
+- pilares
 
 12. `year_cards_grid`
-   - cards do 1º ao 9º ano
+
+- cards do 1º ao 9º ano
 
 13. `phase_timeline`
-   - 6 fases do ano
-   - título por fase
-   - descrição breve
-   - CTA “ver detalhes”
+
+- 6 fases do ano
+- título por fase
+- descrição breve
+- CTA “ver detalhes”
 
 14. `learning_outcomes`
-   - o estudante desenvolve
-   - competências
-   - habilidades
+
+- o estudante desenvolve
+- competências
+- habilidades
 
 15. `pedagogical_method`
-   - metodologia integrada
-   - dedutivo
-   - indutivo
-   - dinâmicas práticas
-   - estudos de caso
-   - gamificação
+
+- metodologia integrada
+- dedutivo
+- indutivo
+- dinâmicas práticas
+- estudos de caso
+- gamificação
 
 16. `family_engagement_flow`
-   - escola
-   - aluno
-   - família
-   - circulação do aprendizado
+
+- escola
+- aluno
+- família
+- circulação do aprendizado
 
 17. `teacher_support_stack`
-   - workshop inicial
-   - formação contínua
-   - vídeos
-   - plano de aula
-   - helpdesk pedagógico
+
+- workshop inicial
+- formação contínua
+- vídeos
+- plano de aula
+- helpdesk pedagógico
 
 18. `materials_showcase`
-   - livro do professor
-   - livro do aluno
-   - vídeos
-   - plataforma
-   - recursos gamificados
+
+- livro do professor
+- livro do aluno
+- vídeos
+- plataforma
+- recursos gamificados
 
 19. `regulatory_alignment_grid`
-   - BNCC
-   - Computação complementar à BNCC
-   - PNED
-   - Resolução CNE/CEB 2/2025
-   - proteção digital / dados / cidadania digital
+
+- BNCC
+- Computação complementar à BNCC
+- PNED
+- Resolução CNE/CEB 2/2025
+- proteção digital / dados / cidadania digital
 
 20. `faq_accordion`
-   - pergunta
-   - resposta
+
+- pergunta
+- resposta
 
 ## 5.3 Blocos editoriais e SEO
 
@@ -444,12 +480,15 @@ Cada bloco abaixo deve existir como componente independente no frontend e como `
 ## 6.1 Home
 
 ### Objetivo
+
 Apresentar a proposta de valor completa, mostrar por que o programa existe, para quem serve, como funciona e conduzir para demonstração/contato.
 
 ### Template
+
 `page_template = home_modular`
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. logo_strip ou selos institucionais
 3. problem_context
@@ -464,17 +503,21 @@ Apresentar a proposta de valor completa, mostrar por que o programa existe, para
 12. cta_banner final
 
 ### CTA principal
+
 - Solicitar apresentação
 
 ### CTA secundária
+
 - Ver currículo do 1º ao 9º ano
 
 ## 6.2 Página “O Programa”
 
 ### Objetivo
+
 Explicar a essência do Alunos Digitais.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. program_explainer_steps
 3. comparison_table (programa contínuo x ação pontual)
@@ -486,9 +529,11 @@ Explicar a essência do Alunos Digitais.
 ## 6.3 Página “Como Funciona”
 
 ### Objetivo
+
 Explicar implantação e operação ao longo do ano.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. program_explainer_steps com jornada anual
 3. teacher_support_stack
@@ -497,6 +542,7 @@ Explicar implantação e operação ao longo do ano.
 6. CTA
 
 ### Jornada sugerida em 6 passos
+
 - diagnóstico inicial
 - formação de abertura
 - aplicação das fases em sala
@@ -507,9 +553,11 @@ Explicar implantação e operação ao longo do ano.
 ## 6.4 Hub “Currículo”
 
 ### Objetivo
+
 Apresentar a estrutura curricular completa e distribuir navegação por segmento e ano.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. curriculum_overview
 3. year_cards_grid Fundamental I
@@ -521,9 +569,11 @@ Apresentar a estrutura curricular completa e distribuir navegação por segmento
 ## 6.5 Página “Fundamental I”
 
 ### Objetivo
+
 Apresentar a progressão do 1º ao 5º ano.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. year_cards_grid (1 a 5)
 3. learning_outcomes
@@ -534,9 +584,11 @@ Apresentar a progressão do 1º ao 5º ano.
 ## 6.6 Página “Fundamental II”
 
 ### Objetivo
+
 Apresentar a progressão do 6º ao 9º ano.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. year_cards_grid (6 a 9)
 3. learning_outcomes
@@ -547,9 +599,11 @@ Apresentar a progressão do 6º ao 9º ano.
 ## 6.7 Páginas por ano escolar
 
 ### Template
+
 `page_template = curriculum_year`
 
 ### Estrutura padrão para cada ano
+
 1. hero_primary
 2. year summary card
 3. phase_timeline com 6 fases
@@ -562,6 +616,7 @@ Apresentar a progressão do 6º ao 9º ano.
 ### Conteúdo base por ano
 
 #### 1º ano
+
 - indivíduo
 - relações humanas
 - papel de cada um
@@ -570,6 +625,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - resolução de conflitos
 
 #### 2º ano
+
 - liberdade
 - respeito
 - solidariedade
@@ -578,6 +634,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - cooperação
 
 #### 3º ano
+
 - importância de ser
 - diferença entre ser e ter
 - informação
@@ -586,6 +643,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - senso crítico
 
 #### 4º ano
+
 - privacidade
 - importância da imagem
 - reputação na rede
@@ -594,6 +652,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - fake news e cyberbullying
 
 #### 5º ano
+
 - o mundo mudou
 - regras da internet
 - bullying
@@ -602,6 +661,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - navegação segura
 
 #### 6º ano
+
 - tecnologia
 - partes do computador
 - surgimento da internet
@@ -610,6 +670,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - proteção contra riscos da internet
 
 #### 7º ano
+
 - redes sociais e conexões da sociedade
 - WhatsApp e comunicação
 - dependência da internet
@@ -618,6 +679,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - stalking
 
 #### 8º ano
+
 - segurança na internet
 - crimes cibernéticos
 - Lei Carolina Dieckmann
@@ -626,6 +688,7 @@ Apresentar a progressão do 6º ao 9º ano.
 - desafios da internet que afetam jovens
 
 #### 9º ano
+
 - inteligência artificial
 - autoria
 - riscos dos jogos online
@@ -636,9 +699,11 @@ Apresentar a progressão do 6º ao 9º ano.
 ## 6.8 Página “Formação Docente”
 
 ### Objetivo
+
 Mostrar que o professor não fica sozinho e que o programa vem com estrutura de aplicação.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. teacher_support_stack
 3. program_explainer_steps da formação
@@ -647,6 +712,7 @@ Mostrar que o professor não fica sozinho e que o programa vem com estrutura de 
 6. CTA
 
 ### Provas narrativas que devem aparecer
+
 - material do professor com plano de aula
 - workshop inicial presencial e/ou online
 - formação contínua ao longo do ano
@@ -656,9 +722,11 @@ Mostrar que o professor não fica sozinho e que o programa vem com estrutura de 
 ## 6.9 Página “Família e Engajamento”
 
 ### Objetivo
+
 Explicar o modelo de engajamento familiar.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. family_engagement_flow
 3. value_proposition_grid para pais e responsáveis
@@ -669,9 +737,11 @@ Explicar o modelo de engajamento familiar.
 ## 6.10 Página “Plataforma e Materiais”
 
 ### Objetivo
+
 Apresentar os ativos didáticos e digitais.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. materials_showcase
 3. teacher_support_stack
@@ -679,6 +749,7 @@ Apresentar os ativos didáticos e digitais.
 5. CTA
 
 ### Itens obrigatórios em copy
+
 - livro do professor
 - livro do aluno
 - plataforma/app
@@ -689,9 +760,11 @@ Apresentar os ativos didáticos e digitais.
 ## 6.11 Página “Conformidade e Currículo”
 
 ### Objetivo
+
 Ancorar o programa em marcos pedagógicos e regulatórios sem juridiquês excessivo.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. regulatory_alignment_grid
 3. rich_text explicando aderência curricular
@@ -700,6 +773,7 @@ Ancorar o programa em marcos pedagógicos e regulatórios sem juridiquês excess
 6. CTA
 
 ### Itens que devem aparecer
+
 - BNCC e competências gerais mobilizadas
 - PNED
 - diretrizes curriculares mais recentes aplicáveis
@@ -709,9 +783,11 @@ Ancorar o programa em marcos pedagógicos e regulatórios sem juridiquês excess
 ## 6.12 Página “Para Escolas”
 
 ### Objetivo
+
 Falar com direção, coordenação e mantenedores.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. problem_context institucional
 3. value_proposition_grid
@@ -722,9 +798,11 @@ Falar com direção, coordenação e mantenedores.
 ## 6.13 Página “Para Redes e Secretarias”
 
 ### Objetivo
+
 Falar com poder público e redes privadas maiores.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. regulatory_alignment_grid
 3. program_explainer_steps em escala
@@ -734,9 +812,11 @@ Falar com poder público e redes privadas maiores.
 ## 6.14 Página “Conteúdos”
 
 ### Objetivo
+
 Hub editorial para SEO e autoridade.
 
 ### Blocos obrigatórios
+
 1. hero_primary
 2. categories grid
 3. featured posts
@@ -746,9 +826,11 @@ Hub editorial para SEO e autoridade.
 ## 6.15 Página “FAQ”
 
 ### Objetivo
+
 Responder objeções comerciais e pedagógicas.
 
 ### Categorias sugeridas
+
 - sobre o programa
 - currículo e aplicação
 - professores
@@ -761,9 +843,11 @@ Responder objeções comerciais e pedagógicas.
 ## 6.16 Página “Contato / Solicitar apresentação”
 
 ### Objetivo
+
 Converter.
 
 ### Blocos obrigatórios
+
 1. hero_primary com proposta curta
 2. formulário
 3. bloco de confiança
@@ -771,6 +855,7 @@ Converter.
 5. dados de contato institucionais
 
 ### Campos mínimos do formulário
+
 - nome
 - instituição
 - cargo
@@ -784,6 +869,7 @@ Converter.
 ## 7. Requisitos de SEO por tipo de página
 
 ## 7.1 Campos editáveis no CMS por página
+
 - seo_title
 - seo_description
 - canonical_url
@@ -796,6 +882,7 @@ Converter.
 - breadcrumb label
 
 ## 7.2 Boas práticas obrigatórias
+
 - H1 único por página
 - title e H1 alinhados, não idênticos quando houver ganho semântico
 - URLs curtas e estáveis
@@ -806,6 +893,7 @@ Converter.
 - FAQPage schema apenas quando o conteúdo estiver visível na página
 
 ## 7.3 Taxonomia recomendada de URLs
+
 - `/`
 - `/programa`
 - `/como-funciona`
@@ -829,6 +917,7 @@ Converter.
 ## 8. Requisitos de mensuração e tracking
 
 ## 8.1 Eventos mínimos
+
 - `page_view`
 - `scroll_90`
 - `click_cta_primary`
@@ -843,6 +932,7 @@ Converter.
 - `download_material`
 
 ## 8.2 Parâmetros recomendados
+
 - `page_type`
 - `page_slug`
 - `section_type`
@@ -854,6 +944,7 @@ Converter.
 - `content_category`
 
 ## 8.3 Regras de implementação
+
 - os componentes CTA devem aceitar configuração de tracking por CMS
 - o formulário deve disparar `start_form` no primeiro foco
 - envio validado deve disparar `generate_lead`
@@ -898,6 +989,7 @@ Converter.
 ## 11. Conteúdo inicial mínimo a ser migrado/estruturado no lançamento
 
 ### Páginas institucionais mínimas
+
 - Home
 - O Programa
 - Como Funciona
@@ -912,11 +1004,13 @@ Converter.
 - Contato
 
 ### Páginas curriculares mínimas
+
 - Fundamental I
 - Fundamental II
 - 1º ao 9º ano
 
 ### Conteúdos editoriais mínimos
+
 - O que é cidadania digital na escola
 - O que muda com a educação digital no currículo escolar
 - Como escolas podem estruturar um programa contínuo de cidadania digital
@@ -944,4 +1038,3 @@ Converter.
 8. Implementar SEO técnico mínimo.
 9. Implementar tracking mínimo.
 10. Preparar ambiente para migração do conteúdo aprovado.
-
