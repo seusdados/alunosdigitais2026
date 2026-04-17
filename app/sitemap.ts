@@ -1,42 +1,48 @@
 import type { MetadataRoute } from "next";
 
+import { curriculumSlugs } from "@/data/curriculo";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 /**
- * Static list of institutional routes (master spec §10.1).
+ * Rotas institucionais estáticas + rotas curriculares dinâmicas (1º ao 9º).
  *
- * On Fase 4 this file will be extended to read from the `published_content`
- * view in Supabase and append dynamic routes (blog, biblioteca, temas, etc).
- * Only published content should ever be emitted here.
+ * Quando o CMS dinâmico entrar (fase posterior, após relatório de
+ * convergência LMS), o hub `/conteudos` passa a gerar rotas reais aqui.
  */
 const staticRoutes = [
   "/",
-  "/programa",
+  "/o-programa",
   "/como-funciona",
-  "/metodologia",
+  "/curriculo",
+  "/formacao-docente",
+  "/familia-e-engajamento",
+  "/plataforma-e-materiais",
+  "/conformidade-e-curriculo",
   "/para-escolas",
-  "/para-educadores",
-  "/para-familias",
-  "/temas",
-  "/biblioteca",
-  "/blog",
-  "/materiais",
-  "/cases",
+  "/para-redes-e-secretarias",
+  "/conteudos",
+  "/faq",
+  "/fale-com-um-especialista",
   "/sobre",
-  "/contato",
-  "/agende-uma-conversa",
-  "/politica-de-privacidade",
-  "/termos-de-uso",
-  "/politica-de-cookies",
-  "/acessibilidade",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return staticRoutes.map((path) => ({
+
+  const base: MetadataRoute.Sitemap = staticRoutes.map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: now,
     changeFrequency: path === "/" ? "weekly" : "monthly",
     priority: path === "/" ? 1 : 0.7,
   }));
+
+  const curriculum: MetadataRoute.Sitemap = curriculumSlugs.map((slug) => ({
+    url: `${siteUrl}/curriculo/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...base, ...curriculum];
 }
