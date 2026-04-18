@@ -1,113 +1,70 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { CTABarBlock } from "@/components/blocks/cta-bar-block";
 import { PageHero } from "@/components/blocks/page-hero";
-import { ProseSection } from "@/components/blocks/prose-section";
 import { Container } from "@/components/site/container";
+import { SectionEyebrow } from "@/components/site/section-eyebrow";
+import { articles, pillarList, type ArticlePillar } from "@/data/articles";
+import { formatDate } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Conteúdos | Alunos Digitais",
+  title: "Conteúdos sobre educação digital | Alunos Digitais",
   description:
-    "Hub de conteúdos sobre educação digital e midiática, BNCC Computação, PNED, cidadania digital, segurança online e engajamento familiar.",
+    "Artigos, análises e guias sobre educação digital, BNCC Computação, cidadania digital, segurança online e engajamento familiar.",
 };
 
-const pillars = [
-  {
-    label: "Educação digital e midiática",
-    topics: [
-      "O que é educação digital e midiática na escola",
-      "Como implementar educação digital no currículo",
-      "Transversalidade ou componente específico",
-      "O que mudou com a Resolução CNE/CEB 2/2025",
-    ],
-  },
-  {
-    label: "BNCC, currículo e regulação",
-    topics: [
-      "O que é BNCC Computação",
-      "Como a PNED impacta escolas e redes",
-      "O que escolas precisam fazer até 2026",
-      "Educação digital e projeto político-pedagógico",
-    ],
-  },
-  {
-    label: "Segurança e cidadania digital",
-    topics: [
-      "Como prevenir cyberbullying na escola",
-      "Privacidade e proteção de dados de crianças",
-      "Fake news e pensamento crítico no Fundamental",
-      "Segurança digital para crianças e adolescentes",
-    ],
-  },
-  {
-    label: "Família e desenvolvimento",
-    topics: [
-      "Como engajar famílias na cidadania digital",
-      "Tempo de tela, convivência e aprendizagem",
-      "Saúde mental e ambiente digital",
-      "Como conversar com filhos sobre riscos online",
-    ],
-  },
-  {
-    label: "Formação docente",
-    topics: [
-      "Como apoiar professores na educação digital",
-      "Formação continuada em cultura digital",
-      "O professor como mediador da cidadania digital",
-      "Planos de aula e implementação na prática",
-    ],
-  },
-];
-
 export default function ConteudosPage() {
+  const grouped = pillarList.map((p) => ({
+    ...p,
+    articles: articles.filter((a) => a.pillar === p.key),
+  }));
+
   return (
     <>
       <PageHero
         eyebrow="Conteúdos"
         title="Hub editorial de educação digital"
-        subtitle="Artigos, análises e guias sobre implementação de educação digital, BNCC, PNED, cidadania digital e engajamento familiar. Publicações em breve."
+        subtitle="Artigos, análises e guias sobre implementação de educação digital, BNCC, PNED, cidadania digital e engajamento familiar."
       />
 
-      <ProseSection
-        eyebrow="Em construção"
-        title="Estamos preparando a primeira onda de conteúdos"
-        paragraphs={[
-          "Abaixo estão os pilares editoriais que vão organizar nossas publicações. Cada pilar terá artigos aprofundados, análises, entrevistas e guias práticos.",
-          "Inscreva-se pelo formulário de contato para ser avisado quando os primeiros artigos forem publicados.",
-        ]}
-        bgColor="white"
-      />
-
-      <section className="bg-sand">
+      <section className="bg-site-white">
         <Container className="py-16 md:py-[80px]">
-          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((pillar) => (
-              <li key={pillar.label} className="rounded-card border border-[#E8E8E8] bg-white p-6">
-                <p className="mb-3 font-body text-[10.5px] font-medium uppercase tracking-eyebrow text-teal-500">
-                  {pillar.label}
-                </p>
-                <ul className="space-y-2">
-                  {pillar.topics.map((t) => (
-                    <li
-                      key={t}
-                      className="font-body text-[13.5px] leading-[1.55] text-site-text-mid"
-                    >
-                      {t}
+          <div className="space-y-14">
+            {grouped.map((pillar) => (
+              <div key={pillar.key}>
+                <SectionEyebrow className="mb-5">{pillar.label}</SectionEyebrow>
+                <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {pillar.articles.map((a) => (
+                    <li key={a.slug}>
+                      <Link
+                        href={`/conteudos/${a.slug}`}
+                        className="group flex h-full flex-col gap-3 rounded-card border border-[#E8E8E8] bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-teal-400 hover:shadow-[0_0_0_3px_rgba(43,217,165,0.06)]"
+                      >
+                        <p className="font-display text-[15px] font-semibold leading-snug text-site-text group-hover:text-teal-600">
+                          {a.title}
+                        </p>
+                        <p className="font-body text-[13px] leading-[1.55] text-site-text-light">
+                          {a.excerpt.length > 140 ? `${a.excerpt.slice(0, 140)}…` : a.excerpt}
+                        </p>
+                        <span className="mt-auto font-body text-[11.5px] text-site-text-light">
+                          {formatDate(a.publishedAt)}
+                        </span>
+                      </Link>
                     </li>
                   ))}
                 </ul>
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </Container>
       </section>
 
       <CTABarBlock
         data={{
-          title: "Receba os primeiros conteúdos por e-mail",
-          subtitle:
-            "Deixe seu e-mail pelo formulário e te avisamos assim que as primeiras análises forem publicadas.",
-          primary: { label: "Quero ser avisado", href: "/fale-com-um-especialista" },
+          title: "Receba novos conteúdos por e-mail",
+          subtitle: "Deixe seu contato e avisamos quando publicarmos novas análises.",
+          primary: { label: "Quero receber", href: "/fale-com-um-especialista" },
         }}
       />
     </>

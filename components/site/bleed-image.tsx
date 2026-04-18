@@ -6,23 +6,21 @@ import type { BleedDirection } from "@/types/content";
 /**
  * Ilustração com tratamento de "sangria".
  *
- * Princípio do design: nenhuma imagem aparece enquadrada num retângulo.
- * Cada ilustração excede seu container (width > 100%) e tem as bordas
- * dissolvidas por `mask-image` (gradiente transparente → preto → preto).
+ * Princípio: nenhuma imagem enquadrada em retângulo nem cortada. Cada
+ * ilustração aparece inteira (sem crop), excede seu container (width >
+ * 100%) e tem as bordas dissolvidas por mask-image (gradiente transparente
+ * → preto).
+ *
+ * A imagem renderiza em tamanho natural (`h-auto w-full`), sem aspect-ratio
+ * fixo e sem `object-cover` — para que apareça COMPLETA, "estourada" mas
+ * INTEIRA, sem cortar nenhum conteúdo visual.
  *
  * Direções:
- *  - `left`  — imagem do lado esquerdo, sangra pela borda esquerda da
- *              viewport, dissolvendo a borda direita (mask-fade-right)
- *  - `right` — imagem do lado direito, sangra pela borda direita da
- *              viewport, dissolvendo a borda esquerda (mask-fade-left)
- *  - `full`  — faixa full-bleed, dissolvendo topo e base (mask-fade-vertical)
- *  - `hero`  — composição horizontal + vertical para o hero principal
- *  - `curriculum` — ilustração vertical à esquerda, dissolvendo na
- *              direita + fade topo/base (bloco curricular)
- *
- * No mobile/tablet (< md), a ilustração aparece enquadrada em rounded-card
- * leve (ainda respira sem virar retângulo duro), sem margem negativa nem
- * mask direcional.
+ *  - `left`  — sangra pela borda esquerda, dissolve a direita
+ *  - `right` — sangra pela borda direita, dissolve a esquerda
+ *  - `full`  — full-bleed bilateral, dissolve topo e base
+ *  - `hero`  — composição horizontal + vertical
+ *  - `curriculum` — vertical à esquerda, dissolve direita + topo/base
  */
 export function BleedImage({
   src,
@@ -30,15 +28,12 @@ export function BleedImage({
   direction,
   className,
   priority,
-  aspect = "4/3",
 }: {
   src: string;
   alt: string;
   direction: BleedDirection;
   className?: string;
   priority?: boolean;
-  /** CSS aspect-ratio do wrapper (default 4/3). */
-  aspect?: string;
 }) {
   const maskClass =
     direction === "left"
@@ -51,8 +46,6 @@ export function BleedImage({
             ? "md:mask-hero"
             : "md:mask-curriculum";
 
-  // Bleed maior (−64px = −mr-16) e width 140% para a ilustração realmente
-  // transbordar — "estourada", não enquadrada.
   const positionClass =
     direction === "left"
       ? "md:-ml-16 md:w-[140%]"
@@ -66,8 +59,10 @@ export function BleedImage({
 
   return (
     <div
-      className={cn("relative overflow-hidden rounded-card md:rounded-none", className)}
-      style={{ aspectRatio: aspect }}
+      className={cn(
+        "relative overflow-hidden rounded-card md:overflow-visible md:rounded-none",
+        className,
+      )}
     >
       <Image
         src={src}
@@ -76,12 +71,7 @@ export function BleedImage({
         height={1350}
         priority={priority}
         sizes="(max-width: 768px) 100vw, 65vw"
-        className={cn(
-          "h-full w-full max-w-none object-cover object-center",
-          // Desktop: mask direcional + bleed por margem negativa
-          maskClass,
-          positionClass,
-        )}
+        className={cn("h-auto w-full max-w-none", maskClass, positionClass)}
       />
     </div>
   );
