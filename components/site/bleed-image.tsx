@@ -58,7 +58,12 @@ export function BleedImage({
             : "md:w-[115%]";
 
   return (
-    <div className={cn("relative overflow-hidden rounded-card md:rounded-none", className)}>
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-card md:overflow-visible md:rounded-none",
+        className,
+      )}
+    >
       <Image
         src={src}
         alt={alt}
