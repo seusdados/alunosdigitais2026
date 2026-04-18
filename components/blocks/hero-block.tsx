@@ -46,7 +46,7 @@ export function HeroBlock({ data }: { data: HeroBlockData }) {
 
       <Container className="relative z-10 grid gap-10 py-14 lg:min-h-[580px] lg:grid-cols-2 lg:gap-0 lg:py-16">
         <div className="flex max-w-[520px] flex-col justify-center space-y-6">
-          <span className="inline-flex w-fit items-center gap-2 rounded-pill border border-teal-400/30 bg-teal-500/[0.08] px-3 py-1.5">
+          <span className="inline-flex w-fit items-center gap-[7px] rounded-pill border border-teal-500/[0.28] bg-teal-500/[0.08] py-[5px] pl-2 pr-3.5">
             <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-teal-300" />
             <span className="font-body text-[11.5px] font-medium text-teal-300">{pill}</span>
           </span>

@@ -15,7 +15,7 @@ export function PillarBannerBlock({ data }: { data: PillarBannerData }) {
             {data.caption}
           </p>
         ) : null}
-        <BleedImage src={data.image.src} alt={data.image.alt} direction="full" aspect="21/9" />
+        <BleedImage src={data.image.src} alt={data.image.alt} direction="full" />
       </Container>
     </section>
   );

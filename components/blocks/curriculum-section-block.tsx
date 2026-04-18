@@ -38,7 +38,7 @@ export function CurriculumSectionBlock({
 
         <div className="grid gap-10 md:grid-cols-[380px_1fr] md:gap-8">
           <div className="self-stretch">
-            <BleedImage src={image.src} alt={image.alt} direction="curriculum" aspect="3/4" />
+            <BleedImage src={image.src} alt={image.alt} direction="curriculum" />
           </div>
 
           <div className="space-y-10 md:pl-2">

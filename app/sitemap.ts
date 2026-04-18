@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { articleSlugs } from "@/data/articles";
 import { curriculumSlugs } from "@/data/curriculo";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
@@ -44,5 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...base, ...curriculum];
+  const editorial: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
+    url: `${siteUrl}/conteudos/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...base, ...curriculum, ...editorial];
 }
