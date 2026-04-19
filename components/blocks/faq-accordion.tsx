@@ -13,7 +13,7 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-site-white">
+    <section className="bg-sand">
       <Container className="py-16 md:py-[80px]">
         <div className="mb-10 max-w-[720px] space-y-3">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}

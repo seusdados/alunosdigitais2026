@@ -8,7 +8,7 @@ import type { PillarBannerData } from "@/types/content";
  */
 export function PillarBannerBlock({ data }: { data: PillarBannerData }) {
   return (
-    <section className="overflow-hidden bg-site-white">
+    <section className="overflow-hidden bg-sand">
       <Container className="py-10 md:py-[64px]">
         {data.caption ? (
           <p className="mb-8 max-w-[640px] font-body text-[14px] font-light leading-[1.65] text-site-text-mid md:mb-10">

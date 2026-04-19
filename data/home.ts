@@ -152,7 +152,7 @@ export const schoolsData: SplitBleedData = {
     alt: "Escola isométrica em corte com salas integradas ao programa",
   },
   direction: "right",
-  bgColor: "white",
+  bgColor: "sand",
   cta: { label: "Ver proposta para escolas", href: "/para-escolas" },
 };
 
@@ -168,7 +168,7 @@ export const materialsData: SplitBleedData = {
     alt: "Mesa do professor com livros, tablet e materiais do programa",
   },
   direction: "left",
-  bgColor: "sand",
+  bgColor: "white",
   cta: { label: "Ver plataforma e materiais", href: "/plataforma-e-materiais" },
 };
 
@@ -184,7 +184,7 @@ export const complianceData: SplitBleedData = {
     alt: "Árvore regulatória conectando marcos normativos à prática escolar",
   },
   direction: "right",
-  bgColor: "white",
+  bgColor: "sand",
   cta: {
     label: "Entender a aderência curricular e regulatória",
     href: "/conformidade-e-curriculo",
@@ -203,7 +203,7 @@ export const aboutData: SplitBleedData = {
     alt: "Equipe multidisciplinar reunida discutindo o programa",
   },
   direction: "left",
-  bgColor: "sand",
+  bgColor: "white",
   cta: { label: "Conhecer quem está por trás", href: "/sobre" },
 };
 
