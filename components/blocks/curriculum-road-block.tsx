@@ -64,7 +64,7 @@ export function CurriculumRoadBlock() {
             {/* CENTER — ilustração */}
             <div className="relative">
               <Image
-                src="/brand/ilustracoes/illo-06-progressao.jpg"
+                src="/brand/ilustracoes/illo-06-estrada-central.jpg"
                 alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"
                 width={720}
                 height={1680}
@@ -94,7 +94,7 @@ export function CurriculumRoadBlock() {
         <div className="block md:hidden">
           <div className="mb-8 flex justify-center">
             <Image
-              src="/brand/ilustracoes/illo-06-progressao.jpg"
+              src="/brand/ilustracoes/illo-06-estrada-central.jpg"
               alt="Jornada curricular do 1º ao 9º ano"
               width={720}
               height={1680}
