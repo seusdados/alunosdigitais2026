@@ -7,6 +7,9 @@ import { FlowStepsBlock } from "@/components/blocks/flow-steps-block";
 import { PageHero } from "@/components/blocks/page-hero";
 import { ProseSection } from "@/components/blocks/prose-section";
 import { curriculumSlugs, getYearBySlug } from "@/data/curriculo";
+import { CourseSchema } from "@/lib/seo/structured-data";
+
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 
 export function generateStaticParams() {
   return curriculumSlugs.map((ano) => ({ ano }));
@@ -44,6 +47,20 @@ export default async function YearPage({ params }: { params: Promise<{ ano: stri
         eyebrow={stageLabel}
         title={`Currículo do ${year.year}º ano`}
         subtitle={year.heroText}
+      />
+
+      <Breadcrumbs
+        items={[
+          { label: "Início", href: "/" },
+          { label: "Currículo", href: "/curriculo" },
+          { label: `${year.year}º ano` },
+        ]}
+      />
+
+      <CourseSchema
+        name={`Currículo do ${year.year}º ano — ${year.theme}`}
+        description={year.heroText}
+        url={`/curriculo/${year.slug}`}
       />
 
       <FlowStepsBlock

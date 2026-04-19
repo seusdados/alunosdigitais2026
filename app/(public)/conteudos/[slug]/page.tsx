@@ -9,6 +9,9 @@ import { SectionEyebrow } from "@/components/site/section-eyebrow";
 import { SiteButton } from "@/components/site/site-button";
 import { articleSlugs, getArticleBySlug } from "@/data/articles";
 import { formatDate } from "@/lib/format";
+import { ArticleSchema } from "@/lib/seo/structured-data";
+
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 
 export function generateStaticParams() {
   return articleSlugs.map((slug) => ({ slug }));
@@ -43,6 +46,22 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <PageHero eyebrow={article.pillarLabel} title={article.title} subtitle={article.excerpt} />
+
+      <Breadcrumbs
+        items={[
+          { label: "Início", href: "/" },
+          { label: "Conteúdos", href: "/conteudos" },
+          { label: article.title },
+        ]}
+      />
+
+      <ArticleSchema
+        title={article.title}
+        description={article.excerpt}
+        slug={article.slug}
+        publishedAt={article.publishedAt}
+        image={article.seo.ogImage}
+      />
 
       <article className="bg-site-white">
         <Container className="max-w-[780px] py-14 md:py-[80px]">

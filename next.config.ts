@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
+    // Otimização automática para formatos modernos. next/image serve
+    // AVIF para navegadores que suportam, WebP como fallback, e o
+    // original (JPG/PNG) como último recurso.
+    formats: ["image/avif", "image/webp"],
     // Supabase Storage public buckets will serve images through this host.
     remotePatterns: [
       {

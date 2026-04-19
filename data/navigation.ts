@@ -63,6 +63,7 @@ export const footerColumns: FooterColumn[] = [
       { label: "Política de privacidade", href: "/politica-de-privacidade" },
       { label: "Termos de uso", href: "/termos-de-uso" },
       { label: "Cookies", href: "/cookies" },
+      { label: "Acessibilidade", href: "/acessibilidade" },
     ],
   },
 ];
