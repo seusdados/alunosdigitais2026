@@ -61,16 +61,15 @@ export function CurriculumRoadBlock() {
               ))}
             </ul>
 
-            {/* CENTER — ilustração */}
-            <div className="relative">
+            {/* CENTER — ilustração (fill preenche 100% da altura da coluna) */}
+            <div className="relative z-[1]">
               <Image
                 src="/brand/ilustracoes/illo-06-estrada-central.jpg"
                 alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"
-                width={720}
-                height={1680}
+                fill
                 priority
                 sizes="(max-width: 1024px) 300px, 360px"
-                className="mask-fade-vertical h-auto w-full object-cover opacity-95"
+                className="object-cover object-top opacity-95 [mask-image:linear-gradient(to_bottom,transparent_0%,black_2%,black_97%,transparent_100%)]"
               />
             </div>
 
