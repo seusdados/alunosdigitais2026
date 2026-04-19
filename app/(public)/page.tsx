@@ -3,14 +3,13 @@ import type { Metadata } from "next";
 import { CTABarBlock } from "@/components/blocks/cta-bar-block";
 import { CardsGridBlock } from "@/components/blocks/cards-grid-block";
 import { ContactFormBlock } from "@/components/blocks/contact-form-block";
-import { CurriculumSectionBlock } from "@/components/blocks/curriculum-section-block";
+import { CurriculumRoadBlock } from "@/components/blocks/curriculum-road-block";
 import { FAQAccordion } from "@/components/blocks/faq-accordion";
 import { FlowStepsBlock } from "@/components/blocks/flow-steps-block";
 import { HeroBlock } from "@/components/blocks/hero-block";
 import { PillarBannerBlock } from "@/components/blocks/pillar-banner-block";
 import { SplitBleedBlock } from "@/components/blocks/split-bleed-block";
 import { RegulatoryBar } from "@/components/site/regulatory-bar";
-import { curriculumYears } from "@/data/curriculo";
 import {
   aboutData,
   challengeData,
@@ -50,16 +49,7 @@ export default function HomePage() {
       <PillarBannerBlock data={pillarsBanner} />
       <SplitBleedBlock data={teacherSupportData} />
       <SplitBleedBlock data={familyData} />
-      <CurriculumSectionBlock
-        eyebrow="Currículo"
-        title="Do 1º ao 9º ano, com progressão pedagógica real"
-        subtitle="Nos anos iniciais: identidade, convivência, privacidade. Nos anos finais: pensamento crítico, segurança digital avançada, IA, autoria e protagonismo."
-        years={curriculumYears}
-        image={{
-          src: "/brand/ilustracoes/illo-06-progressao.jpg",
-          alt: "Jornada vertical do 1º ao 9º ano",
-        }}
-      />
+      <CurriculumRoadBlock />
       <FlowStepsBlock data={howItWorksData} />
       <SplitBleedBlock data={schoolsData} />
       <SplitBleedBlock data={materialsData} />
