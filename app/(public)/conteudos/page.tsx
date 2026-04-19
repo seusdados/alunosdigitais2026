@@ -5,7 +5,7 @@ import { CTABarBlock } from "@/components/blocks/cta-bar-block";
 import { PageHero } from "@/components/blocks/page-hero";
 import { Container } from "@/components/site/container";
 import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { articles, pillarList, type ArticlePillar } from "@/data/articles";
+import { articles, pillarList } from "@/data/articles";
 import { formatDate } from "@/lib/format";
 
 export const metadata: Metadata = {

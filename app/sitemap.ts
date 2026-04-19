@@ -28,6 +28,13 @@ const staticRoutes = [
   "/sobre",
 ] as const;
 
+const legalRoutes = [
+  "/politica-de-privacidade",
+  "/termos-de-uso",
+  "/cookies",
+  "/acessibilidade",
+] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -52,5 +59,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...base, ...curriculum, ...editorial];
+  const legal: MetadataRoute.Sitemap = legalRoutes.map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified: now,
+    changeFrequency: "yearly" as const,
+    priority: 0.3,
+  }));
+
+  return [...base, ...curriculum, ...editorial, ...legal];
 }
