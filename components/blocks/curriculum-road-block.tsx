@@ -50,7 +50,7 @@ export function CurriculumRoadBlock() {
 
         {/* Road grid (desktop) */}
         <div className="relative hidden md:block">
-          <div className="grid grid-cols-[1fr_300px_1fr] items-start gap-0 lg:grid-cols-[1fr_360px_1fr]">
+          <div className="grid grid-cols-[1fr_300px_1fr] items-stretch gap-0 lg:grid-cols-[1fr_360px_1fr]">
             {/* LEFT — anos ímpares */}
             <ul className="relative flex flex-col gap-10 pr-14">
               <StageBadge stage="fundamental-1" className="mb-2" />
@@ -61,8 +61,8 @@ export function CurriculumRoadBlock() {
               ))}
             </ul>
 
-            {/* CENTER — ilustração (fill preenche 100% da altura da coluna) */}
-            <div className="relative z-[1]">
+            {/* CENTER — ilustração (fill + items-stretch faz cobrir 100% da altura) */}
+            <div className="relative z-[1] overflow-hidden">
               <Image
                 src="/brand/ilustracoes/illo-06-estrada-central.jpg"
                 alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"

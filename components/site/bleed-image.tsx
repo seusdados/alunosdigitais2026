@@ -6,21 +6,16 @@ import type { BleedDirection } from "@/types/content";
 /**
  * Ilustração com tratamento de "sangria".
  *
- * Princípio: nenhuma imagem enquadrada em retângulo nem cortada. Cada
- * ilustração aparece inteira (sem crop), excede seu container (width >
- * 100%) e tem as bordas dissolvidas por mask-image (gradiente transparente
- * → preto).
+ * Princípio: a imagem sangra pela borda da seção (margem negativa no
+ * WRAPPER), mas NÃO invade a coluna do texto (wrapper tem overflow-hidden).
+ * A seção pai também tem overflow-hidden como backstop.
  *
- * A imagem renderiza em tamanho natural (`h-auto w-full`), sem aspect-ratio
- * fixo e sem `object-cover` — para que apareça COMPLETA, "estourada" mas
- * INTEIRA, sem cortar nenhum conteúdo visual.
+ * O wrapper é mais largo que o grid cell (w-[calc(100%+64px)]) e tem
+ * margem negativa na direção do bleed (-ml-16 ou -mr-16). A imagem ocupa
+ * 100% do wrapper (que já é mais largo que o cell), portanto aparece
+ * "estourada" sem nunca transbordar para o lado do texto.
  *
- * Direções:
- *  - `left`  — sangra pela borda esquerda, dissolve a direita
- *  - `right` — sangra pela borda direita, dissolve a esquerda
- *  - `full`  — full-bleed bilateral, dissolve topo e base
- *  - `hero`  — composição horizontal + vertical
- *  - `curriculum` — vertical à esquerda, dissolve direita + topo/base
+ * A mask-image dissolve a borda que fica do lado do texto.
  */
 export function BleedImage({
   src,
@@ -46,21 +41,22 @@ export function BleedImage({
             ? "md:mask-hero"
             : "md:mask-curriculum";
 
-  const positionClass =
+  const wrapperBleed =
     direction === "left"
-      ? "md:-ml-16 md:w-[140%]"
+      ? "md:-ml-16 md:w-[calc(100%+64px)]"
       : direction === "right"
-        ? "md:-mr-16 md:w-[140%]"
+        ? "md:-mr-16 md:w-[calc(100%+64px)]"
         : direction === "full"
           ? "md:-mx-16 md:w-[calc(100%+128px)]"
           : direction === "curriculum"
             ? "md:-ml-16 md:w-[calc(100%+64px)]"
-            : "md:w-[115%]";
+            : "";
 
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-card md:overflow-visible md:rounded-none",
+        "relative overflow-hidden rounded-card md:rounded-none",
+        wrapperBleed,
         className,
       )}
     >
@@ -71,7 +67,7 @@ export function BleedImage({
         height={1350}
         priority={priority}
         sizes="(max-width: 768px) 100vw, 65vw"
-        className={cn("h-auto w-full max-w-none", maskClass, positionClass)}
+        className={cn("h-auto w-full max-w-none", maskClass)}
       />
     </div>
   );
