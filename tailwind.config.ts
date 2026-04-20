@@ -110,6 +110,28 @@ const config: Config = {
         eyebrow: "0.15em",
         regulatory: "0.14em",
       },
+      keyframes: {
+        "dot-pulse-teal": {
+          "0%, 100%": {
+            boxShadow: "0 0 10px rgba(43, 217, 165, 0.85)",
+          },
+          "50%": {
+            boxShadow: "0 0 18px rgba(43, 217, 165, 1), 0 0 28px rgba(43, 217, 165, 0.45)",
+          },
+        },
+        "dot-pulse-navy": {
+          "0%, 100%": {
+            boxShadow: "0 0 10px rgba(42, 79, 122, 0.85)",
+          },
+          "50%": {
+            boxShadow: "0 0 18px rgba(42, 79, 122, 1), 0 0 28px rgba(42, 79, 122, 0.45)",
+          },
+        },
+      },
+      animation: {
+        "dot-pulse-teal": "dot-pulse-teal 2.8s ease-in-out infinite",
+        "dot-pulse-navy": "dot-pulse-navy 2.8s ease-in-out infinite",
+      },
     },
   },
   plugins: [tailwindcssAnimate],

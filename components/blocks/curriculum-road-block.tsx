@@ -195,14 +195,13 @@ function YearCard({ year, side }: { year: CurriculumYear; side: "left" | "right"
       />
       <span
         aria-hidden
+        style={{ animationDelay: `${year.year * 0.18}s` }}
         className={cn(
-          "absolute top-1/2 hidden h-2 w-2 -translate-y-1/2 rounded-full md:block",
+          "absolute top-1/2 hidden h-2 w-2 -translate-y-1/2 rounded-full motion-reduce:animate-none md:block",
           side === "left"
             ? "left-[calc(100%+52px)] translate-x-0"
             : "right-[calc(100%+52px)] translate-x-0",
-          isF2
-            ? "bg-navy-400 shadow-[0_0_10px_rgba(42,79,122,0.85)]"
-            : "bg-teal-300 shadow-[0_0_10px_rgba(43,217,165,0.85)]",
+          isF2 ? "bg-navy-400 animate-dot-pulse-navy" : "animate-dot-pulse-teal bg-teal-300",
         )}
       />
 
