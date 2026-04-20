@@ -67,7 +67,7 @@ export function CurriculumRoadBlock() {
                 src="/brand/ilustracoes/illo-06-estrada-central.jpg"
                 alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"
                 fill
-                priority
+                loading="lazy"
                 sizes="(max-width: 1024px) 300px, 360px"
                 className="object-cover object-top opacity-95 [mask-image:linear-gradient(to_bottom,transparent_0%,black_2%,black_97%,transparent_100%)]"
               />
