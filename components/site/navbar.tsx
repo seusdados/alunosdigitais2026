@@ -29,23 +29,15 @@ export function NavBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-navy-800/95 backdrop-blur supports-[backdrop-filter]:bg-navy-800/85">
       <Container as="nav" className="flex h-[62px] items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center" aria-label="Alunos Digitais — página inicial">
           <Image
-            src="/brand/logo/logo-icon.svg"
-            alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9"
+            src="/brand/logo/logo-horizontal.png"
+            alt="Alunos Digitais"
+            width={1411}
+            height={211}
+            className="h-8 w-auto md:h-9"
             priority
           />
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-[17px] font-bold tracking-tight text-white">
-              Alunos Digitais
-            </span>
-            <span className="mt-0.5 font-body text-[9px] font-medium uppercase tracking-widest text-white/30">
-              Programa educacional
-            </span>
-          </div>
         </Link>
 
         {/* Desktop nav */}

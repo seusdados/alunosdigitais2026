@@ -25,7 +25,7 @@ export function OrganizationSchema() {
     "@type": "EducationalOrganization",
     name: "Alunos Digitais",
     url: siteUrl,
-    logo: `${siteUrl}/brand/logo/logo-icon.svg`,
+    logo: `${siteUrl}/brand/logo/logo-horizontal.png`,
     description:
       "Programa contínuo de educação digital e cidadania digital para todo o Ensino Fundamental.",
     sameAs: [],
@@ -92,7 +92,7 @@ export function ArticleSchema({
       name: "Alunos Digitais",
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/brand/logo/logo-icon.svg`,
+        url: `${siteUrl}/brand/logo/logo-horizontal.png`,
       },
     },
     ...(image
