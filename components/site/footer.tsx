@@ -9,18 +9,15 @@ export function Footer() {
     <footer className="bg-navy-800 text-white">
       <Container className="grid gap-10 py-12 md:grid-cols-4 md:gap-7 md:py-[40px]">
         <div className="space-y-4">
-          <div className="flex items-center gap-3">
+          <Link href="/" aria-label="Alunos Digitais — página inicial" className="inline-flex">
             <Image
-              src="/brand/logo/logo-icon.svg"
-              alt=""
-              width={36}
-              height={36}
-              className="h-9 w-9"
+              src="/brand/logo/logo-horizontal.png"
+              alt="Alunos Digitais"
+              width={1411}
+              height={211}
+              className="h-9 w-auto"
             />
-            <span className="font-display text-[17px] font-bold tracking-tight">
-              Alunos Digitais
-            </span>
-          </div>
+          </Link>
           <p className="max-w-[280px] font-body text-[13px] leading-[1.65] text-white/45">
             Programa contínuo de educação digital e cidadania digital para todo o Ensino
             Fundamental.

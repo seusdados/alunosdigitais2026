@@ -65,13 +65,6 @@ export const metadata: Metadata = {
       "Programa contínuo de educação digital e cidadania digital para todo o Ensino Fundamental.",
     images: ["/brand/ilustracoes/illo-01-hero.jpg"],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/brand/logo/logo-icon.svg", type: "image/svg+xml" },
-    ],
-    apple: "/brand/logo/logo-icon.svg",
-  },
   robots: {
     index: true,
     follow: true,
