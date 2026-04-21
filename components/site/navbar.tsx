@@ -31,7 +31,7 @@ export function NavBar() {
       <Container as="nav" className="flex h-[62px] items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="Alunos Digitais — página inicial">
           <Image
-            src="/brand/logo/logo-horizontal.png"
+            src="/brand/logo/logo-horizontal-dark.png"
             alt="Alunos Digitais"
             width={1411}
             height={211}
@@ -40,8 +40,8 @@ export function NavBar() {
           />
         </Link>
 
-        {/* Desktop nav */}
-        <ul className="hidden items-center gap-1 lg:flex">
+        {/* Desktop nav — single line em ≥ xl (1280px+) */}
+        <ul className="hidden items-center gap-0.5 xl:flex">
           {primaryNav.map((item) => {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
@@ -49,10 +49,10 @@ export function NavBar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "rounded-md px-3.5 py-2 font-body text-[13px] transition-colors",
+                    "rounded-md px-3 py-2 font-body text-[13px] transition-colors",
                     active
                       ? "bg-white/5 text-white"
-                      : "text-white/50 hover:bg-white/5 hover:text-white",
+                      : "text-white/55 hover:bg-white/5 hover:text-white",
                   )}
                 >
                   {item.label}
@@ -62,19 +62,19 @@ export function NavBar() {
           })}
         </ul>
 
-        <div className="hidden lg:block">
+        <div className="hidden xl:block">
           <SiteButton href={headerCta.href} variant="primary" className="h-10 px-5 text-[13px]">
             {headerCta.label}
           </SiteButton>
         </div>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — visível em < xl */}
         <button
           type="button"
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-white hover:bg-white/10 lg:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md text-white hover:bg-white/10 xl:hidden"
         >
           {open ? (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -100,7 +100,7 @@ export function NavBar() {
 
       {/* Mobile menu panel */}
       {open ? (
-        <div className="lg:hidden">
+        <div className="xl:hidden">
           <Container className="flex flex-col gap-1 border-t border-white/5 bg-navy-800 py-4">
             {primaryNav.map((item) => {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);

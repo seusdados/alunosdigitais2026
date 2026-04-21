@@ -11,7 +11,7 @@ export function Footer() {
         <div className="space-y-4">
           <Link href="/" aria-label="Alunos Digitais — página inicial" className="inline-flex">
             <Image
-              src="/brand/logo/logo-horizontal.png"
+              src="/brand/logo/logo-horizontal-dark.png"
               alt="Alunos Digitais"
               width={1411}
               height={211}
