@@ -18,8 +18,8 @@ import type { SplitBleedData } from "@/types/content";
  *  - `direction='left'`  → ilustração à esquerda, texto à direita
  *
  * Mobile/tablet (< md):
- *  - Stack vertical: texto em cima, ilustração abaixo em rounded-card leve,
- *    sem bleed nem mask direcional.
+ *  - Stack vertical: texto em cima, ilustração abaixo sem bleed lateral,
+ *    mas com mask fade na mesma direção — sem retângulo rígido.
  */
 export function SplitBleedBlock({ data }: { data: SplitBleedData }) {
   const { eyebrow, title, paragraphs, image, direction, bgColor = "white", cta } = data;

@@ -32,14 +32,14 @@ export function BleedImage({
 }) {
   const maskClass =
     direction === "left"
-      ? "md:mask-fade-right"
+      ? "mask-fade-right"
       : direction === "right"
-        ? "md:mask-fade-left"
+        ? "mask-fade-left"
         : direction === "full"
-          ? "md:mask-fade-vertical"
+          ? "mask-fade-vertical"
           : direction === "hero"
-            ? "md:mask-hero"
-            : "md:mask-curriculum";
+            ? "mask-hero"
+            : "mask-curriculum";
 
   const wrapperBleed =
     direction === "left"
@@ -47,19 +47,13 @@ export function BleedImage({
       : direction === "right"
         ? "md:-mr-16 md:w-[calc(100%+64px)]"
         : direction === "full"
-          ? "md:-mx-16 md:w-[calc(100%+128px)]"
+          ? "-mx-6 w-[calc(100%+48px)] md:-mx-16 md:w-[calc(100%+128px)]"
           : direction === "curriculum"
             ? "md:-ml-16 md:w-[calc(100%+64px)]"
             : "";
 
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-card md:rounded-none",
-        wrapperBleed,
-        className,
-      )}
-    >
+    <div className={cn("relative overflow-hidden", wrapperBleed, className)}>
       <Image
         src={src}
         alt={alt}

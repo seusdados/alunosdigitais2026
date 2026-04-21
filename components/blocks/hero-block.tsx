@@ -93,19 +93,18 @@ export function HeroBlock({ data }: { data: HeroBlockData }) {
           )}
         </div>
 
-        {/* Tablet e mobile (< lg): ilustração inline, abaixo do texto */}
-        <div className="-mx-2 lg:hidden">
-          <div className="relative overflow-hidden rounded-card">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={1200}
-              height={800}
-              priority
-              sizes="100vw"
-              className="mask-fade-edges h-auto w-full object-cover"
-            />
-          </div>
+        {/* Tablet e mobile (< lg): ilustração inline, sangrando pelas bordas
+            com fade — sem retângulo rígido enquadrando a imagem. */}
+        <div className="-mx-6 overflow-hidden md:-mx-11 lg:hidden">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={1200}
+            height={800}
+            priority
+            sizes="100vw"
+            className="mask-fade-edges h-auto w-full object-cover"
+          />
         </div>
       </Container>
     </section>

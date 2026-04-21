@@ -24,12 +24,12 @@ export function CTABarBlock({ data }: { data: CTABarData }) {
             </p>
           ) : null}
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col items-stretch gap-3 md:items-end">
           <SiteButton href={primary.href} variant="white" className="h-[46px] px-7">
             {primary.label}
           </SiteButton>
           {secondary ? (
-            <SiteButton href={secondary.href} variant="outline-white">
+            <SiteButton href={secondary.href} variant="outline-white" className="h-[46px] px-7">
               {secondary.label}
             </SiteButton>
           ) : null}
