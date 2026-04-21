@@ -35,17 +35,17 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
     <section id="formulario" className="bg-site-white px-8 py-20 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-4xl">
         <div className="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start md:gap-14">
-          <div className="space-y-4">
+          <div className="space-y-5">
             {eyebrow ? (
-              <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+              <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500">
                 {eyebrow}
               </p>
             ) : null}
-            <h2 className="font-display text-[32px] font-bold leading-[1.1] tracking-[-0.03em] text-site-text lg:text-[36px]">
+            <h2 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[56px]">
               {title}
             </h2>
             {subtitle ? (
-              <p className="font-body text-[16px] font-light leading-[1.7] text-site-text-mid lg:text-[17px]">
+              <p className="font-body text-[20px] font-light leading-[1.72] text-site-text-mid lg:text-[22px]">
                 {subtitle}
               </p>
             ) : null}

@@ -18,7 +18,7 @@ export function SectionEyebrow({
   return (
     <Component
       className={cn(
-        "font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500",
+        "font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500",
         className,
       )}
     >

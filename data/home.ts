@@ -68,7 +68,7 @@ export const teacherSupportData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-04-formacao.jpg",
     alt: "Professora conduzindo aula sobre cidadania digital",
   },
-  direction: "left",
+  direction: "right",
   bgColor: "white",
   cta: { label: "Conhecer a formação docente", href: "/formacao-docente" },
 };
@@ -84,7 +84,7 @@ export const familyData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-05-familia.jpg",
     alt: "Família conversando em casa sobre uso consciente da tecnologia",
   },
-  direction: "right",
+  direction: "left",
   bgColor: "sand",
   cta: { label: "Ver plano de engajamento familiar", href: "/familia-e-engajamento" },
 };

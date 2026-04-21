@@ -32,14 +32,14 @@ export function CurriculumRoadBlock() {
     <section className="relative overflow-hidden bg-navy-800 px-4 py-20 text-white lg:px-6 lg:py-24">
       <div className="relative">
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-2xl px-4 text-center md:mb-20 lg:px-0">
-          <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-300">
+        <div className="mx-auto mb-16 max-w-4xl px-4 text-center md:mb-20 lg:px-0">
+          <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-300">
             Currículo
           </p>
-          <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-white lg:text-[44px]">
+          <h2 className="mt-5 font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-white lg:text-[68px]">
             Do 1º ao 9º ano, com progressão pedagógica real
           </h2>
-          <p className="mx-auto mt-5 font-body text-[17px] font-light leading-[1.72] text-white/60 lg:text-[18px]">
+          <p className="mx-auto mt-6 max-w-3xl font-body text-[20px] font-light leading-[1.72] text-white/60 lg:text-[22px]">
             Nos anos iniciais, a criança constrói identidade, convivência, empatia e navegação
             segura. Nos anos finais, o estudante aprofunda pensamento crítico, segurança digital
             avançada, inteligência artificial e protagonismo.

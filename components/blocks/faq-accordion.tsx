@@ -12,13 +12,13 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
   return (
     <section className="bg-sand px-8 py-20 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-10 max-w-2xl space-y-4">
+        <div className="mb-12 max-w-4xl space-y-5">
           {eyebrow ? (
-            <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+            <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500">
               {eyebrow}
             </p>
           ) : null}
-          <h2 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-site-text lg:text-[44px]">
+          <h2 className="font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[68px]">
             {title}
           </h2>
         </div>

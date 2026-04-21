@@ -19,14 +19,14 @@ export function EntregasGridBlock({
   return (
     <section className="bg-sand">
       <Container className="py-20 lg:py-24">
-        <div className="mb-12 max-w-2xl space-y-4 md:mb-14">
-          <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+        <div className="mb-14 max-w-4xl space-y-5 md:mb-16">
+          <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500">
             O que o programa entrega
           </p>
-          <h2 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-site-text lg:text-[44px]">
+          <h2 className="font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[68px]">
             Uma solução completa para implementar, ensinar e acompanhar
           </h2>
-          <p className="mt-2 max-w-2xl font-body text-[17px] font-light leading-[1.72] text-site-text-mid lg:text-[18px]">
+          <p className="mt-3 max-w-3xl font-body text-[20px] font-light leading-[1.72] text-site-text-mid lg:text-[22px]">
             Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação
             pedagógica.
           </p>
