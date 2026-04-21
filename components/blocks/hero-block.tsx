@@ -6,19 +6,19 @@ import type { HeroBlockData } from "@/types/content";
  * Hero principal — navy-800 com texto à esquerda e ilustração à direita.
  *
  * Princípios:
- *   - Texto preenche sua coluna inteira (sem max-w restritivo) até a
- *     linha divisória do grid (≈ 40% da viewport).
- *   - Ilustração ocupa ~60% da viewport, com gap estreito pro texto.
+ *   - Alinhamento ancorado na régua do header (navbar):
+ *     · Texto termina onde a palavra "Programa" termina no menu (~40% vw).
+ *     · Ilustração começa onde a palavra "Currículo" começa (~47% vw).
+ *     · Gap de ~7% entre as duas colunas.
  *   - Ilustração em tamanho natural (sem crop) sangra até a borda direita
  *     da viewport via `-mr-12`.
- *   - Proporção 2fr / 3fr (40%/60%) com gap-4 entre colunas.
  */
 export function HeroBlock({ data }: { data: HeroBlockData }) {
   const { pill, title, titleAccent, subtitle, ctaPrimary, ctaSecondary, metrics, image } = data;
 
   return (
     <section className="overflow-hidden bg-navy-800 px-8 py-20 lg:px-12 lg:py-24">
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-4">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[40%_53%] lg:gap-[7%]">
         {/* TEXTO — sem max-w, preenche a coluna */}
         <div>
           {/* Pill */}
