@@ -1,5 +1,4 @@
 import type {
-  CardsGridData,
   CTABarData,
   ContactFormData,
   FAQAccordionData,
@@ -51,31 +50,11 @@ export const challengeData: SplitBleedData = {
   bgColor: "white",
 };
 
-export const whatItDeliversData: CardsGridData = {
-  eyebrow: "O que o programa entrega",
-  title: "Uma solução completa para implementar, ensinar e acompanhar",
-  subtitle:
-    "Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação pedagógica.",
-  cards: [
-    { title: "Material didático físico e digital", icon: "teal" },
-    { title: "Plataforma com conteúdos e recursos complementares", icon: "teal" },
-    { title: "Formação inicial e contínua para professores", icon: "amber" },
-    { title: "Planos de aula estruturados", icon: "teal" },
-    { title: "Help desk e suporte pedagógico", icon: "amber" },
-    { title: "Ações de engajamento familiar", icon: "amber" },
-    { title: "Avaliação diagnóstica e indicadores", icon: "teal" },
-    { title: "Gamificação para aprendizagem e participação", icon: "amber" },
-  ],
-  bgColor: "sand",
-};
-
 export const pillarsBanner: PillarBannerData = {
   image: {
     src: "/brand/ilustracoes/illo-03-pilares.jpg",
     alt: "Mural panorâmico dos oito pilares do programa Alunos Digitais",
   },
-  caption:
-    "Oito pilares percorrem toda a jornada — da construção de identidade e convivência nos anos iniciais ao protagonismo digital e inteligência artificial nos anos finais.",
 };
 
 export const teacherSupportData: SplitBleedData = {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 import { CTABarBlock } from "@/components/blocks/cta-bar-block";
-import { CardsGridBlock } from "@/components/blocks/cards-grid-block";
 import { ContactFormBlock } from "@/components/blocks/contact-form-block";
 import { CurriculumRoadBlock } from "@/components/blocks/curriculum-road-block";
+import { EntregasGridBlock } from "@/components/blocks/entregas-grid-block";
 import { FAQAccordion } from "@/components/blocks/faq-accordion";
 import { FlowStepsBlock } from "@/components/blocks/flow-steps-block";
 import { HeroBlock } from "@/components/blocks/hero-block";
@@ -24,7 +24,6 @@ import {
   pillarsBanner,
   schoolsData,
   teacherSupportData,
-  whatItDeliversData,
 } from "@/data/home";
 
 export const metadata: Metadata = {
@@ -45,7 +44,7 @@ export default function HomePage() {
       <HeroBlock data={heroData} />
       <RegulatoryBar />
       <SplitBleedBlock data={challengeData} />
-      <CardsGridBlock data={whatItDeliversData} />
+      <EntregasGridBlock caption="Oito pilares percorrem toda a jornada — da construção de identidade e convivência nos anos iniciais ao protagonismo digital e inteligência artificial nos anos finais." />
       <PillarBannerBlock data={pillarsBanner} />
       <SplitBleedBlock data={teacherSupportData} />
       <SplitBleedBlock data={familyData} />
