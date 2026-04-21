@@ -7,7 +7,7 @@ import { footerColumns } from "@/data/navigation";
 export function Footer() {
   return (
     <footer className="bg-navy-800 text-white">
-      <Container className="grid gap-10 py-12 md:grid-cols-4 md:gap-7 md:py-[40px]">
+      <Container className="grid gap-10 py-12 md:grid-cols-4 md:gap-9 md:pb-[36px] md:pt-[48px]">
         <div className="space-y-4">
           <Link href="/" aria-label="Alunos Digitais — página inicial" className="inline-flex">
             <Image
@@ -18,21 +18,23 @@ export function Footer() {
               className="h-9 w-auto"
             />
           </Link>
-          <p className="max-w-[280px] font-body text-[13px] leading-[1.65] text-white/45">
+          <p className="max-w-[280px] font-body text-[13.5px] leading-[1.65] text-white/45">
             Programa contínuo de educação digital e cidadania digital para todo o Ensino
             Fundamental.
           </p>
         </div>
 
         {footerColumns.map((col) => (
-          <nav key={col.title} aria-label={col.title} className="space-y-3">
-            <p className="font-display text-[13px] font-semibold text-white/80">{col.title}</p>
-            <ul className="space-y-2.5">
+          <nav key={col.title} aria-label={col.title}>
+            <p className="mb-[18px] font-display text-[14px] font-semibold text-white/80">
+              {col.title}
+            </p>
+            <ul className="space-y-3">
               {col.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-body text-[12.5px] text-white/45 transition-colors hover:text-white"
+                    className="font-body text-[13.5px] text-white/45 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>

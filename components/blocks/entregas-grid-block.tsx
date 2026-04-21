@@ -75,7 +75,7 @@ function EntregaCard({ item }: { item: EntregaItem }) {
   return (
     <div
       className={cn(
-        "group relative flex flex-col gap-3 overflow-hidden rounded-2xl border border-gray-100 bg-site-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
+        "group relative flex flex-col gap-3.5 overflow-hidden rounded-2xl border border-gray-100 bg-site-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
         s.border,
       )}
     >
@@ -92,11 +92,13 @@ function EntregaCard({ item }: { item: EntregaItem }) {
         {item.icon}
       </div>
 
-      <h3 className="font-display text-[15px] font-semibold leading-[1.25] tracking-tight text-site-text">
+      <h3 className="font-display text-[16px] font-semibold leading-[1.3] tracking-tight text-site-text">
         {item.title}
       </h3>
 
-      <p className="font-body text-[13px] leading-[1.6] text-site-text-light">{item.description}</p>
+      <p className="font-body text-[14px] leading-[1.65] text-site-text-light">
+        {item.description}
+      </p>
     </div>
   );
 }

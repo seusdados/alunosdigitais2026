@@ -177,7 +177,7 @@ function YearCard({ year, side }: { year: CurriculumYear; side: "left" | "right"
   return (
     <div
       className={cn(
-        "relative rounded-[14px] border p-5 backdrop-blur-[10px] transition-all md:p-6",
+        "relative w-full rounded-[14px] border p-[18px] backdrop-blur-[10px] transition-all md:max-w-[210px]",
         isF2
           ? "border-navy-500/40 bg-navy-700/40 hover:border-navy-500/70"
           : "border-white/15 bg-white/[0.06] hover:border-white/30",
@@ -207,19 +207,19 @@ function YearCard({ year, side }: { year: CurriculumYear; side: "left" | "right"
       <div className="flex items-start justify-between gap-3">
         <span
           className={cn(
-            "inline-flex h-8 items-center rounded-pill px-3 font-display text-[13px] font-bold tracking-tight",
+            "inline-flex h-[34px] w-[34px] items-center justify-center rounded-full font-display text-[15px] font-bold tracking-tight",
             isF2 ? "bg-navy-500/30 text-white" : "bg-teal-400/15 text-teal-300",
           )}
         >
-          {label} ano
+          {label.replace("º", "")}
         </span>
       </div>
-      <p className="mt-4 font-display text-[15.5px] font-semibold leading-snug text-white">
+      <p className="mt-3 font-display text-[14px] font-semibold leading-[1.3] text-white">
         {year.theme}
       </p>
-      <ul className="mt-3 space-y-1">
+      <ul className="mt-2.5 space-y-1">
         {year.topics.slice(0, 3).map((topic, idx) => (
-          <li key={idx} className="font-body text-[12px] leading-[1.5] text-white/55">
+          <li key={idx} className="font-body text-[12px] leading-[1.55] text-white/55">
             {topic}
           </li>
         ))}

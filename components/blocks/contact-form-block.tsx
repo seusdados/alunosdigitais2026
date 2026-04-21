@@ -57,7 +57,7 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
                 </p>
               </div>
             ) : (
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-5 md:grid-cols-2">
                 <Field label="Nome" name="fullName" error={fieldErrors.fullName} required />
                 <Field
                   label="E-mail corporativo"
@@ -138,7 +138,7 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="font-body text-[12.5px] font-medium text-site-text-mid">
+      <span className="mb-1 font-body text-[13px] font-medium text-site-text-mid">
         {label}
         {required ? <span className="ml-0.5 text-teal-500">*</span> : null}
       </span>
@@ -147,10 +147,10 @@ function Field({
         type={type}
         autoComplete={autoComplete}
         aria-invalid={error ? "true" : undefined}
-        className="h-11 rounded-btn border border-[#E8E8E8] bg-white px-3.5 font-body text-[14px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
+        className="h-12 rounded-[10px] border border-[#E8E8E8] bg-white px-4 py-3 font-body text-[15px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
       />
       {error ? (
-        <span role="alert" className="font-body text-[11.5px] text-red-600">
+        <span role="alert" className="font-body text-[12px] text-red-600">
           {error}
         </span>
       ) : null}
@@ -171,15 +171,15 @@ function Textarea({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="font-body text-[12.5px] font-medium text-site-text-mid">{label}</span>
+      <span className="mb-1 font-body text-[13px] font-medium text-site-text-mid">{label}</span>
       <textarea
         name={name}
-        rows={rows ?? 4}
+        rows={rows ?? 5}
         aria-invalid={error ? "true" : undefined}
-        className="rounded-btn border border-[#E8E8E8] bg-white px-3.5 py-3 font-body text-[14px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
+        className="min-h-[120px] rounded-[10px] border border-[#E8E8E8] bg-white px-4 py-3 font-body text-[15px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
       />
       {error ? (
-        <span role="alert" className="font-body text-[11.5px] text-red-600">
+        <span role="alert" className="font-body text-[12px] text-red-600">
           {error}
         </span>
       ) : null}

@@ -28,9 +28,9 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? null : idx)}
-                  className="flex w-full items-start justify-between gap-6 p-5 text-left transition-colors hover:bg-sand/50 md:p-6"
+                  className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-sand/50 md:px-7"
                 >
-                  <span className="font-display text-[15px] font-semibold leading-snug text-site-text md:text-[16px]">
+                  <span className="font-display text-[16px] font-semibold leading-[1.35] text-site-text">
                     {entry.question}
                   </span>
                   <span
@@ -51,8 +51,8 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
                   </span>
                 </button>
                 {isOpen ? (
-                  <div className="px-5 pb-6 pt-0 md:px-6">
-                    <p className="font-body text-[14px] leading-[1.7] text-site-text-mid">
+                  <div className="px-6 pb-6 pt-0 md:px-7">
+                    <p className="font-body text-[15px] leading-[1.75] text-site-text-mid">
                       {entry.answer}
                     </p>
                   </div>
