@@ -46,7 +46,7 @@ export const challengeData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-02-problema.jpg",
     alt: "Encruzilhada entre riscos e oportunidades do mundo digital na escola",
   },
-  direction: "right",
+  direction: "left",
   bgColor: "white",
 };
 

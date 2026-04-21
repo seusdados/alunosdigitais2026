@@ -28,14 +28,14 @@ export function NavBar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 bg-navy-800/95 backdrop-blur supports-[backdrop-filter]:bg-navy-800/85">
-      <Container as="nav" className="flex h-[62px] items-center justify-between">
+      <Container as="nav" className="flex h-[74px] items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="Alunos Digitais — página inicial">
           <Image
             src="/brand/logo/logo-horizontal-dark.png"
             alt="Alunos Digitais"
             width={1411}
             height={211}
-            className="h-8 w-auto md:h-9"
+            className="h-10 w-auto md:h-11"
             priority
           />
         </Link>
@@ -49,7 +49,7 @@ export function NavBar() {
                 <Link
                   href={item.href}
                   className={cn(
-                    "rounded-md px-3 py-2 font-body text-[13px] transition-colors",
+                    "rounded-md px-3.5 py-2.5 font-body text-[16px] transition-colors",
                     active
                       ? "bg-white/5 text-white"
                       : "text-white/55 hover:bg-white/5 hover:text-white",
@@ -63,7 +63,7 @@ export function NavBar() {
         </ul>
 
         <div className="hidden xl:block">
-          <SiteButton href={headerCta.href} variant="primary" className="h-10 px-5 text-[13px]">
+          <SiteButton href={headerCta.href} variant="primary" className="h-12 px-6 text-[15px]">
             {headerCta.label}
           </SiteButton>
         </div>
@@ -109,7 +109,7 @@ export function NavBar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-md px-3 py-2.5 font-body text-[14px]",
+                    "rounded-md px-3 py-3 font-body text-[17px]",
                     active
                       ? "bg-white/10 text-white"
                       : "text-white/70 hover:bg-white/5 hover:text-white",
