@@ -1,228 +1,266 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { SiteButton } from "@/components/site/site-button";
 import { curriculumYears } from "@/data/curriculo";
-import { cn } from "@/lib/utils";
-import type { CurriculumYear } from "@/types/content";
-
-const ORDINALS = ["", "1º", "2º", "3º", "4º", "5º", "6º", "7º", "8º", "9º"];
+import type { CurriculumStage } from "@/types/content";
 
 /**
- * CurriculumRoadBlock — os 9 anos curriculares organizados ao redor de uma
- * ilustração central (a "estrada" vertical da jornada do 1º ao 9º ano).
+ * CurriculumRoadBlock — jornada pedagógica do 1º ao 9º ano.
  *
- * Desktop (≥ md): grid 3 colunas.
- *   - Esquerda: anos ímpares (1, 3, 5, 7, 9)
- *   - Centro: ilustração vertical com mask-fade-vertical
- *   - Direita: anos pares (2, 4, 6, 8)
- *   Connectors horizontais + dots luminosos conectam cada card à estrada.
+ * Ilustração central domina (52% da largura do canvas); cards laterais
+ * ficam próximos à borda da ilustração (56% do lado oposto). Conectores
+ * SVG curvos ligam cada ponto da estrada ao respectivo card, e números
+ * (1-9) em círculos com glow são sobrepostos nos pontos luminosos da
+ * ilustração. Pulse luminoso nos dots em cascata por ano.
  *
- * Mobile: stack vertical — ilustração compacta no topo seguida da lista dos
- * 9 anos em ordem cronológica.
- *
- * Variantes visuais:
- *   - F1 (anos 1-5): card glass branco, badge/connector/dot em teal
- *   - F2 (anos 6-9): card glass navy escuro, badge/connector/dot em navy
+ * Layout é desktop-only (≥ lg). Em viewports menores, stack vertical
+ * simplificado: ilustração reduzida + lista dos 9 anos.
  */
+
+// Posições (top%) de cada ponto da trilha na ilustração illo-06-estrada-central.jpg.
+// Calibradas visualmente contra a imagem — ajustar aqui se a ilustração mudar.
+const ROAD_POINTS: Array<{ year: number; top: number; side: "left" | "right" }> = [
+  { year: 1, top: 12, side: "left" },
+  { year: 2, top: 22, side: "right" },
+  { year: 3, top: 32, side: "left" },
+  { year: 4, top: 42, side: "right" },
+  { year: 5, top: 52, side: "left" },
+  { year: 6, top: 62, side: "right" },
+  { year: 7, top: 72, side: "left" },
+  { year: 8, top: 82, side: "right" },
+  { year: 9, top: 92, side: "left" },
+];
+
 export function CurriculumRoadBlock() {
-  const oddYears = curriculumYears.filter((y) => y.year % 2 === 1);
-  const evenYears = curriculumYears.filter((y) => y.year % 2 === 0);
-
   return (
-    <section className="relative overflow-hidden bg-navy-800 px-4 py-20 text-white lg:px-6 lg:py-24">
-      <div className="relative">
-        {/* Header */}
-        <div className="mx-auto mb-16 max-w-4xl px-4 text-center md:mb-20 lg:px-0">
-          <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-300">
-            Currículo
-          </p>
-          <h2 className="mt-5 font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-white lg:text-[68px]">
-            Do 1º ao 9º ano, com progressão pedagógica real
-          </h2>
-          <p className="mx-auto mt-6 max-w-3xl font-body text-[20px] font-light leading-[1.72] text-white/60 lg:text-[22px]">
-            Nos anos iniciais, a criança constrói identidade, convivência, empatia e navegação
-            segura. Nos anos finais, o estudante aprofunda pensamento crítico, segurança digital
-            avançada, inteligência artificial e protagonismo.
-          </p>
+    <section className="relative overflow-hidden bg-navy-800 text-white">
+      {/* Header */}
+      <div className="relative z-10 px-8 pb-6 pt-20 text-center lg:px-12 lg:pt-24">
+        <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-300">
+          Currículo
+        </p>
+        <h2 className="mx-auto mt-5 max-w-4xl font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-white lg:text-[68px]">
+          Do 1º ao 9º ano, com progressão pedagógica real
+        </h2>
+        <p className="mx-auto mt-6 max-w-3xl font-body text-[20px] font-light leading-[1.72] text-white/55 lg:text-[22px]">
+          Cada ano amplia o repertório do estudante. Uma jornada contínua de valores, ética,
+          segurança, pensamento crítico e protagonismo digital.
+        </p>
+      </div>
+
+      {/* Desktop canvas — ilustração dominante + cards absolutos + conectores SVG */}
+      <div className="relative mx-auto hidden w-full max-w-[1100px] px-10 pb-10 pt-6 lg:block">
+        {/* Label F1 flutuante (topo) */}
+        <div className="absolute left-10 right-10 top-4 z-[5] flex justify-center">
+          <span className="rounded-pill border border-teal-400/25 bg-teal-400/[0.12] px-3.5 py-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-teal-300">
+            Anos iniciais · 1º ao 5º
+          </span>
         </div>
 
-        {/* Road grid (desktop) */}
-        <div className="relative hidden md:block">
-          <div className="grid grid-cols-[1fr_340px_1fr] items-stretch gap-0 lg:grid-cols-[1fr_380px_1fr]">
-            {/* LEFT — anos ímpares */}
-            <ul className="relative flex flex-col gap-10 pr-14">
-              <StageBadge stage="fundamental-1" className="mb-2" />
-              {oddYears.map((y) => (
-                <li key={y.slug}>
-                  <YearCard year={y} side="left" />
-                </li>
-              ))}
-            </ul>
-
-            {/* CENTER — ilustração (fill + items-stretch faz cobrir 100% da altura) */}
-            <div className="relative z-[1] overflow-hidden">
-              <Image
-                src="/brand/ilustracoes/illo-06-estrada-central.jpg"
-                alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"
-                fill
-                loading="lazy"
-                sizes="(max-width: 1024px) 300px, 360px"
-                className="object-cover object-top opacity-95 [mask-image:linear-gradient(to_bottom,transparent_0%,black_2%,black_97%,transparent_100%)]"
-              />
-            </div>
-
-            {/* RIGHT — anos pares (começa com offset pra simular estrada sinuosa) */}
-            <ul className="relative flex flex-col gap-10 pl-14 pt-24">
-              {evenYears.map((y) => (
-                <li key={y.slug}>
-                  <YearCard year={y} side="right" />
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Badge "Anos finais" flutuante próxima ao ano 7 (segundo na direita) */}
-          <div className="pointer-events-none absolute left-0 top-[62%]">
-            <StageBadge stage="fundamental-2" />
-          </div>
+        {/* Label F2 flutuante (meio) */}
+        <div className="absolute left-10 right-10 top-[58%] z-[5] flex justify-center">
+          <span className="rounded-pill border border-navy-500/40 bg-navy-600/40 px-3.5 py-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">
+            Anos finais · 6º ao 9º
+          </span>
         </div>
 
-        {/* Mobile: stack vertical */}
-        <div className="block md:hidden">
-          <div className="mb-8 flex justify-center">
+        {/* Canvas com aspect-ratio da ilustração */}
+        <div className="relative mx-auto aspect-[692/1400] w-full">
+          {/* Ilustração central */}
+          <div className="absolute left-1/2 top-0 z-[2] h-full w-[52%] -translate-x-1/2">
             <Image
               src="/brand/ilustracoes/illo-06-estrada-central.jpg"
-              alt="Jornada curricular do 1º ao 9º ano"
-              width={720}
-              height={1680}
-              sizes="100vw"
-              className="mask-fade-vertical h-auto w-[220px] opacity-90"
+              alt="Jornada curricular do 1º ao 9º ano — estrada pedagógica contínua"
+              fill
+              sizes="(max-width: 1024px) 80vw, 572px"
+              className="object-cover object-top"
+              loading="lazy"
             />
           </div>
-          <ul className="space-y-6">
-            <li>
-              <StageBadge stage="fundamental-1" />
-            </li>
-            {curriculumYears
-              .filter((y) => y.stage === "fundamental-1")
-              .map((y) => (
-                <li key={y.slug}>
-                  <YearCard year={y} side="left" />
-                </li>
-              ))}
-            <li className="pt-2">
-              <StageBadge stage="fundamental-2" />
-            </li>
-            {curriculumYears
-              .filter((y) => y.stage === "fundamental-2")
-              .map((y) => (
-                <li key={y.slug}>
-                  <YearCard year={y} side="left" />
-                </li>
-              ))}
-          </ul>
-        </div>
 
-        {/* Footer */}
-        <div className="mx-auto mt-14 max-w-2xl text-center md:mt-16">
-          <p className="mx-auto font-display text-[17px] italic leading-[1.55] text-white/70 md:text-[19px]">
-            Cada ano é uma etapa de uma jornada contínua — do acolhimento infantil ao protagonismo
-            digital da juventude.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <SiteButton href="/curriculo" variant="primary">
-              Explorar o currículo completo
-            </SiteButton>
-          </div>
+          {/* Conectores SVG — curvas tracejadas do ponto da trilha ao card */}
+          <svg
+            className="pointer-events-none absolute inset-0 z-[3] h-full w-full"
+            viewBox="0 0 1000 2000"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            {ROAD_POINTS.map((point) => {
+              const isF2 = point.year >= 6;
+              const color = isF2 ? "rgba(42,79,122,0.6)" : "rgba(0,184,134,0.55)";
+              const dotColor = isF2 ? "#2A4F7A" : "#00B886";
+              const pointX = 500; // centro
+              const pointY = point.top * 20; // top% → viewBox y (0-2000)
+              const cardX = point.side === "left" ? 220 : 780;
+              const midX = (pointX + cardX) / 2;
+              return (
+                <g key={point.year}>
+                  <path
+                    d={`M ${pointX} ${pointY} Q ${midX} ${pointY}, ${cardX} ${pointY}`}
+                    stroke={color}
+                    strokeWidth="1.5"
+                    fill="none"
+                    strokeDasharray="4 3"
+                  />
+                  <circle cx={cardX} cy={pointY} r="3" fill={dotColor} />
+                </g>
+              );
+            })}
+          </svg>
+
+          {/* Números sobrepostos nos pontos da trilha (1-9) */}
+          {ROAD_POINTS.map((point) => {
+            const isF2 = point.year >= 6;
+            return (
+              <div
+                key={`num-${point.year}`}
+                aria-hidden
+                className={`absolute left-1/2 z-[4] flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white/30 font-display text-[14px] font-bold text-white shadow-[0_0_16px_rgba(0,184,134,0.55)] ${
+                  isF2
+                    ? "bg-gradient-to-br from-navy-500 to-navy-700 shadow-[0_0_16px_rgba(42,79,122,0.6)]"
+                    : "bg-gradient-to-br from-teal-400 to-teal-600 shadow-[0_0_16px_rgba(0,184,134,0.55)]"
+                }`}
+                style={{ top: `${point.top}%` }}
+              >
+                {point.year}
+              </div>
+            );
+          })}
+
+          {/* Cards laterais próximos à ilustração */}
+          {curriculumYears.map((y, i) => {
+            const point = ROAD_POINTS[i];
+            return (
+              <YearCardAbsolute
+                key={y.slug}
+                theme={y.theme}
+                topics={y.topics.slice(0, 3).join(" · ")}
+                stage={y.stage}
+                side={point.side}
+                top={point.top}
+              />
+            );
+          })}
         </div>
+      </div>
+
+      {/* Mobile fallback — stack vertical simplificado */}
+      <div className="px-8 pb-16 pt-6 lg:hidden">
+        <div className="mb-8 flex justify-center">
+          <Image
+            src="/brand/ilustracoes/illo-06-estrada-central.jpg"
+            alt="Jornada curricular do 1º ao 9º ano"
+            width={720}
+            height={1680}
+            sizes="100vw"
+            className="h-auto w-[220px] opacity-90 [mask-image:linear-gradient(to_bottom,transparent_0%,black_5%,black_92%,transparent_100%)]"
+          />
+        </div>
+        <ul className="space-y-4">
+          {curriculumYears.map((y) => {
+            const isF2 = y.stage === "fundamental-2";
+            return (
+              <li
+                key={y.slug}
+                className={`rounded-[14px] border p-5 backdrop-blur-[10px] ${
+                  isF2 ? "border-navy-500/40 bg-navy-700/40" : "border-white/15 bg-white/[0.06]"
+                }`}
+              >
+                <div className="flex items-start gap-3">
+                  <span
+                    className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-display text-[15px] font-bold text-white ${
+                      isF2
+                        ? "bg-gradient-to-br from-navy-500 to-navy-700"
+                        : "bg-gradient-to-br from-teal-400 to-teal-600"
+                    }`}
+                  >
+                    {y.year}
+                  </span>
+                  <div>
+                    <p className="font-display text-[15px] font-semibold leading-[1.3] text-white">
+                      {y.theme}
+                    </p>
+                    <p className="mt-2 font-body text-[12.5px] leading-[1.55] text-white/55">
+                      {y.topics.slice(0, 3).join(" · ")}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {/* Footer */}
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-5 px-8 pb-20 pt-6 lg:px-12 lg:pb-24">
+        <span className="font-display text-[14px] italic text-white/35">
+          Identidade → Ética → Informação → Segurança → Protagonismo digital
+        </span>
+        <Link
+          href="/curriculo"
+          className="inline-flex items-center gap-2 rounded-btn border border-teal-400/35 px-6 py-3 font-body text-[15px] font-medium text-teal-300 transition-colors hover:bg-teal-400/10"
+        >
+          Explorar o currículo completo
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+            <path
+              d="M3 7h8m-3.5-3.5L11 7l-3.5 3.5"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
       </div>
     </section>
   );
 }
 
-function StageBadge({
+function YearCardAbsolute({
+  theme,
+  topics,
   stage,
-  className,
+  side,
+  top,
 }: {
-  stage: "fundamental-1" | "fundamental-2";
-  className?: string;
+  theme: string;
+  topics: string;
+  stage: CurriculumStage;
+  side: "left" | "right";
+  top: number;
 }) {
-  const isF2 = stage === "fundamental-2";
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-2 rounded-pill px-3 py-1.5",
-        isF2
-          ? "border border-navy-500/60 bg-navy-600/30 text-white/80"
-          : "border border-teal-400/30 bg-teal-500/[0.08] text-teal-300",
-        className,
-      )}
-    >
-      <span
-        aria-hidden
-        className={cn("h-[6px] w-[6px] rounded-full", isF2 ? "bg-navy-400" : "bg-teal-300")}
-      />
-      <span className="font-body text-[10.5px] font-medium uppercase tracking-eyebrow">
-        {isF2 ? "Anos finais · 6º ao 9º" : "Anos iniciais · 1º ao 5º"}
-      </span>
-    </span>
-  );
-}
-
-function YearCard({ year, side }: { year: CurriculumYear; side: "left" | "right" }) {
-  const isF2 = year.stage === "fundamental-2";
-  const label = ORDINALS[year.year];
-
+  const isDark = stage === "fundamental-2";
   return (
     <div
-      className={cn(
-        "relative w-full rounded-[14px] border p-[18px] backdrop-blur-[10px] transition-all md:max-w-[210px]",
-        isF2
-          ? "border-navy-500/40 bg-navy-700/40 hover:border-navy-500/70"
-          : "border-white/15 bg-white/[0.06] hover:border-white/30",
-      )}
+      className="absolute z-[6] w-[200px]"
+      style={{
+        top: `${top}%`,
+        transform: "translateY(-50%)",
+        [side === "left" ? "right" : "left"]: "56%",
+      }}
     >
-      {/* Connector horizontal + dot apontando para a ilustração central (desktop only) */}
-      <span
-        aria-hidden
-        className={cn(
-          "absolute top-1/2 hidden h-px -translate-y-1/2 md:block",
-          side === "left" ? "left-full w-[56px]" : "right-full w-[56px]",
-          isF2 ? "bg-navy-500/60" : "bg-teal-400/60",
-        )}
-      />
-      <span
-        aria-hidden
-        style={{ animationDelay: `${year.year * 0.18}s` }}
-        className={cn(
-          "absolute top-1/2 hidden h-2 w-2 -translate-y-1/2 rounded-full motion-reduce:animate-none md:block",
-          side === "left"
-            ? "left-[calc(100%+52px)] translate-x-0"
-            : "right-[calc(100%+52px)] translate-x-0",
-          isF2 ? "bg-navy-400 animate-dot-pulse-navy" : "animate-dot-pulse-teal bg-teal-300",
-        )}
-      />
-
-      <div className="flex items-start justify-between gap-3">
-        <span
-          className={cn(
-            "inline-flex h-[34px] w-[34px] items-center justify-center rounded-full font-display text-[15px] font-bold tracking-tight",
-            isF2 ? "bg-navy-500/30 text-white" : "bg-teal-400/15 text-teal-300",
-          )}
+      <div
+        className={`relative rounded-[12px] px-4 py-3.5 backdrop-blur-[10px] ${
+          isDark
+            ? "border border-navy-500/40 bg-navy-700/85 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+            : "border border-white/20 bg-white/95 shadow-[0_4px_24px_rgba(0,0,0,0.18)]"
+        }`}
+      >
+        <p
+          className={`font-display text-[14px] font-semibold leading-[1.25] tracking-[-0.01em] ${
+            isDark ? "text-white/92" : "text-site-text"
+          }`}
         >
-          {label.replace("º", "")}
-        </span>
+          {theme}
+        </p>
+        <p
+          className={`mt-1.5 font-body text-[11.5px] leading-[1.55] ${
+            isDark ? "text-white/45" : "text-site-text-light"
+          }`}
+        >
+          {topics}
+        </p>
       </div>
-      <p className="mt-3 font-display text-[14px] font-semibold leading-[1.3] text-white">
-        {year.theme}
-      </p>
-      <ul className="mt-2.5 space-y-1">
-        {year.topics.slice(0, 3).map((topic, idx) => (
-          <li key={idx} className="font-body text-[12px] leading-[1.55] text-white/55">
-            {topic}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
