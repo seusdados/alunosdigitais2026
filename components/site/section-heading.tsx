@@ -28,7 +28,7 @@ export function SectionHeading({
         {children}
       </Component>
       {subtitle ? (
-        <p className="max-w-[520px] font-body text-[15px] font-light leading-[1.72] text-site-text-mid">
+        <p className="max-w-2xl font-body text-[15px] font-light leading-[1.72] text-site-text-mid">
           {subtitle}
         </p>
       ) : null}

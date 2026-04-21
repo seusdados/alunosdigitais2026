@@ -17,7 +17,7 @@ export function LegalContent({
 }) {
   return (
     <section className="bg-site-white">
-      <Container className="max-w-[780px] py-14 md:py-[80px]">
+      <Container className="max-w-3xl py-14">
         {lastUpdated ? (
           <p className="mb-10 font-body text-[12.5px] text-site-text-light">
             Última atualização: <time>{lastUpdated}</time>

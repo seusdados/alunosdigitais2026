@@ -19,16 +19,16 @@ export function EntregasGridBlock({
   caption?: string;
 }) {
   return (
-    <section className="border-t border-gray-100 bg-sand">
-      <Container className="py-16 md:py-[80px]">
-        <div className="mb-10 max-w-[720px] space-y-3 md:mb-12">
+    <section className="bg-sand">
+      <Container className="py-14">
+        <div className="mb-8 max-w-2xl space-y-3 md:mb-10">
           <SectionEyebrow>O que o programa entrega</SectionEyebrow>
           <SectionHeading subtitle="Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação pedagógica.">
             Uma solução completa para implementar, ensinar e acompanhar
           </SectionHeading>
         </div>
 
-        <ul className="grid grid-cols-2 gap-3.5 md:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {entregas.map((item, idx) => (
             <li key={idx}>
               <EntregaCard item={item} />
@@ -37,7 +37,7 @@ export function EntregasGridBlock({
         </ul>
 
         {caption ? (
-          <p className="mt-8 max-w-[600px] font-body text-[13.5px] leading-[1.6] text-site-text-light">
+          <p className="mt-7 max-w-2xl font-body text-[13.5px] leading-[1.6] text-site-text-light">
             {caption}
           </p>
         ) : null}

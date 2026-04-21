@@ -13,8 +13,8 @@ export function FlowStepsBlock({ data }: { data: FlowStepsData }) {
 
   return (
     <section className={cn(bgColor === "sand" ? "bg-sand" : "bg-site-white")}>
-      <Container className="py-16 md:py-[80px]">
-        <div className="mb-10 max-w-[720px] space-y-3 md:mb-12">
+      <Container className="py-14">
+        <div className="mb-8 max-w-2xl space-y-3 md:mb-10">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
         </div>

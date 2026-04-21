@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { Container } from "@/components/site/container";
 import { SectionEyebrow } from "@/components/site/section-eyebrow";
 import { SiteButton } from "@/components/site/site-button";
 import { curriculumYears } from "@/data/curriculo";
@@ -31,17 +30,17 @@ export function CurriculumRoadBlock() {
   const evenYears = curriculumYears.filter((y) => y.year % 2 === 0);
 
   return (
-    <section className="relative overflow-hidden bg-navy-800 text-white">
-      <Container className="relative py-20 md:py-[112px]">
+    <section className="relative overflow-hidden bg-navy-800 px-4 py-12 text-white lg:px-6">
+      <div className="relative">
         {/* Header */}
-        <div className="mx-auto mb-14 max-w-[720px] text-center md:mb-20">
+        <div className="mx-auto mb-12 max-w-2xl px-4 text-center md:mb-16 lg:px-0">
           <SectionEyebrow className="inline-flex justify-center text-teal-300">
             Currículo
           </SectionEyebrow>
           <h2 className="mt-3 font-display text-[28px] font-bold leading-[1.1] tracking-tightest text-white md:text-[40px]">
             Do 1º ao 9º ano, com progressão pedagógica real
           </h2>
-          <p className="mx-auto mt-5 max-w-[620px] font-body text-[15.5px] font-light leading-[1.72] text-white/60">
+          <p className="mx-auto mt-5 font-body text-[15.5px] font-light leading-[1.72] text-white/60">
             Nos anos iniciais, a criança constrói identidade, convivência, empatia e navegação
             segura. Nos anos finais, o estudante aprofunda pensamento crítico, segurança digital
             avançada, inteligência artificial e protagonismo.
@@ -50,7 +49,7 @@ export function CurriculumRoadBlock() {
 
         {/* Road grid (desktop) */}
         <div className="relative hidden md:block">
-          <div className="grid grid-cols-[1fr_300px_1fr] items-stretch gap-0 lg:grid-cols-[1fr_360px_1fr]">
+          <div className="grid grid-cols-[1fr_340px_1fr] items-stretch gap-0 lg:grid-cols-[1fr_380px_1fr]">
             {/* LEFT — anos ímpares */}
             <ul className="relative flex flex-col gap-10 pr-14">
               <StageBadge stage="fundamental-1" className="mb-2" />
@@ -126,8 +125,8 @@ export function CurriculumRoadBlock() {
         </div>
 
         {/* Footer */}
-        <div className="mx-auto mt-20 max-w-[640px] text-center md:mt-24">
-          <p className="mx-auto max-w-[560px] font-display text-[17px] italic leading-[1.55] text-white/70 md:text-[19px]">
+        <div className="mx-auto mt-14 max-w-2xl text-center md:mt-16">
+          <p className="mx-auto font-display text-[17px] italic leading-[1.55] text-white/70 md:text-[19px]">
             Cada ano é uma etapa de uma jornada contínua — do acolhimento infantil ao protagonismo
             digital da juventude.
           </p>
@@ -137,7 +136,7 @@ export function CurriculumRoadBlock() {
             </SiteButton>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

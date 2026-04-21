@@ -17,13 +17,13 @@ export function PageHero({
 }) {
   return (
     <section className="bg-navy-800 text-white">
-      <Container className="max-w-[820px] space-y-5 py-16 md:py-[96px]">
+      <Container className="space-y-5 py-14 md:py-16">
         {eyebrow ? <SectionEyebrow className="text-teal-300">{eyebrow}</SectionEyebrow> : null}
-        <h1 className="font-display text-[32px] font-bold leading-[1.1] tracking-tightest md:text-[44px]">
+        <h1 className="max-w-3xl font-display text-[32px] font-bold leading-[1.1] tracking-tightest md:text-[44px]">
           {title}
         </h1>
         {subtitle ? (
-          <p className="max-w-[680px] font-body text-[16px] font-light leading-[1.7] text-white/60">
+          <p className="max-w-2xl font-body text-[16px] font-light leading-[1.7] text-white/60">
             {subtitle}
           </p>
         ) : null}

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import { Container } from "@/components/site/container";
 import { SectionEyebrow } from "@/components/site/section-eyebrow";
 import { SectionHeading } from "@/components/site/section-heading";
 import { cn } from "@/lib/utils";
@@ -13,9 +12,9 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-sand">
-      <Container className="py-16 md:py-[80px]">
-        <div className="mb-10 max-w-[720px] space-y-3">
+    <section className="bg-sand px-8 py-14 lg:px-12">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-8 max-w-2xl space-y-3">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           <SectionHeading>{title}</SectionHeading>
         </div>
@@ -53,7 +52,7 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
                 </button>
                 {isOpen ? (
                   <div className="px-5 pb-6 pt-0 md:px-6">
-                    <p className="max-w-[680px] font-body text-[14px] leading-[1.7] text-site-text-mid">
+                    <p className="font-body text-[14px] leading-[1.7] text-site-text-mid">
                       {entry.answer}
                     </p>
                   </div>
@@ -62,7 +61,7 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
             );
           })}
         </ul>
-      </Container>
+      </div>
     </section>
   );
 }

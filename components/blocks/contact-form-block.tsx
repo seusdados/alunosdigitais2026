@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import { Container } from "@/components/site/container";
 import { SectionEyebrow } from "@/components/site/section-eyebrow";
 import { SectionHeading } from "@/components/site/section-heading";
 import { SiteButton } from "@/components/site/site-button";
@@ -35,9 +34,9 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
     state.status === "error" ? (state.fieldErrors ?? {}) : {};
 
   return (
-    <section id="formulario" className="bg-site-white">
-      <Container className="py-16 md:py-[80px]">
-        <div className="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start md:gap-16">
+    <section id="formulario" className="bg-site-white px-8 py-14 lg:px-12">
+      <div className="mx-auto max-w-4xl">
+        <div className="grid gap-8 md:grid-cols-[2fr_3fr] md:items-start md:gap-12">
           <div className="space-y-3">
             {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
             <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
@@ -117,7 +116,7 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
             )}
           </form>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

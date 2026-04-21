@@ -21,7 +21,7 @@ export function ProseSection({
 }) {
   return (
     <section className={cn(bgColor === "sand" ? "bg-sand" : "bg-site-white")}>
-      <Container className="max-w-[820px] py-14 md:py-[80px]">
+      <Container className="max-w-3xl py-14">
         <div className="space-y-5">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           <SectionHeading>{title}</SectionHeading>
