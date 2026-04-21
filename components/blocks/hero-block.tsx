@@ -7,19 +7,18 @@ import type { HeroBlockData } from "@/types/content";
  *
  * Princípios:
  *   - Texto preenche sua coluna inteira (sem max-w restritivo) até a
- *     linha divisória do grid.
- *   - Gap estreito entre colunas (gap-6 lg+) — texto e imagem quase se
- *     tocam, com a mask da imagem cuidando da dissolução visual.
+ *     linha divisória do grid (≈ 40% da viewport).
+ *   - Ilustração ocupa ~60% da viewport, com gap estreito pro texto.
  *   - Ilustração em tamanho natural (sem crop) sangra até a borda direita
  *     da viewport via `-mr-12`.
- *   - Tipografia generosa: H1 48/68, subtexto 20/22, pill/labels 16.
+ *   - Proporção 2fr / 3fr (40%/60%) com gap-4 entre colunas.
  */
 export function HeroBlock({ data }: { data: HeroBlockData }) {
   const { pill, title, titleAccent, subtitle, ctaPrimary, ctaSecondary, metrics, image } = data;
 
   return (
     <section className="overflow-hidden bg-navy-800 px-8 py-20 lg:px-12 lg:py-24">
-      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-6">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-4">
         {/* TEXTO — sem max-w, preenche a coluna */}
         <div>
           {/* Pill */}
