@@ -25,8 +25,8 @@ export function BulletsSection({
 }) {
   return (
     <section className={cn(bgColor === "sand" ? "bg-sand" : "bg-site-white")}>
-      <Container className="py-14">
-        <div className="mb-8 max-w-2xl space-y-3">
+      <Container className="py-20 lg:py-24">
+        <div className="mb-12 max-w-2xl space-y-4">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           <SectionHeading subtitle={description}>{title}</SectionHeading>
         </div>

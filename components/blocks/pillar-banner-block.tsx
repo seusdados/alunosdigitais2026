@@ -10,7 +10,7 @@ import type { PillarBannerData } from "@/types/content";
  */
 export function PillarBannerBlock({ data }: { data: PillarBannerData }) {
   return (
-    <section className="border-t border-gray-200/60 bg-sand px-8 py-14 lg:px-12">
+    <section className="border-t border-gray-200/60 bg-sand px-8 py-20 lg:px-12 lg:py-24">
       <div className="-mx-8 overflow-hidden lg:-mx-12">
         <Image
           src={data.image.src}

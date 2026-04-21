@@ -1,6 +1,4 @@
 import { Container } from "@/components/site/container";
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { SectionHeading } from "@/components/site/section-heading";
 import { entregas, type EntregaAccentColor, type EntregaItem } from "@/data/entregas";
 import { cn } from "@/lib/utils";
 
@@ -20,12 +18,18 @@ export function EntregasGridBlock({
 }) {
   return (
     <section className="bg-sand">
-      <Container className="py-14">
-        <div className="mb-8 max-w-2xl space-y-3 md:mb-10">
-          <SectionEyebrow>O que o programa entrega</SectionEyebrow>
-          <SectionHeading subtitle="Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação pedagógica.">
+      <Container className="py-20 lg:py-24">
+        <div className="mb-12 max-w-2xl space-y-4 md:mb-14">
+          <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+            O que o programa entrega
+          </p>
+          <h2 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-site-text lg:text-[44px]">
             Uma solução completa para implementar, ensinar e acompanhar
-          </SectionHeading>
+          </h2>
+          <p className="mt-2 max-w-2xl font-body text-[17px] font-light leading-[1.72] text-site-text-mid lg:text-[18px]">
+            Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação
+            pedagógica.
+          </p>
         </div>
 
         <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -37,7 +41,7 @@ export function EntregasGridBlock({
         </ul>
 
         {caption ? (
-          <p className="mt-7 max-w-2xl font-body text-[13.5px] leading-[1.6] text-site-text-light">
+          <p className="mt-10 max-w-2xl font-body text-[15px] leading-[1.7] text-site-text-mid">
             {caption}
           </p>
         ) : null}

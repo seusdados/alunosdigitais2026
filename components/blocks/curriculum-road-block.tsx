@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
 import { SiteButton } from "@/components/site/site-button";
 import { curriculumYears } from "@/data/curriculo";
 import { cn } from "@/lib/utils";
@@ -30,17 +29,17 @@ export function CurriculumRoadBlock() {
   const evenYears = curriculumYears.filter((y) => y.year % 2 === 0);
 
   return (
-    <section className="relative overflow-hidden bg-navy-800 px-4 py-12 text-white lg:px-6">
+    <section className="relative overflow-hidden bg-navy-800 px-4 py-20 text-white lg:px-6 lg:py-24">
       <div className="relative">
         {/* Header */}
-        <div className="mx-auto mb-12 max-w-2xl px-4 text-center md:mb-16 lg:px-0">
-          <SectionEyebrow className="inline-flex justify-center text-teal-300">
+        <div className="mx-auto mb-14 max-w-2xl px-4 text-center md:mb-20 lg:px-0">
+          <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-300">
             Currículo
-          </SectionEyebrow>
-          <h2 className="mt-3 font-display text-[28px] font-bold leading-[1.1] tracking-tightest text-white md:text-[40px]">
+          </p>
+          <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-white lg:text-[44px]">
             Do 1º ao 9º ano, com progressão pedagógica real
           </h2>
-          <p className="mx-auto mt-5 font-body text-[15.5px] font-light leading-[1.72] text-white/60">
+          <p className="mx-auto mt-5 font-body text-[17px] font-light leading-[1.72] text-white/60 lg:text-[18px]">
             Nos anos iniciais, a criança constrói identidade, convivência, empatia e navegação
             segura. Nos anos finais, o estudante aprofunda pensamento crítico, segurança digital
             avançada, inteligência artificial e protagonismo.

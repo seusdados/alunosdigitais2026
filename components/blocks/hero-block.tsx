@@ -3,125 +3,57 @@ import Image from "next/image";
 import type { HeroBlockData } from "@/types/content";
 
 /**
- * Hero principal — layout 2 colunas sobre navy-800.
+ * Hero principal — navy-800 com texto à esquerda e ilustração à direita.
  *
- * Desktop (≥ lg): grid 2 cols, min-h 560, items-center. Texto à esquerda,
- * ilustração à direita preenchendo toda a coluna com `fill + object-cover`.
- * Máscara horizontal fade 15%/85% nas duas bordas da imagem dissolve no
- * navy do fundo.
+ * Ilustração SEMPRE mostrada no tamanho natural (sem crop) via
+ * `width/height + w-full h-auto`. Sangra para a borda direita da
+ * viewport via margem negativa cancelando o padding da section.
+ * Mask fade dissolve a borda esquerda (onde encontra o texto) no navy.
  *
- * Mobile (< lg): texto em cima, ilustração embaixo.
+ * Desktop (≥ lg): grid 2 cols items-center.
+ * Mobile (< lg): texto em cima com bleed lateral da ilustração embaixo.
  */
 export function HeroBlock({ data }: { data: HeroBlockData }) {
   const { pill, title, titleAccent, subtitle, ctaPrimary, ctaSecondary, metrics, image } = data;
 
   return (
-    <section style={{ background: "#0C1829", overflow: "hidden" }}>
-      <div className="grid grid-cols-1 items-center lg:min-h-[560px] lg:grid-cols-2">
+    <section className="overflow-hidden bg-navy-800 px-8 py-20 lg:px-12 lg:py-24">
+      <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* TEXTO */}
-        <div style={{ padding: "72px 48px 72px 48px" }}>
+        <div className="max-w-[560px]">
           {/* Pill */}
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "5px 14px 5px 10px",
-              borderRadius: 100,
-              border: "1px solid rgba(0, 155, 114, 0.28)",
-              background: "rgba(0, 155, 114, 0.08)",
-              marginBottom: 26,
-            }}
-          >
-            <span
-              aria-hidden
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: 100,
-                background: "#2BD9A5",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: 'var(--font-sans), "DM Sans", sans-serif',
-                fontWeight: 500,
-                fontSize: 12,
-                color: "#2BD9A5",
-                letterSpacing: "0.01em",
-              }}
-            >
-              {pill}
-            </span>
-          </div>
+          <span className="mb-7 inline-flex items-center gap-2 rounded-pill border border-teal-500/[0.28] bg-teal-500/[0.08] py-1.5 pl-2.5 pr-4">
+            <span aria-hidden className="h-[7px] w-[7px] rounded-full bg-teal-300" />
+            <span className="font-body text-[13px] font-medium text-teal-300">{pill}</span>
+          </span>
 
           {/* H1 */}
-          <h1
-            style={{
-              fontFamily: 'var(--font-display), "Fraunces", serif',
-              fontWeight: 700,
-              fontSize: 50,
-              lineHeight: 1.06,
-              letterSpacing: "-0.035em",
-              color: "#fff",
-              marginBottom: 20,
-            }}
-          >
+          <h1 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-white lg:text-[56px]">
             {title}{" "}
             {titleAccent ? (
-              <em
-                style={{
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                  color: "#2BD9A5",
-                }}
-              >
-                {titleAccent}
-              </em>
+              <em className="font-display font-normal text-teal-300">{titleAccent}</em>
             ) : null}
           </h1>
 
           {/* Subtexto */}
-          <p
-            style={{
-              fontFamily: 'var(--font-sans), "DM Sans", sans-serif',
-              fontWeight: 300,
-              fontSize: 17,
-              lineHeight: 1.78,
-              color: "rgba(255, 255, 255, 0.55)",
-              maxWidth: 460,
-              marginBottom: 32,
-            }}
-          >
+          <p className="mt-6 font-body text-[17px] font-light leading-[1.78] text-white/60 lg:text-[18px]">
             {subtitle}
           </p>
 
           {/* CTAs */}
           {(ctaPrimary || ctaSecondary) && (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <div className="mt-8 flex flex-wrap gap-3">
               {ctaPrimary && (
                 <a
                   href={ctaPrimary.href}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    fontFamily: 'var(--font-sans), "DM Sans", sans-serif',
-                    fontWeight: 500,
-                    fontSize: 14,
-                    color: "#fff",
-                    background: "#009B72",
-                    padding: "13px 24px",
-                    borderRadius: 9,
-                    textDecoration: "none",
-                  }}
+                  className="inline-flex items-center gap-2 rounded-btn bg-teal-500 px-7 py-[15px] font-body text-[15px] font-medium text-white transition-colors hover:bg-teal-600"
                 >
                   {ctaPrimary.label}
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                     <path
                       d="M3 7h8m-3.5-3.5L11 7l-3.5 3.5"
                       stroke="currentColor"
-                      strokeWidth="1.5"
+                      strokeWidth="1.6"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -131,18 +63,7 @@ export function HeroBlock({ data }: { data: HeroBlockData }) {
               {ctaSecondary && (
                 <a
                   href={ctaSecondary.href}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    fontFamily: 'var(--font-sans), "DM Sans", sans-serif',
-                    fontSize: 14,
-                    color: "rgba(255, 255, 255, 0.72)",
-                    border: "1px solid rgba(255, 255, 255, 0.14)",
-                    padding: "13px 24px",
-                    borderRadius: 9,
-                    textDecoration: "none",
-                    background: "transparent",
-                  }}
+                  className="inline-flex items-center rounded-btn border border-white/15 bg-transparent px-7 py-[15px] font-body text-[15px] text-white/75 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {ctaSecondary.label}
                 </a>
@@ -152,37 +73,13 @@ export function HeroBlock({ data }: { data: HeroBlockData }) {
 
           {/* Métricas */}
           {metrics && metrics.length > 0 && (
-            <dl
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 48,
-                marginTop: 48,
-                paddingTop: 32,
-                borderTop: "1px solid rgba(255, 255, 255, 0.07)",
-              }}
-            >
+            <dl className="mt-12 grid grid-cols-2 gap-x-10 gap-y-6 border-t border-white/[0.08] pt-8 md:grid-cols-4 md:gap-x-12">
               {metrics.map((m) => (
-                <div key={m.label} style={{ display: "flex", flexDirection: "column" }}>
-                  <dt
-                    style={{
-                      fontFamily: 'var(--font-display), "Fraunces", serif',
-                      fontWeight: 700,
-                      fontSize: 36,
-                      letterSpacing: "-0.035em",
-                      color: "#fff",
-                    }}
-                  >
+                <div key={m.label}>
+                  <dt className="font-display text-[40px] font-bold leading-none tracking-[-0.035em] text-white">
                     {m.value}
                   </dt>
-                  <dd
-                    style={{
-                      fontFamily: 'var(--font-sans), "DM Sans", sans-serif',
-                      fontSize: 12,
-                      color: "rgba(255, 255, 255, 0.3)",
-                      marginTop: 6,
-                    }}
-                  >
+                  <dd className="mt-2 font-body text-[13px] leading-tight text-white/35">
                     {m.label}
                   </dd>
                 </div>
@@ -191,22 +88,16 @@ export function HeroBlock({ data }: { data: HeroBlockData }) {
           )}
         </div>
 
-        {/* ILUSTRAÇÃO */}
-        <div
-          style={{
-            position: "relative",
-            minHeight: 400,
-          }}
-          className="lg:min-h-[560px]"
-        >
+        {/* ILUSTRAÇÃO — tamanho natural, sangra pra borda direita da viewport */}
+        <div className="-mx-8 overflow-hidden lg:-mr-12 lg:ml-0">
           <Image
             src={image.src}
             alt={image.alt}
-            fill
+            width={1200}
+            height={900}
             priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="mask-fade-hero"
-            style={{ objectFit: "cover", objectPosition: "center" }}
+            sizes="(max-width: 1024px) 100vw, 55vw"
+            className="lg:mask-fade-right h-auto w-full"
           />
         </div>
       </div>

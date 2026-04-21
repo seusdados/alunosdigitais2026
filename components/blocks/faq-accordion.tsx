@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { SectionHeading } from "@/components/site/section-heading";
 import { cn } from "@/lib/utils";
 import type { FAQAccordionData } from "@/types/content";
 
@@ -12,11 +10,17 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-sand px-8 py-14 lg:px-12">
+    <section className="bg-sand px-8 py-20 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-8 max-w-2xl space-y-3">
-          {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
-          <SectionHeading>{title}</SectionHeading>
+        <div className="mb-10 max-w-2xl space-y-4">
+          {eyebrow ? (
+            <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+              {eyebrow}
+            </p>
+          ) : null}
+          <h2 className="font-display text-[36px] font-bold leading-[1.08] tracking-[-0.03em] text-site-text lg:text-[44px]">
+            {title}
+          </h2>
         </div>
 
         <ul className="divide-y divide-[#E8E8E8] overflow-hidden rounded-card border border-[#E8E8E8] bg-white">

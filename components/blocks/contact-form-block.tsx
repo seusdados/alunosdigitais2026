@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { SectionHeading } from "@/components/site/section-heading";
 import { SiteButton } from "@/components/site/site-button";
 import { submitContactLead, type ContactFormState } from "@/lib/actions/contact";
 import type { ContactFormData } from "@/types/content";
@@ -34,12 +32,23 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
     state.status === "error" ? (state.fieldErrors ?? {}) : {};
 
   return (
-    <section id="formulario" className="bg-site-white px-8 py-14 lg:px-12">
+    <section id="formulario" className="bg-site-white px-8 py-20 lg:px-12 lg:py-24">
       <div className="mx-auto max-w-4xl">
-        <div className="grid gap-8 md:grid-cols-[2fr_3fr] md:items-start md:gap-12">
-          <div className="space-y-3">
-            {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
-            <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
+        <div className="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start md:gap-14">
+          <div className="space-y-4">
+            {eyebrow ? (
+              <p className="font-body text-[13px] font-medium uppercase tracking-[0.14em] text-teal-500">
+                {eyebrow}
+              </p>
+            ) : null}
+            <h2 className="font-display text-[32px] font-bold leading-[1.1] tracking-[-0.03em] text-site-text lg:text-[36px]">
+              {title}
+            </h2>
+            {subtitle ? (
+              <p className="font-body text-[16px] font-light leading-[1.7] text-site-text-mid lg:text-[17px]">
+                {subtitle}
+              </p>
+            ) : null}
           </div>
 
           <form action={onSubmit} className="rounded-card bg-sand p-6 md:p-9" noValidate>
