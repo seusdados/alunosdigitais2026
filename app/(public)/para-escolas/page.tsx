@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Solução de educação digital para escolas | Alunos Digitais",
   description:
     "Conheça a solução do Alunos Digitais para escolas que desejam implementar educação digital com currículo, material, formação e suporte.",
-  openGraph: { images: ["/brand/ilustracoes/illo-07-escolas.png"] },
+  openGraph: { images: ["/brand/ilustracoes/illo-07-escolas.jpg"] },
 };
 
 export default function ParaEscolasPage() {
@@ -44,7 +44,7 @@ export default function ParaEscolasPage() {
             "Formato híbrido ou digital, conforme a realidade da instituição.",
           ],
           image: {
-            src: "/brand/ilustracoes/illo-07-escolas.png",
+            src: "/brand/ilustracoes/illo-07-escolas.jpg",
             alt: "Escola isométrica em corte com salas integradas ao programa",
           },
           direction: "right",

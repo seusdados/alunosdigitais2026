@@ -127,7 +127,7 @@ export const schoolsData: SplitBleedData = {
     "Previsibilidade para a gestão, segurança técnica para o professor, engajamento para o estudante e continuidade para a família.",
   ],
   image: {
-    src: "/brand/ilustracoes/illo-07-escolas.png",
+    src: "/brand/ilustracoes/illo-07-escolas.jpg",
     alt: "Escola isométrica em corte com salas integradas ao programa",
   },
   direction: "right",
