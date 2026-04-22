@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Toaster } from "sonner";
 
 import { requireAdmin } from "@/lib/auth/session";
 
@@ -37,6 +38,7 @@ export default async function ProtectedAdminLayout({
         </div>
       </aside>
       <main className="flex-1 p-6 md:p-10">{children}</main>
+      <Toaster position="bottom-right" richColors closeButton />
     </div>
   );
 }

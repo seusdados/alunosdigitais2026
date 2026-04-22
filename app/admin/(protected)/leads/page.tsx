@@ -82,10 +82,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Search
               leads.map((lead) => (
                 <tr key={lead.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3">
-                    <Link
-                      href={`/admin/leads/${lead.id}`}
-                      className="font-medium hover:underline"
-                    >
+                    <Link href={`/admin/leads/${lead.id}`} className="font-medium hover:underline">
                       {lead.full_name ?? lead.email ?? "—"}
                     </Link>
                     {lead.organization_name && (

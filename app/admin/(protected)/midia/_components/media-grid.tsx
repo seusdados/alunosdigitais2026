@@ -50,10 +50,7 @@ export function MediaGrid({ items }: { items: MediaItem[] }) {
     <>
       <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
         {items.map((item) => (
-          <li
-            key={item.id}
-            className="group overflow-hidden rounded-md border bg-card shadow-sm"
-          >
+          <li key={item.id} className="group overflow-hidden rounded-md border bg-card shadow-sm">
             <button
               type="button"
               onClick={() => setActive(item)}
@@ -82,23 +79,12 @@ export function MediaGrid({ items }: { items: MediaItem[] }) {
         ))}
       </ul>
 
-      {active && (
-        <MediaDetailModal
-          item={active}
-          onClose={() => setActive(null)}
-        />
-      )}
+      {active && <MediaDetailModal item={active} onClose={() => setActive(null)} />}
     </>
   );
 }
 
-function MediaDetailModal({
-  item,
-  onClose,
-}: {
-  item: MediaItem;
-  onClose: () => void;
-}) {
+function MediaDetailModal({ item, onClose }: { item: MediaItem; onClose: () => void }) {
   const [pendingDelete, startDelete] = useTransition();
   const [pendingSave, startSave] = useTransition();
   const [title, setTitle] = useState(item.title ?? "");

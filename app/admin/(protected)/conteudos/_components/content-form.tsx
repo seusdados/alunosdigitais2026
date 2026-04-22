@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -77,22 +78,17 @@ export function ContentForm({ defaults }: { defaults: ContentFormDefaults }) {
     if (!slugTouched.current) setSlug(slugify(title));
   }, [title]);
 
-  const onEditorChange = ({
-    json,
-    html,
-    text,
-  }: {
-    json: unknown;
-    html: string;
-    text: string;
-  }) => {
+  useEffect(() => {
+    if (state.status === "error" && state.error) toast.error(state.error);
+  }, [state]);
+
+  const onEditorChange = ({ json, html, text }: { json: unknown; html: string; text: string }) => {
     setBodyJsonStr(JSON.stringify(json));
     setBodyHtmlStr(html);
     setBodyTextStr(text);
   };
 
-  const fieldError = (k: string) =>
-    state.status === "error" ? state.fieldErrors?.[k] : undefined;
+  const fieldError = (k: string) => (state.status === "error" ? state.fieldErrors?.[k] : undefined);
 
   return (
     <form action={formAction} className="space-y-8">
@@ -166,7 +162,8 @@ export function ContentForm({ defaults }: { defaults: ContentFormDefaults }) {
                 <input type="checkbox" name="noindex" defaultChecked={defaults.noindex} /> noindex
               </label>
               <label className="inline-flex items-center gap-2">
-                <input type="checkbox" name="nofollow" defaultChecked={defaults.nofollow} /> nofollow
+                <input type="checkbox" name="nofollow" defaultChecked={defaults.nofollow} />{" "}
+                nofollow
               </label>
             </div>
           </fieldset>
@@ -223,7 +220,11 @@ export function ContentForm({ defaults }: { defaults: ContentFormDefaults }) {
                 required
               />
             </Field>
-            <Field label="Path" error={fieldError("path")} hint="URL relativa. Ex.: /conteudos/meu-artigo">
+            <Field
+              label="Path"
+              error={fieldError("path")}
+              hint="URL relativa. Ex.: /conteudos/meu-artigo"
+            >
               <Input name="path" defaultValue={defaults.path} required />
             </Field>
           </div>

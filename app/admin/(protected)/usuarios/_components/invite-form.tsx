@@ -45,7 +45,7 @@ export function InviteForm() {
       {state.status === "error" && (
         <p
           role="alert"
-          className="md:col-span-4 rounded-md border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+          className="rounded-md border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive md:col-span-4"
         >
           {state.error}
         </p>
@@ -53,7 +53,7 @@ export function InviteForm() {
       {state.status === "success" && (
         <p
           role="status"
-          className="md:col-span-4 rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800"
+          className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm text-emerald-800 md:col-span-4"
         >
           {state.message}
         </p>

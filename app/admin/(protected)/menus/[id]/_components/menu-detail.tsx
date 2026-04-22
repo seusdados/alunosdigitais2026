@@ -144,7 +144,10 @@ function ItemRow({ item, menuId }: { item: MenuItemsRow; menuId: string }) {
     return (
       <tr>
         <td colSpan={6} className="px-4 py-3">
-          <form onSubmit={onSubmit} className="grid gap-2 sm:grid-cols-[1.2fr_100px_1.5fr_80px_auto_auto]">
+          <form
+            onSubmit={onSubmit}
+            className="grid gap-2 sm:grid-cols-[1.2fr_100px_1.5fr_80px_auto_auto]"
+          >
             <input type="hidden" name="id" value={item.id} />
             <input type="hidden" name="menu_id" value={menuId} />
             <Input name="label" defaultValue={item.label} required />

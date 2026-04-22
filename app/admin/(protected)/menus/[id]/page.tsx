@@ -20,10 +20,7 @@ export default async function MenuDetailPage({ params }: { params: Promise<{ id:
             <span className="font-mono">{menu.code}</span> · local: {menu.location}
           </p>
         </div>
-        <Link
-          href="/admin/menus"
-          className="text-sm text-muted-foreground hover:text-foreground"
-        >
+        <Link href="/admin/menus" className="text-sm text-muted-foreground hover:text-foreground">
           ← Voltar
         </Link>
       </header>

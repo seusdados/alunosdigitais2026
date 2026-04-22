@@ -5,11 +5,7 @@ import { getForm, listFormFields } from "@/lib/db/queries/forms";
 
 import { FormDetail } from "./_components/form-detail";
 
-export default async function FormDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function FormDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const form = await getForm(id);
   if (!form) notFound();

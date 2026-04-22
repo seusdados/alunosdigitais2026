@@ -15,8 +15,8 @@ export default async function MediaPage() {
       <header>
         <h1 className="text-2xl font-semibold tracking-tight">Mídia</h1>
         <p className="text-sm text-muted-foreground">
-          Biblioteca de arquivos no Supabase Storage. Uploads passam por service-role em
-          Server Actions protegidas.
+          Biblioteca de arquivos no Supabase Storage. Uploads passam por service-role em Server
+          Actions protegidas.
         </p>
       </header>
 

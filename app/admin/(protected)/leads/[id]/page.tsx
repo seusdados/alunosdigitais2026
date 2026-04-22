@@ -8,11 +8,7 @@ import { StatusBadge } from "../../_components/status-badge";
 import { LeadActions } from "./_components/lead-actions";
 import { NotesForm } from "./_components/notes-form";
 
-export default async function LeadDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const lead = await getLead(id);
   if (!lead) notFound();
@@ -32,10 +28,7 @@ export default async function LeadDetailPage({
             Recebido em {formatDateTime(lead.created_at)}
           </p>
         </div>
-        <Link
-          href="/admin/leads"
-          className="text-sm text-muted-foreground hover:text-foreground"
-        >
+        <Link href="/admin/leads" className="text-sm text-muted-foreground hover:text-foreground">
           ← Voltar
         </Link>
       </header>
@@ -65,9 +58,7 @@ export default async function LeadDetailPage({
           </section>
 
           <section className="rounded-md border bg-card p-4">
-            <h2 className="mb-3 text-sm font-semibold">
-              Submissões ({submissions.length})
-            </h2>
+            <h2 className="mb-3 text-sm font-semibold">Submissões ({submissions.length})</h2>
             <ul className="space-y-3 text-sm">
               {submissions.length === 0 && (
                 <li className="text-muted-foreground">Nenhuma submissão registrada.</li>

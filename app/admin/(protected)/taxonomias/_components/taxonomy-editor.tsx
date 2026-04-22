@@ -7,12 +7,7 @@ import { Input } from "@/components/ui/input";
 import type { TaxonomiesRow, TermsRow } from "@/lib/db/types";
 import { slugify } from "@/lib/format";
 
-import {
-  deleteTaxonomy,
-  deleteTerm,
-  saveTaxonomy,
-  saveTerm,
-} from "../actions";
+import { deleteTaxonomy, deleteTerm, saveTaxonomy, saveTerm } from "../actions";
 
 type Props = {
   taxonomies: TaxonomiesRow[];
@@ -26,11 +21,7 @@ export function TaxonomyEditor({ taxonomies, termsByTaxonomy }: Props) {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-      <TaxonomiesPanel
-        taxonomies={taxonomies}
-        selected={selected}
-        onSelect={setSelected}
-      />
+      <TaxonomiesPanel taxonomies={taxonomies} selected={selected} onSelect={setSelected} />
       <div className="space-y-6">
         {activeTax ? (
           <TermsPanel taxonomy={activeTax} terms={activeTerms} />
@@ -143,20 +134,12 @@ function TaxonomyHeader({ taxonomy }: { taxonomy: TaxonomiesRow }) {
 
   if (editing) {
     return (
-      <form
-        onSubmit={onSubmit}
-        className="space-y-3 rounded-md border bg-card p-4"
-      >
+      <form onSubmit={onSubmit} className="space-y-3 rounded-md border bg-card p-4">
         <input type="hidden" name="id" value={taxonomy.id} />
         <div className="grid gap-3 sm:grid-cols-2">
           <Input name="label" defaultValue={taxonomy.label} required />
           <Input name="code" defaultValue={taxonomy.code} required />
-          <Input
-            name="sort_order"
-            type="number"
-            min={0}
-            defaultValue={taxonomy.sort_order}
-          />
+          <Input name="sort_order" type="number" min={0} defaultValue={taxonomy.sort_order} />
         </div>
         <textarea
           name="description"

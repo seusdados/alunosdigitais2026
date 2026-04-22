@@ -7,7 +7,13 @@ import { requireAdmin } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/admin";
 import type { AppRole } from "@/lib/db/types";
 
-const ROLES = ["super_admin", "admin", "editor", "reviewer", "analyst"] as const satisfies readonly AppRole[];
+const ROLES = [
+  "super_admin",
+  "admin",
+  "editor",
+  "reviewer",
+  "analyst",
+] as const satisfies readonly AppRole[];
 
 const inviteSchema = z.object({
   email: z.string().trim().email(),
@@ -20,10 +26,7 @@ export type InviteState =
   | { status: "error"; error: string }
   | { status: "success"; message: string };
 
-export async function inviteUser(
-  _prev: InviteState,
-  formData: FormData,
-): Promise<InviteState> {
+export async function inviteUser(_prev: InviteState, formData: FormData): Promise<InviteState> {
   await requireAdmin();
   const parsed = inviteSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) {
@@ -72,9 +75,7 @@ export async function toggleRole(userId: string, role: AppRole) {
       .eq("role", role);
     if (error) throw new Error(error.message);
   } else {
-    const { error } = await admin
-      .from("role_assignments")
-      .insert({ user_id: userId, role });
+    const { error } = await admin.from("role_assignments").insert({ user_id: userId, role });
     if (error) throw new Error(error.message);
   }
   revalidatePath("/admin/usuarios");

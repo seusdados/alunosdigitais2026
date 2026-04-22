@@ -1,7 +1,19 @@
 "use client";
 
 import { useEditor, EditorContent, type Editor } from "@tiptap/react";
-import { Bold, Heading2, Heading3, Italic, Link as LinkIcon, List, ListOrdered, Quote, Redo2, Strikethrough, Undo2 } from "lucide-react";
+import {
+  Bold,
+  Heading2,
+  Heading3,
+  Italic,
+  Link as LinkIcon,
+  List,
+  ListOrdered,
+  Quote,
+  Redo2,
+  Strikethrough,
+  Undo2,
+} from "lucide-react";
 import { useCallback, useEffect, useImperativeHandle, useRef } from "react";
 import type { RefObject } from "react";
 
@@ -187,11 +199,7 @@ function Toolbar({ editor, onLink }: { editor: Editor; onLink: () => void }) {
 
       <span className="mx-1 h-5 w-px bg-border" aria-hidden />
 
-      <ToolbarButton
-        label="Link"
-        active={editor.isActive("link")}
-        onClick={onLink}
-      >
+      <ToolbarButton label="Link" active={editor.isActive("link")} onClick={onLink}>
         <LinkIcon className="h-4 w-4" />
       </ToolbarButton>
 

@@ -73,9 +73,7 @@ export type LatestRevision = Pick<
   "id" | "content_item_id" | "version_number" | "editor_json" | "render_html" | "plain_text"
 >;
 
-export async function getLatestRevision(
-  contentItemId: string,
-): Promise<LatestRevision | null> {
+export async function getLatestRevision(contentItemId: string): Promise<LatestRevision | null> {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("content_revisions")

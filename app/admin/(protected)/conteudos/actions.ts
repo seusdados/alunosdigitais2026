@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 
+import { logAudit } from "@/lib/audit";
 import { requireAdmin } from "@/lib/auth/session";
 import { createClient } from "@/lib/db/server";
 import { extractPlainText } from "@/lib/editor/plain-text";
@@ -140,8 +141,7 @@ export async function saveContentItem(
       .update({
         ...baseFields,
         current_version_number: nextVersion,
-        published_version_number:
-          parsed.data.status === "published" ? nextVersion : null,
+        published_version_number: parsed.data.status === "published" ? nextVersion : null,
         first_published_at: firstPublishedAt,
       })
       .eq("id", contentId);
@@ -168,7 +168,8 @@ export async function saveContentItem(
       })
       .select("id")
       .single<{ id: string }>();
-    if (insErr || !inserted) return { status: "error", error: insErr?.message ?? "Falha ao criar." };
+    if (insErr || !inserted)
+      return { status: "error", error: insErr?.message ?? "Falha ao criar." };
 
     const { error: revErr } = await supabase.from("content_revisions").insert({
       content_item_id: inserted.id,
@@ -183,16 +184,26 @@ export async function saveContentItem(
     contentId = inserted.id;
   }
 
+  await logAudit(parsed.data.id ? "content.update" : "content.create", "content_items", {
+    entityId: contentId,
+    actorUserId: ctx.user.id,
+    metadata: { status: parsed.data.status, type: parsed.data.type, title: parsed.data.title },
+  });
+
   revalidatePath("/admin/conteudos");
   revalidatePath(`/admin/conteudos/${contentId}`);
   redirect(`/admin/conteudos/${contentId}?saved=1`);
 }
 
 export async function deleteContentItem(id: string) {
-  await requireAdmin();
+  const ctx = await requireAdmin();
   const supabase = await createClient();
   const { error } = await supabase.from("content_items").delete().eq("id", id);
   if (error) throw new Error(error.message);
+  await logAudit("content.delete", "content_items", {
+    entityId: id,
+    actorUserId: ctx.user.id,
+  });
   revalidatePath("/admin/conteudos");
   redirect("/admin/conteudos");
 }

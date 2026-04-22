@@ -97,9 +97,7 @@ function UserRow({ user }: { user: AdminUser }) {
           {user.is_active ? "ativo" : "inativo"}
         </button>
       </td>
-      <td className="px-4 py-3 text-xs text-muted-foreground">
-        {formatDateTime(user.created_at)}
-      </td>
+      <td className="px-4 py-3 text-xs text-muted-foreground">{formatDateTime(user.created_at)}</td>
     </tr>
   );
 }

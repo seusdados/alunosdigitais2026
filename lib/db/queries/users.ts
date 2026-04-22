@@ -23,7 +23,9 @@ export async function listAdminUsers(): Promise<AdminUser[]> {
         .from("profiles")
         .select("user_id, full_name, job_title, is_active, created_at")
         .order("created_at", { ascending: false })
-        .returns<Pick<ProfilesRow, "user_id" | "full_name" | "job_title" | "is_active" | "created_at">[]>(),
+        .returns<
+          Pick<ProfilesRow, "user_id" | "full_name" | "job_title" | "is_active" | "created_at">[]
+        >(),
       supabase
         .from("role_assignments")
         .select("user_id, role")

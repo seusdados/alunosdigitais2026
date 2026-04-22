@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { FormFieldsRow, FormsRow } from "@/lib/db/types";
 
-import {
-  deleteForm,
-  deleteFormField,
-  saveForm,
-  saveFormField,
-} from "../../actions";
+import { deleteForm, deleteFormField, saveForm, saveFormField } from "../../actions";
 
 const FIELD_TYPES = [
   "text",
@@ -50,7 +45,12 @@ function FormSettings({ form }: { form: FormsRow }) {
   };
 
   const onDelete = () => {
-    if (!window.confirm("Remover este formulário? Os campos e submissões vinculadas serão impactados.")) return;
+    if (
+      !window.confirm(
+        "Remover este formulário? Os campos e submissões vinculadas serão impactados.",
+      )
+    )
+      return;
     startTransition(async () => {
       await deleteForm(form.id);
     });
@@ -100,11 +100,7 @@ function FormSettings({ form }: { form: FormsRow }) {
       <div className="grid gap-3 md:grid-cols-3">
         <Input name="name" defaultValue={form.name} required />
         <Input name="code" defaultValue={form.code} required />
-        <Input
-          name="destination_email"
-          type="email"
-          defaultValue={form.destination_email ?? ""}
-        />
+        <Input name="destination_email" type="email" defaultValue={form.destination_email ?? ""} />
       </div>
       <textarea
         name="description"
@@ -191,7 +187,10 @@ function FieldRow({ field, formId }: { field: FormFieldsRow; formId: string }) {
     return (
       <tr>
         <td colSpan={6} className="px-4 py-3">
-          <form onSubmit={onSubmit} className="grid gap-2 sm:grid-cols-[1fr_1fr_120px_auto_80px_auto]">
+          <form
+            onSubmit={onSubmit}
+            className="grid gap-2 sm:grid-cols-[1fr_1fr_120px_auto_80px_auto]"
+          >
             <input type="hidden" name="id" value={field.id} />
             <input type="hidden" name="form_id" value={formId} />
             <Input name="label" defaultValue={field.label} required />
@@ -208,7 +207,8 @@ function FieldRow({ field, formId }: { field: FormFieldsRow; formId: string }) {
               ))}
             </select>
             <label className="inline-flex items-center gap-2 text-xs">
-              <input type="checkbox" name="is_required" defaultChecked={field.is_required} /> obrigatório
+              <input type="checkbox" name="is_required" defaultChecked={field.is_required} />{" "}
+              obrigatório
             </label>
             <Input name="sort_order" type="number" defaultValue={field.sort_order} />
             <div className="flex gap-2">

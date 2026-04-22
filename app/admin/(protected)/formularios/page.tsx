@@ -43,9 +43,7 @@ export default async function FormulariosPage() {
                 <tr key={f.id} className="hover:bg-muted/30">
                   <td className="px-4 py-3 font-medium">{f.name}</td>
                   <td className="px-4 py-3 text-muted-foreground">{f.code}</td>
-                  <td className="px-4 py-3 text-muted-foreground">
-                    {f.destination_email ?? "—"}
-                  </td>
+                  <td className="px-4 py-3 text-muted-foreground">{f.destination_email ?? "—"}</td>
                   <td className="px-4 py-3 text-muted-foreground">
                     {f.is_active ? "Ativo" : "Inativo"}
                   </td>

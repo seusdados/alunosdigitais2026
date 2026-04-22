@@ -28,11 +28,7 @@ export function MediaUploadForm() {
   }, [state]);
 
   return (
-    <form
-      ref={formRef}
-      action={formAction}
-      className="space-y-3 rounded-md border bg-card p-4"
-    >
+    <form ref={formRef} action={formAction} className="space-y-3 rounded-md border bg-card p-4">
       <h2 className="text-sm font-semibold">Novo upload</h2>
       <div className="grid gap-3 md:grid-cols-2">
         <label className="space-y-1">
