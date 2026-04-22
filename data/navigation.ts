@@ -27,6 +27,35 @@ export type FooterColumn = {
   links: NavLink[];
 };
 
+/**
+ * Dados institucionais (debaixo do logo no footer).
+ */
+export const companyInfo = {
+  legalName: "YD E-LEARNING SERVIÇOS VIRTUAIS LIMITADA",
+  cnpj: "48.428.991/0001-34",
+  address:
+    "Avenida Engenheiro Luiz Carlos Berrini, 1748, conj. 1710 — Cidade Monções, São Paulo-SP, CEP 04571-000",
+  phone: "(11) 99585-1203",
+};
+
+/**
+ * Bloco de contato (coluna do footer).
+ */
+export const contactInfo = {
+  phone: { label: "(11) 99585-1203", href: "tel:+5511995851203" },
+  email: { label: "luana@seusdados.com", href: "mailto:luana@seusdados.com" },
+};
+
+/**
+ * Links legais — exibidos no rodapé inferior (bottom bar).
+ */
+export const legalLinks: NavLink[] = [
+  { label: "Política de privacidade", href: "/politica-de-privacidade" },
+  { label: "Termos de uso", href: "/termos-de-uso" },
+  { label: "Cookies", href: "/cookies" },
+  { label: "Acessibilidade", href: "/acessibilidade" },
+];
+
 export const footerColumns: FooterColumn[] = [
   {
     title: "Programa",
@@ -53,17 +82,8 @@ export const footerColumns: FooterColumn[] = [
       { label: "Conteúdos", href: "/conteudos" },
       { label: "FAQ", href: "/faq" },
       { label: "Conformidade e Currículo", href: "/conformidade-e-curriculo" },
-      { label: "Sobre", href: "/sobre" },
-    ],
-  },
-  {
-    title: "Contato",
-    links: [
       { label: "Fale com um especialista", href: "/fale-com-um-especialista" },
-      { label: "Política de privacidade", href: "/politica-de-privacidade" },
-      { label: "Termos de uso", href: "/termos-de-uso" },
-      { label: "Cookies", href: "/cookies" },
-      { label: "Acessibilidade", href: "/acessibilidade" },
+      { label: "Sobre", href: "/sobre" },
     ],
   },
 ];
