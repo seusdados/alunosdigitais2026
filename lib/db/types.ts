@@ -4,7 +4,7 @@
  * Handwritten types mirroring supabase/migrations/20260414120000_initial_schema.sql.
  * These drive the CMS code paths. When `supabase gen types typescript` can be
  * run from this sandbox, this file can be replaced by the generated output,
- * but the exported aliases below (Database, ContentItemRow, etc.) are what
+ * but the exported aliases below (Database, ContentItemsRow, etc.) are what
  * the application code imports — keep them stable.
  */
 export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
@@ -247,84 +247,44 @@ export type AuditLogsRow = {
   created_at: string;
 };
 
-type TableDef<Row, Insert = Partial<Row>, Update = Partial<Row>> = {
+type GenericRelationship = {
+  foreignKeyName: string;
+  columns: string[];
+  isOneToOne?: boolean;
+  referencedRelation: string;
+  referencedColumns: string[];
+};
+
+type Table<Row extends Record<string, unknown>> = {
   Row: Row;
-  Insert: Insert;
-  Update: Update;
-  Relationships: [];
+  Insert: Partial<Row>;
+  Update: Partial<Row>;
+  Relationships: GenericRelationship[];
 };
 
 export type Database = {
   public: {
     Tables: {
-      role_assignments: TableDef<
-        RoleAssignmentsRow,
-        Pick<RoleAssignmentsRow, "user_id" | "role"> & Partial<RoleAssignmentsRow>
-      >;
-      profiles: TableDef<
-        ProfilesRow,
-        Pick<ProfilesRow, "user_id"> & Partial<ProfilesRow>
-      >;
-      media_assets: TableDef<
-        MediaAssetsRow,
-        Pick<MediaAssetsRow, "bucket" | "path" | "file_name"> & Partial<MediaAssetsRow>
-      >;
-      taxonomies: TableDef<
-        TaxonomiesRow,
-        Pick<TaxonomiesRow, "code" | "label"> & Partial<TaxonomiesRow>
-      >;
-      terms: TableDef<
-        TermsRow,
-        Pick<TermsRow, "taxonomy_id" | "slug" | "name"> & Partial<TermsRow>
-      >;
-      audience_segments: TableDef<
-        AudienceSegmentsRow,
-        Pick<AudienceSegmentsRow, "code" | "label"> & Partial<AudienceSegmentsRow>
-      >;
-      content_items: TableDef<
-        ContentItemsRow,
-        Pick<ContentItemsRow, "type" | "slug" | "path" | "title"> & Partial<ContentItemsRow>
-      >;
-      content_revisions: TableDef<
-        ContentRevisionsRow,
-        Pick<ContentRevisionsRow, "content_item_id" | "version_number"> &
-          Partial<ContentRevisionsRow>
-      >;
-      content_term_map: TableDef<ContentTermMapRow, ContentTermMapRow>;
-      content_audience_map: TableDef<ContentAudienceMapRow, ContentAudienceMapRow>;
-      content_relations: TableDef<
-        ContentRelationsRow,
-        Pick<ContentRelationsRow, "source_content_id" | "target_content_id" | "relation_type"> &
-          Partial<ContentRelationsRow>
-      >;
-      menus: TableDef<MenusRow, Pick<MenusRow, "code" | "label" | "location"> & Partial<MenusRow>>;
-      menu_items: TableDef<
-        MenuItemsRow,
-        Pick<MenuItemsRow, "menu_id" | "label" | "item_type"> & Partial<MenuItemsRow>
-      >;
-      forms: TableDef<FormsRow, Pick<FormsRow, "code" | "name"> & Partial<FormsRow>>;
-      form_fields: TableDef<
-        FormFieldsRow,
-        Pick<FormFieldsRow, "form_id" | "field_key" | "label" | "field_type"> &
-          Partial<FormFieldsRow>
-      >;
-      leads: TableDef<LeadsRow, Partial<LeadsRow>>;
-      form_submissions: TableDef<
-        FormSubmissionsRow,
-        Pick<FormSubmissionsRow, "form_id" | "payload"> & Partial<FormSubmissionsRow>
-      >;
-      redirects: TableDef<
-        RedirectsRow,
-        Pick<RedirectsRow, "source_path" | "target_path" | "redirect_type"> & Partial<RedirectsRow>
-      >;
-      site_settings: TableDef<
-        SiteSettingsRow,
-        Pick<SiteSettingsRow, "key"> & Partial<SiteSettingsRow>
-      >;
-      audit_logs: TableDef<
-        AuditLogsRow,
-        Pick<AuditLogsRow, "action" | "entity_type"> & Partial<AuditLogsRow>
-      >;
+      role_assignments: Table<RoleAssignmentsRow>;
+      profiles: Table<ProfilesRow>;
+      media_assets: Table<MediaAssetsRow>;
+      taxonomies: Table<TaxonomiesRow>;
+      terms: Table<TermsRow>;
+      audience_segments: Table<AudienceSegmentsRow>;
+      content_items: Table<ContentItemsRow>;
+      content_revisions: Table<ContentRevisionsRow>;
+      content_term_map: Table<ContentTermMapRow>;
+      content_audience_map: Table<ContentAudienceMapRow>;
+      content_relations: Table<ContentRelationsRow>;
+      menus: Table<MenusRow>;
+      menu_items: Table<MenuItemsRow>;
+      forms: Table<FormsRow>;
+      form_fields: Table<FormFieldsRow>;
+      leads: Table<LeadsRow>;
+      form_submissions: Table<FormSubmissionsRow>;
+      redirects: Table<RedirectsRow>;
+      site_settings: Table<SiteSettingsRow>;
+      audit_logs: Table<AuditLogsRow>;
     };
     Views: Record<string, never>;
     Functions: {
