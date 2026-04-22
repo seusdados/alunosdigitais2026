@@ -4,6 +4,7 @@ import { requireAdmin } from "@/lib/auth/session";
 import {
   getActiveRedirectsCount,
   getContentStatusCounts,
+  getLeadsCountLast30Days,
   getRecentContentItems,
   getRecentLeads,
 } from "@/lib/db/queries/dashboard";
@@ -13,17 +14,18 @@ import { StatusBadge } from "./_components/status-badge";
 
 export default async function AdminDashboardPage() {
   const ctx = await requireAdmin();
-  const [counts, recentContent, recentLeads, activeRedirects] = await Promise.all([
+  const [counts, recentContent, recentLeads, leadsCount30d, activeRedirects] = await Promise.all([
     getContentStatusCounts(),
     getRecentContentItems(5),
     getRecentLeads(5),
+    getLeadsCountLast30Days(),
     getActiveRedirectsCount(),
   ]);
 
   const cards = [
     { label: "Conteúdos publicados", value: counts.published },
     { label: "Rascunhos pendentes", value: counts.draft + counts.in_review },
-    { label: "Leads (30 dias)", value: recentLeads.length },
+    { label: "Leads (30 dias)", value: leadsCount30d },
     { label: "Redirects ativos", value: activeRedirects },
   ];
 

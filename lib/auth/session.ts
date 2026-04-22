@@ -83,3 +83,22 @@ export async function requireAdmin(): Promise<AdminContext> {
 export function hasRole(ctx: AdminContext, role: AppRole) {
   return ctx.roles.includes(role);
 }
+
+/**
+ * Gate for Server Actions that need a narrower role than `requireAdmin()`.
+ *
+ * Use this for privileged mutations (role changes, user invites, settings
+ * that change security posture). Callers that simply need "any admin-panel
+ * role" should keep using `requireAdmin()`.
+ *
+ * Throws `Error` (not redirect) so the action fails with a clear error
+ * message in the client toast instead of silently navigating.
+ */
+export async function requireRole(...allowed: AppRole[]): Promise<AdminContext> {
+  const ctx = await requireAdmin();
+  const ok = allowed.some((role) => ctx.roles.includes(role));
+  if (!ok) {
+    throw new Error(`Permissão insuficiente — ação restrita a: ${allowed.join(", ")}.`);
+  }
+  return ctx;
+}

@@ -3,9 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { requireAdmin } from "@/lib/auth/session";
+import { requireRole } from "@/lib/auth/session";
 import { createAdminClient } from "@/lib/db/admin";
 import type { AppRole } from "@/lib/db/types";
+
+// User-administration mutations (invite, role toggle, set-active) are
+// privilege-sensitive: allowing any admin-panel role here would let an
+// `editor`/`reviewer` grant themselves `super_admin` via service-role. Keep
+// them restricted to `super_admin` + `admin`. Role grants/revokes are the
+// most sensitive and only `super_admin` may perform them.
+const USER_MGMT_ROLES: AppRole[] = ["super_admin", "admin"];
+const ROLE_MGMT_ROLES: AppRole[] = ["super_admin"];
 
 const ROLES = [
   "super_admin",
@@ -27,7 +35,11 @@ export type InviteState =
   | { status: "success"; message: string };
 
 export async function inviteUser(_prev: InviteState, formData: FormData): Promise<InviteState> {
-  await requireAdmin();
+  try {
+    await requireRole(...USER_MGMT_ROLES);
+  } catch (err) {
+    return { status: "error", error: err instanceof Error ? err.message : "Sem permissão." };
+  }
   const parsed = inviteSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) {
     return { status: "error", error: parsed.error.issues.map((i) => i.message).join("; ") };
@@ -56,7 +68,7 @@ export async function inviteUser(_prev: InviteState, formData: FormData): Promis
 }
 
 export async function toggleRole(userId: string, role: AppRole) {
-  await requireAdmin();
+  await requireRole(...ROLE_MGMT_ROLES);
   if (!(ROLES as readonly AppRole[]).includes(role)) throw new Error("Role inválida.");
   const admin = createAdminClient();
   const { data: existing, error: readErr } = await admin
@@ -82,7 +94,7 @@ export async function toggleRole(userId: string, role: AppRole) {
 }
 
 export async function setActive(userId: string, isActive: boolean) {
-  await requireAdmin();
+  await requireRole(...USER_MGMT_ROLES);
   const admin = createAdminClient();
   const { error } = await admin
     .from("profiles")

@@ -56,13 +56,16 @@ export type RecentLead = Pick<
   "id" | "full_name" | "email" | "organization_name" | "status" | "created_at"
 >;
 
+function thirtyDaysAgoISO(): string {
+  return new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+}
+
 export async function getRecentLeads(limit = 5): Promise<RecentLead[]> {
   const supabase = await createClient();
-  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
   const { data, error } = await supabase
     .from("leads")
     .select("id, full_name, email, organization_name, status, created_at")
-    .gte("created_at", since)
+    .gte("created_at", thirtyDaysAgoISO())
     .order("created_at", { ascending: false })
     .limit(limit)
     .returns<RecentLead[]>();
@@ -72,6 +75,19 @@ export async function getRecentLeads(limit = 5): Promise<RecentLead[]> {
     return [];
   }
   return data ?? [];
+}
+
+export async function getLeadsCountLast30Days(): Promise<number> {
+  const supabase = await createClient();
+  const { count, error } = await supabase
+    .from("leads")
+    .select("id", { count: "exact", head: true })
+    .gte("created_at", thirtyDaysAgoISO());
+  if (error) {
+    console.error("[dashboard] leads count 30d", error);
+    return 0;
+  }
+  return count ?? 0;
 }
 
 export async function getActiveRedirectsCount(): Promise<number> {
