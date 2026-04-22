@@ -43,7 +43,7 @@ export const companyInfo = {
  */
 export const contactInfo = {
   phone: { label: "(11) 99585-1203", href: "tel:+5511995851203" },
-  email: { label: "luana@seusdados.com", href: "mailto:luana@seusdados.com" },
+  email: { label: "lf@alunosdigitais.com", href: "mailto:lf@alunosdigitais.com" },
 };
 
 /**
