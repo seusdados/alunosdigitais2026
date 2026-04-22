@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 
-import { Container } from "@/components/site/container";
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { SectionHeading } from "@/components/site/section-heading";
 import { SiteButton } from "@/components/site/site-button";
 import { submitContactLead, type ContactFormState } from "@/lib/actions/contact";
 import type { ContactFormData } from "@/types/content";
@@ -35,12 +32,23 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
     state.status === "error" ? (state.fieldErrors ?? {}) : {};
 
   return (
-    <section id="formulario" className="bg-site-white">
-      <Container className="py-16 md:py-[80px]">
-        <div className="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start md:gap-16">
-          <div className="space-y-3">
-            {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
-            <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
+    <section id="formulario" className="bg-site-white px-8 py-20 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-4xl">
+        <div className="grid gap-10 md:grid-cols-[2fr_3fr] md:items-start md:gap-14">
+          <div className="space-y-5">
+            {eyebrow ? (
+              <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500">
+                {eyebrow}
+              </p>
+            ) : null}
+            <h2 className="font-display text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[56px]">
+              {title}
+            </h2>
+            {subtitle ? (
+              <p className="font-body text-[20px] font-light leading-[1.72] text-site-text-mid lg:text-[22px]">
+                {subtitle}
+              </p>
+            ) : null}
           </div>
 
           <form action={onSubmit} className="rounded-card bg-sand p-6 md:p-9" noValidate>
@@ -58,7 +66,7 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
                 </p>
               </div>
             ) : (
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-5 md:grid-cols-2">
                 <Field label="Nome" name="fullName" error={fieldErrors.fullName} required />
                 <Field
                   label="E-mail corporativo"
@@ -117,7 +125,7 @@ export function ContactFormBlock({ data }: { data: ContactFormData }) {
             )}
           </form>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
@@ -139,7 +147,7 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="font-body text-[12.5px] font-medium text-site-text-mid">
+      <span className="mb-1 font-body text-[13px] font-medium text-site-text-mid">
         {label}
         {required ? <span className="ml-0.5 text-teal-500">*</span> : null}
       </span>
@@ -148,10 +156,10 @@ function Field({
         type={type}
         autoComplete={autoComplete}
         aria-invalid={error ? "true" : undefined}
-        className="h-11 rounded-btn border border-[#E8E8E8] bg-white px-3.5 font-body text-[14px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
+        className="h-12 rounded-[10px] border border-[#E8E8E8] bg-white px-4 py-3 font-body text-[15px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
       />
       {error ? (
-        <span role="alert" className="font-body text-[11.5px] text-red-600">
+        <span role="alert" className="font-body text-[12px] text-red-600">
           {error}
         </span>
       ) : null}
@@ -172,15 +180,15 @@ function Textarea({
 }) {
   return (
     <label className="flex flex-col gap-1.5">
-      <span className="font-body text-[12.5px] font-medium text-site-text-mid">{label}</span>
+      <span className="mb-1 font-body text-[13px] font-medium text-site-text-mid">{label}</span>
       <textarea
         name={name}
-        rows={rows ?? 4}
+        rows={rows ?? 5}
         aria-invalid={error ? "true" : undefined}
-        className="rounded-btn border border-[#E8E8E8] bg-white px-3.5 py-3 font-body text-[14px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
+        className="min-h-[120px] rounded-[10px] border border-[#E8E8E8] bg-white px-4 py-3 font-body text-[15px] text-site-text outline-none transition-colors focus:border-teal-400 focus:ring-2 focus:ring-teal-500/10"
       />
       {error ? (
-        <span role="alert" className="font-body text-[11.5px] text-red-600">
+        <span role="alert" className="font-body text-[12px] text-red-600">
           {error}
         </span>
       ) : null}

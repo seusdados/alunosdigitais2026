@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 
-import { Container } from "@/components/site/container";
-import { SectionEyebrow } from "@/components/site/section-eyebrow";
-import { SectionHeading } from "@/components/site/section-heading";
 import { cn } from "@/lib/utils";
 import type { FAQAccordionData } from "@/types/content";
 
@@ -13,11 +10,17 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-site-white">
-      <Container className="py-16 md:py-[80px]">
-        <div className="mb-10 max-w-[720px] space-y-3">
-          {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
-          <SectionHeading>{title}</SectionHeading>
+    <section className="bg-sand px-8 py-20 lg:px-12 lg:py-24">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-12 max-w-4xl space-y-5">
+          {eyebrow ? (
+            <p className="font-body text-[16px] font-medium uppercase tracking-[0.14em] text-teal-500">
+              {eyebrow}
+            </p>
+          ) : null}
+          <h2 className="font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[68px]">
+            {title}
+          </h2>
         </div>
 
         <ul className="divide-y divide-[#E8E8E8] overflow-hidden rounded-card border border-[#E8E8E8] bg-white">
@@ -29,9 +32,9 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? null : idx)}
-                  className="flex w-full items-start justify-between gap-6 p-5 text-left transition-colors hover:bg-sand/50 md:p-6"
+                  className="flex w-full items-start justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-sand/50 md:px-7"
                 >
-                  <span className="font-display text-[15px] font-semibold leading-snug text-site-text md:text-[16px]">
+                  <span className="font-display text-[16px] font-semibold leading-[1.35] text-site-text">
                     {entry.question}
                   </span>
                   <span
@@ -52,8 +55,8 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
                   </span>
                 </button>
                 {isOpen ? (
-                  <div className="px-5 pb-6 pt-0 md:px-6">
-                    <p className="max-w-[680px] font-body text-[14px] leading-[1.7] text-site-text-mid">
+                  <div className="px-6 pb-6 pt-0 md:px-7">
+                    <p className="font-body text-[15px] leading-[1.75] text-site-text-mid">
                       {entry.answer}
                     </p>
                   </div>
@@ -62,7 +65,7 @@ export function FAQAccordion({ data }: { data: FAQAccordionData }) {
             );
           })}
         </ul>
-      </Container>
+      </div>
     </section>
   );
 }

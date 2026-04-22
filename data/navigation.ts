@@ -6,11 +6,11 @@ import type { NavLink } from "@/types/content";
  * retornada por query e consumida sem alteração nos componentes.
  */
 export const primaryNav: NavLink[] = [
-  { label: "O Programa", href: "/o-programa" },
-  { label: "Como Funciona", href: "/como-funciona" },
+  { label: "Programa", href: "/o-programa" },
+  { label: "Método", href: "/como-funciona" },
   { label: "Currículo", href: "/curriculo" },
-  { label: "Formação Docente", href: "/formacao-docente" },
-  { label: "Para Escolas", href: "/para-escolas" },
+  { label: "Docentes", href: "/formacao-docente" },
+  { label: "Escolas", href: "/para-escolas" },
   { label: "Conformidade", href: "/conformidade-e-curriculo" },
   { label: "Conteúdos", href: "/conteudos" },
   { label: "Sobre", href: "/sobre" },

@@ -1,5 +1,4 @@
 import type {
-  CardsGridData,
   CTABarData,
   ContactFormData,
   FAQAccordionData,
@@ -47,26 +46,8 @@ export const challengeData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-02-problema.jpg",
     alt: "Encruzilhada entre riscos e oportunidades do mundo digital na escola",
   },
-  direction: "right",
+  direction: "left",
   bgColor: "white",
-};
-
-export const whatItDeliversData: CardsGridData = {
-  eyebrow: "O que o programa entrega",
-  title: "Uma solução completa para implementar, ensinar e acompanhar",
-  subtitle:
-    "Não é curso isolado nem conteúdo solto. É uma arquitetura completa de implementação pedagógica.",
-  cards: [
-    { title: "Material didático físico e digital", icon: "teal" },
-    { title: "Plataforma com conteúdos e recursos complementares", icon: "teal" },
-    { title: "Formação inicial e contínua para professores", icon: "amber" },
-    { title: "Planos de aula estruturados", icon: "teal" },
-    { title: "Help desk e suporte pedagógico", icon: "amber" },
-    { title: "Ações de engajamento familiar", icon: "amber" },
-    { title: "Avaliação diagnóstica e indicadores", icon: "teal" },
-    { title: "Gamificação para aprendizagem e participação", icon: "amber" },
-  ],
-  bgColor: "sand",
 };
 
 export const pillarsBanner: PillarBannerData = {
@@ -74,8 +55,6 @@ export const pillarsBanner: PillarBannerData = {
     src: "/brand/ilustracoes/illo-03-pilares.jpg",
     alt: "Mural panorâmico dos oito pilares do programa Alunos Digitais",
   },
-  caption:
-    "Oito pilares percorrem toda a jornada — da construção de identidade e convivência nos anos iniciais ao protagonismo digital e inteligência artificial nos anos finais.",
 };
 
 export const teacherSupportData: SplitBleedData = {
@@ -89,7 +68,7 @@ export const teacherSupportData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-04-formacao.jpg",
     alt: "Professora conduzindo aula sobre cidadania digital",
   },
-  direction: "left",
+  direction: "right",
   bgColor: "white",
   cta: { label: "Conhecer a formação docente", href: "/formacao-docente" },
 };
@@ -105,7 +84,7 @@ export const familyData: SplitBleedData = {
     src: "/brand/ilustracoes/illo-05-familia.jpg",
     alt: "Família conversando em casa sobre uso consciente da tecnologia",
   },
-  direction: "right",
+  direction: "left",
   bgColor: "sand",
   cta: { label: "Ver plano de engajamento familiar", href: "/familia-e-engajamento" },
 };
@@ -148,11 +127,11 @@ export const schoolsData: SplitBleedData = {
     "Previsibilidade para a gestão, segurança técnica para o professor, engajamento para o estudante e continuidade para a família.",
   ],
   image: {
-    src: "/brand/ilustracoes/illo-07-escolas.jpg",
+    src: "/brand/ilustracoes/illo-07-escolas.png",
     alt: "Escola isométrica em corte com salas integradas ao programa",
   },
   direction: "right",
-  bgColor: "white",
+  bgColor: "sand",
   cta: { label: "Ver proposta para escolas", href: "/para-escolas" },
 };
 
@@ -168,7 +147,7 @@ export const materialsData: SplitBleedData = {
     alt: "Mesa do professor com livros, tablet e materiais do programa",
   },
   direction: "left",
-  bgColor: "sand",
+  bgColor: "white",
   cta: { label: "Ver plataforma e materiais", href: "/plataforma-e-materiais" },
 };
 
@@ -184,7 +163,7 @@ export const complianceData: SplitBleedData = {
     alt: "Árvore regulatória conectando marcos normativos à prática escolar",
   },
   direction: "right",
-  bgColor: "white",
+  bgColor: "sand",
   cta: {
     label: "Entender a aderência curricular e regulatória",
     href: "/conformidade-e-curriculo",
@@ -203,7 +182,7 @@ export const aboutData: SplitBleedData = {
     alt: "Equipe multidisciplinar reunida discutindo o programa",
   },
   direction: "left",
-  bgColor: "sand",
+  bgColor: "white",
   cta: { label: "Conhecer quem está por trás", href: "/sobre" },
 };
 

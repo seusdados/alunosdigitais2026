@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 
 import { BulletsSection } from "@/components/blocks/bullets-section";
 import { CTABarBlock } from "@/components/blocks/cta-bar-block";
-import { CurriculumSectionBlock } from "@/components/blocks/curriculum-section-block";
+import { CurriculumRoadBlock } from "@/components/blocks/curriculum-road-block";
 import { PageHero } from "@/components/blocks/page-hero";
-import { curriculumYears } from "@/data/curriculo";
 
 export const metadata: Metadata = {
   title: "Currículo de educação digital do 1º ao 9º ano | Alunos Digitais",
   description:
     "Conheça a organização curricular do Alunos Digitais para o 1º ao 9º ano, com progressão pedagógica, fases anuais e temas por etapa.",
   openGraph: {
-    images: ["/brand/ilustracoes/illo-06-progressao.jpg"],
+    images: ["/brand/ilustracoes/illo-06-estrada-central.jpg"],
   },
 };
 
@@ -39,17 +38,7 @@ export default function CurriculoHubPage() {
         bgColor="white"
       />
 
-      <CurriculumSectionBlock
-        eyebrow="Panorama"
-        title="Do 1º ao 9º ano, com progressão pedagógica real"
-        subtitle="Nos anos iniciais, a criança constrói identidade, convivência, empatia e navegação segura. Nos anos finais, o estudante aprofunda pensamento crítico, segurança digital avançada, IA e protagonismo."
-        years={curriculumYears}
-        image={{
-          src: "/brand/ilustracoes/illo-06-progressao.jpg",
-          alt: "Jornada vertical do 1º ao 9º ano",
-        }}
-        bgColor="sand"
-      />
+      <CurriculumRoadBlock />
 
       <CTABarBlock
         data={{

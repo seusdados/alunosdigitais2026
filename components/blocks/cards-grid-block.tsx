@@ -15,8 +15,8 @@ export function CardsGridBlock({ data }: { data: CardsGridData }) {
 
   return (
     <section className={cn(bgColor === "sand" ? "bg-sand" : "bg-site-white")}>
-      <Container className="py-16 md:py-[80px]">
-        <div className="mb-10 max-w-[720px] space-y-3 md:mb-12">
+      <Container className="py-20 lg:py-24">
+        <div className="mb-12 max-w-2xl space-y-4 md:mb-14">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           <SectionHeading subtitle={subtitle}>{title}</SectionHeading>
         </div>

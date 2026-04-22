@@ -21,14 +21,14 @@ export function SectionHeading({
     <div className="space-y-3">
       <Component
         className={cn(
-          "font-display text-[28px] font-bold leading-tight tracking-tighter text-site-text md:text-[32px]",
+          "font-display text-[48px] font-bold leading-[1.05] tracking-[-0.035em] text-site-text lg:text-[68px]",
           className,
         )}
       >
         {children}
       </Component>
       {subtitle ? (
-        <p className="max-w-[520px] font-body text-[15px] font-light leading-[1.72] text-site-text-mid">
+        <p className="max-w-3xl font-body text-[20px] font-light leading-[1.72] text-site-text-mid lg:text-[22px]">
           {subtitle}
         </p>
       ) : null}
