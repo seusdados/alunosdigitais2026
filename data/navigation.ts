@@ -22,6 +22,23 @@ export const headerCta: NavLink = {
   cta: true,
 };
 
+/**
+ * Botão de acesso ao LMS (Área do Aluno).
+ *
+ * URL padrão: `portal.alunosdigitais.com` (subdomínio do LMS — arquitetura-
+ * alvo de plataforma única, conforme CLAUDE.md e
+ * docs/analise-convergencia-lms.md §14.1). Configurável via
+ * `NEXT_PUBLIC_LMS_URL` pra facilitar ajuste caso o path do login
+ * precise ser explicitado (ex.: `/login`, `/entrar`).
+ *
+ * Auth unificado site ↔ LMS é objetivo futuro (bloqueado aguardando
+ * relatório de convergência); por ora, link externo que aterra no LMS.
+ */
+export const platformCta: NavLink = {
+  label: "Área do Aluno",
+  href: process.env.NEXT_PUBLIC_LMS_URL ?? "https://portal.alunosdigitais.com",
+};
+
 export type FooterColumn = {
   title: string;
   links: NavLink[];
