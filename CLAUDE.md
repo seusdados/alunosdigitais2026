@@ -155,6 +155,58 @@ nenhuma imagem enquadrada em retângulo rígido.
 - /admin/configuracoes
 - /admin/usuarios
 
+## Branch strategy
+
+Ordem de branches, **sem exceção**:
+
+```
+main (produção)  ←  develop (homologação)  ←  feature/<escopo> | fix/<escopo> | claude/<escopo>
+```
+
+- **`main`**: deploy de produção no Vercel. Só recebe merge via PR vindo de `develop`,
+  após a homologação estar aprovada. Nunca commitar direto.
+- **`develop`**: deploy de homologação no Vercel. Fonte de verdade do trabalho em
+  andamento. Só recebe merge via PR vindo de branch de feature/fix, após validação do
+  humano.
+- **`feature/*` / `fix/*` / `claude/*`**: curtas, um escopo por branch, sempre partindo
+  de `develop` **atualizada**.
+
+### Antes de começar qualquer tarefa (obrigatório)
+
+1. `git fetch origin`
+2. Garantir que a branch de trabalho está em cima do último `origin/develop`.
+   Se estiver atrás, fazer rebase/merge de `develop` **antes** de codar qualquer
+   linha.
+3. Se ainda não houver branch de trabalho, criar:
+   `git checkout -b feature/<escopo-curto>` partindo de `develop` já atualizada.
+
+### Ciclo de entrega
+
+1. Desenvolver na branch de feature. Commits pequenos e descritivos.
+2. Se `develop` avançar durante o trabalho, rebasear (`git rebase origin/develop`).
+3. Rodar `pnpm format:check && pnpm lint && pnpm typecheck && pnpm build` antes de push.
+4. Push e abrir PR com base = `develop`, **draft** até o CI passar.
+5. Apresentar ao humano para validação. Não mergear sozinho.
+6. Após aprovação explícita, merge em `develop` (squash ou merge commit; sem
+   amendar/force-push a menos que o humano peça).
+7. Promoção para produção: PR separado `develop → main`, abrido quando a
+   homologação estiver estável, mergeado após validação final.
+
+### Escopo por produto
+
+Um fluxo `main`/`develop` por **repositório**, não por produto dentro do mesmo repo.
+O repo `seusdados/alunosdigitais2026` cobre site público + CMS (mesma app Next.js).
+O LMS (`seusdados/alunos-digitais-2026-new`) tem seu próprio `main`/`develop`. Novas
+apps com deploy independente (ex.: `cms.alunosdigitais.com` no futuro) ganharão
+repositório próprio, não branches próprias neste.
+
+### O que não fazer
+
+- Commitar direto em `main` ou `develop`.
+- Abrir PR com base = `main` partindo de feature branch (passa primeiro por `develop`).
+- Criar branches `prod-*`, `prod-cms`, `prod-lms` dentro deste repo.
+- Merge sem aprovação humana explícita, mesmo com CI verde.
+
 ## Antes de encerrar qualquer tarefa
 
 - garanta build coerente
