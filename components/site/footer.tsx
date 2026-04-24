@@ -1,8 +1,15 @@
+import { LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Container } from "@/components/site/container";
-import { companyInfo, contactInfo, footerColumns, legalLinks } from "@/data/navigation";
+import {
+  companyInfo,
+  contactInfo,
+  footerColumns,
+  legalLinks,
+  platformCta,
+} from "@/data/navigation";
 
 export function Footer() {
   return (
@@ -27,7 +34,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Coluna 2 — Contato */}
+        {/* Coluna 2 — Contato + acesso à plataforma */}
         <nav aria-label="Contato">
           <p className="mb-[18px] font-display text-[14px] font-semibold text-white/80">Contato</p>
           <ul className="space-y-3">
@@ -45,6 +52,15 @@ export function Footer() {
                 className="break-all font-body text-[13.5px] text-white/55 transition-colors hover:text-white"
               >
                 {contactInfo.email.label}
+              </a>
+            </li>
+            <li className="pt-2">
+              <a
+                href={platformCta.href}
+                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/[0.04] px-3.5 py-2.5 font-body text-[13.5px] font-medium text-white transition-colors hover:bg-white/10"
+              >
+                <LogIn className="h-3.5 w-3.5" aria-hidden />
+                {platformCta.label}
               </a>
             </li>
           </ul>

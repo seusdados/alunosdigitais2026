@@ -1,5 +1,6 @@
 "use client";
 
+import { LogIn } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,7 +8,7 @@ import { useEffect, useState } from "react";
 
 import { Container } from "@/components/site/container";
 import { SiteButton } from "@/components/site/site-button";
-import { primaryNav, headerCta } from "@/data/navigation";
+import { headerCta, platformCta, primaryNav } from "@/data/navigation";
 import { cn } from "@/lib/utils";
 
 export function NavBar() {
@@ -62,7 +63,15 @@ export function NavBar() {
           })}
         </ul>
 
-        <div className="hidden xl:block">
+        <div className="hidden items-center gap-2 xl:flex">
+          <SiteButton
+            href={platformCta.href}
+            variant="outline-white"
+            className="h-12 gap-2 px-5 text-[15px]"
+          >
+            <LogIn className="h-4 w-4" aria-hidden />
+            {platformCta.label}
+          </SiteButton>
           <SiteButton href={headerCta.href} variant="primary" className="h-12 px-6 text-[15px]">
             {headerCta.label}
           </SiteButton>
@@ -102,6 +111,13 @@ export function NavBar() {
       {open ? (
         <div className="xl:hidden">
           <Container className="flex flex-col gap-1 border-t border-white/5 bg-navy-800 py-4">
+            <a
+              href={platformCta.href}
+              className="mb-3 inline-flex items-center justify-center gap-2 rounded-md border border-white/15 bg-white/[0.04] px-3 py-3 font-body text-[16px] font-medium text-white transition-colors hover:bg-white/10"
+            >
+              <LogIn className="h-4 w-4" aria-hidden />
+              {platformCta.label}
+            </a>
             {primaryNav.map((item) => {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
